@@ -31,7 +31,7 @@ public class UpdateService : IUpdateService
             var response = await _httpClient.GetAsync(targetUrl, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
-                return Result<UpdateInfo?>.Failure($"Unable to reach update server (HTTP {response.StatusCode}).");
+                return Result<UpdateInfo?>.Failure($"Unable to reach update manifest at {targetUrl} (HTTP {response.StatusCode}).");
             }
 
             var updateInfo = await response.Content.ReadFromJsonAsync<UpdateInfo>(cancellationToken: cancellationToken);
@@ -65,10 +65,38 @@ public class UpdateService : IUpdateService
 
         try
         {
-            var tempInstallerPath = Path.Combine(Path.GetTempPath(), "360LocalShare_Setup_Update.exe");
+            // Support local file path for offline testing
+            if (File.Exists(updateInfo.DownloadUrl) || updateInfo.DownloadUrl.StartsWith("file://", StringComparison.OrdinalIgnoreCase))
+            {
+                var localPath = updateInfo.DownloadUrl.StartsWith("file://", StringComparison.OrdinalIgnoreCase)
+                    ? new Uri(updateInfo.DownloadUrl).LocalPath
+                    : updateInfo.DownloadUrl;
+
+                if (!File.Exists(localPath))
+                {
+                    return Result.Failure($"Local update installer file not found at: {localPath}");
+                }
+
+                var localStartInfo = new ProcessStartInfo
+                {
+                    FileName = localPath,
+                    Arguments = "/SILENT /NORESTART",
+                    UseShellExecute = true
+                };
+                Process.Start(localStartInfo);
+                Environment.Exit(0);
+                return Result.Success();
+            }
+
+            var tempInstallerPath = Path.Combine(Path.GetTempPath(), $"360LocalShare_Setup_v{updateInfo.Version}.exe");
 
             using (var response = await _httpClient.GetAsync(updateInfo.DownloadUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken))
             {
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return Result.Failure($"Remote installer file for v{updateInfo.Version} was not found on GitHub Releases (HTTP 404).\n\nTo resolve this: Please upload '360LocalShare_Setup_v{updateInfo.Version}.exe' to your GitHub Release assets at:\nhttps://github.com/360productions-it/LocalShare/releases/tag/v{updateInfo.Version}");
+                }
+
                 response.EnsureSuccessStatusCode();
 
                 var totalBytes = response.Content.Headers.ContentLength ?? -1L;
@@ -108,7 +136,7 @@ public class UpdateService : IUpdateService
         }
         catch (Exception ex)
         {
-            return Result.Failure($"Failed to download or apply update: {ex.Message}");
+            return Result.Failure($"Update error: {ex.Message}");
         }
     }
 
