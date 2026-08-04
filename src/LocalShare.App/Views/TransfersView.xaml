@@ -1,0 +1,40 @@
+<UserControl x:Class="LocalShare.App.Views.TransfersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="File Transfers Log" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,0,0,15"/>
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Transfers}" AutoGenerateColumns="False" IsReadOnly="True" Background="#1E1E1E" RowBackground="#2A2A2A" AlternatingRowBackground="#242424" Foreground="White" GridLinesVisibility="Horizontal">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Direction" Binding="{Binding Direction}" Width="90"/>
+                <DataGridTextColumn Header="File Name" Binding="{Binding FileName}" Width="2*"/>
+                <DataGridTextColumn Header="Peer" Binding="{Binding PeerDisplayName}" Width="150"/>
+                <DataGridTextColumn Header="Size" Binding="{Binding SizeBytes}" Width="100"/>
+                <DataGridTemplateColumn Header="Progress" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ProgressBar Value="{Binding ProgressPercentage, Mode=OneWay}" Maximum="100" Height="14" Foreground="#0078D4" Background="#444444"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
+                <DataGridTemplateColumn Header="Action" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Pause" Command="{Binding DataContext.PauseTransferCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Margin="2" Background="#444444" Foreground="White"/>
+                                <Button Content="Resume" Command="{Binding DataContext.ResumeTransferCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Margin="2" Background="#0078D4" Foreground="White"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

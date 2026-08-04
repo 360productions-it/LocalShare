@@ -1,0 +1,17 @@
+D:\dotnet\LocalShare\src\LocalShare.Data\bin\Debug\net10.0\LocalShare.Data.deps.json
+D:\dotnet\LocalShare\src\LocalShare.Data\bin\Debug\net10.0\LocalShare.Data.dll
+D:\dotnet\LocalShare\src\LocalShare.Data\bin\Debug\net10.0\LocalShare.Data.pdb
+D:\dotnet\LocalShare\src\LocalShare.Data\bin\Debug\net10.0\LocalShare.Common.dll
+D:\dotnet\LocalShare\src\LocalShare.Data\bin\Debug\net10.0\LocalShare.Core.dll
+D:\dotnet\LocalShare\src\LocalShare.Data\bin\Debug\net10.0\LocalShare.Core.pdb
+D:\dotnet\LocalShare\src\LocalShare.Data\bin\Debug\net10.0\LocalShare.Common.pdb
+D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\LocalShare.Data.csproj.AssemblyReference.cache
+D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\LocalShare.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\LocalShare.Data.AssemblyInfoInputs.cache
+D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\LocalShare.Data.AssemblyInfo.cs
+D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\LocalShare.Data.csproj.CoreCompileInputs.cache
+D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\LocalSha.75AE285D.Up2Date
+D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\LocalShare.Data.dll
+D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\refint\LocalShare.Data.dll
+D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\LocalShare.Data.pdb
+D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\ref\LocalShare.Data.dll

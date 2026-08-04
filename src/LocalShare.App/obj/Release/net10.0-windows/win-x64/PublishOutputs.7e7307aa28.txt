@@ -1,0 +1,6 @@
+D:\dotnet\LocalShare\dist\publish\LocalShare.App.pdb
+D:\dotnet\LocalShare\dist\publish\LocalShare.Core.pdb
+D:\dotnet\LocalShare\dist\publish\LocalShare.Networking.pdb
+D:\dotnet\LocalShare\dist\publish\LocalShare.Data.pdb
+D:\dotnet\LocalShare\dist\publish\LocalShare.Common.pdb
+D:\dotnet\LocalShare\dist\publish\LocalShare.App.exe

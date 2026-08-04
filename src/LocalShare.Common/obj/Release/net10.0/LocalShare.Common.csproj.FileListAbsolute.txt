@@ -1,0 +1,11 @@
+D:\dotnet\LocalShare\src\LocalShare.Common\bin\Release\net10.0\LocalShare.Common.deps.json
+D:\dotnet\LocalShare\src\LocalShare.Common\bin\Release\net10.0\LocalShare.Common.dll
+D:\dotnet\LocalShare\src\LocalShare.Common\bin\Release\net10.0\LocalShare.Common.pdb
+D:\dotnet\LocalShare\src\LocalShare.Common\obj\Release\net10.0\LocalShare.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\dotnet\LocalShare\src\LocalShare.Common\obj\Release\net10.0\LocalShare.Common.AssemblyInfoInputs.cache
+D:\dotnet\LocalShare\src\LocalShare.Common\obj\Release\net10.0\LocalShare.Common.AssemblyInfo.cs
+D:\dotnet\LocalShare\src\LocalShare.Common\obj\Release\net10.0\LocalShare.Common.csproj.CoreCompileInputs.cache
+D:\dotnet\LocalShare\src\LocalShare.Common\obj\Release\net10.0\LocalShare.Common.dll
+D:\dotnet\LocalShare\src\LocalShare.Common\obj\Release\net10.0\refint\LocalShare.Common.dll
+D:\dotnet\LocalShare\src\LocalShare.Common\obj\Release\net10.0\LocalShare.Common.pdb
+D:\dotnet\LocalShare\src\LocalShare.Common\obj\Release\net10.0\ref\LocalShare.Common.dll

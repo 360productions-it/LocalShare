@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "qBiEoYVl7xs=",
+  "success": true,
+  "projectFilePath": "D:\\dotnet\\LocalShare\\src\\LocalShare.Networking\\LocalShare.Networking.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\RaZoR-360\\.nuget\\packages\\microsoft.aspnetcore.http.connections.client\\10.0.10\\microsoft.aspnetcore.http.connections.client.10.0.10.nupkg.sha512",
+    "C:\\Users\\RaZoR-360\\.nuget\\packages\\microsoft.aspnetcore.signalr.client\\10.0.10\\microsoft.aspnetcore.signalr.client.10.0.10.nupkg.sha512",
+    "C:\\Users\\RaZoR-360\\.nuget\\packages\\microsoft.aspnetcore.signalr.client.core\\10.0.10\\microsoft.aspnetcore.signalr.client.core.10.0.10.nupkg.sha512"
+  ],
+  "logs": []
+}

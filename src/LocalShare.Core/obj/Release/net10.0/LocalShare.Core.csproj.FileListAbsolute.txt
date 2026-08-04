@@ -1,0 +1,15 @@
+D:\dotnet\LocalShare\src\LocalShare.Core\bin\Release\net10.0\LocalShare.Core.deps.json
+D:\dotnet\LocalShare\src\LocalShare.Core\bin\Release\net10.0\LocalShare.Core.dll
+D:\dotnet\LocalShare\src\LocalShare.Core\bin\Release\net10.0\LocalShare.Core.pdb
+D:\dotnet\LocalShare\src\LocalShare.Core\bin\Release\net10.0\LocalShare.Common.dll
+D:\dotnet\LocalShare\src\LocalShare.Core\bin\Release\net10.0\LocalShare.Common.pdb
+D:\dotnet\LocalShare\src\LocalShare.Core\obj\Release\net10.0\LocalShare.Core.csproj.AssemblyReference.cache
+D:\dotnet\LocalShare\src\LocalShare.Core\obj\Release\net10.0\LocalShare.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\dotnet\LocalShare\src\LocalShare.Core\obj\Release\net10.0\LocalShare.Core.AssemblyInfoInputs.cache
+D:\dotnet\LocalShare\src\LocalShare.Core\obj\Release\net10.0\LocalShare.Core.AssemblyInfo.cs
+D:\dotnet\LocalShare\src\LocalShare.Core\obj\Release\net10.0\LocalShare.Core.csproj.CoreCompileInputs.cache
+D:\dotnet\LocalShare\src\LocalShare.Core\obj\Release\net10.0\LocalSha.140EC0DA.Up2Date
+D:\dotnet\LocalShare\src\LocalShare.Core\obj\Release\net10.0\LocalShare.Core.dll
+D:\dotnet\LocalShare\src\LocalShare.Core\obj\Release\net10.0\refint\LocalShare.Core.dll
+D:\dotnet\LocalShare\src\LocalShare.Core\obj\Release\net10.0\LocalShare.Core.pdb
+D:\dotnet\LocalShare\src\LocalShare.Core\obj\Release\net10.0\ref\LocalShare.Core.dll

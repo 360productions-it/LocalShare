@@ -1,0 +1,17 @@
+D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Debug\net10.0\LocalShare.Networking.csproj.AssemblyReference.cache
+D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Debug\net10.0\LocalShare.Networking.GeneratedMSBuildEditorConfig.editorconfig
+D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Debug\net10.0\LocalShare.Networking.AssemblyInfoInputs.cache
+D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Debug\net10.0\LocalShare.Networking.AssemblyInfo.cs
+D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Debug\net10.0\LocalShare.Networking.csproj.CoreCompileInputs.cache
+D:\dotnet\LocalShare\src\LocalShare.Networking\bin\Debug\net10.0\LocalShare.Networking.deps.json
+D:\dotnet\LocalShare\src\LocalShare.Networking\bin\Debug\net10.0\LocalShare.Networking.dll
+D:\dotnet\LocalShare\src\LocalShare.Networking\bin\Debug\net10.0\LocalShare.Networking.pdb
+D:\dotnet\LocalShare\src\LocalShare.Networking\bin\Debug\net10.0\LocalShare.Common.dll
+D:\dotnet\LocalShare\src\LocalShare.Networking\bin\Debug\net10.0\LocalShare.Core.dll
+D:\dotnet\LocalShare\src\LocalShare.Networking\bin\Debug\net10.0\LocalShare.Core.pdb
+D:\dotnet\LocalShare\src\LocalShare.Networking\bin\Debug\net10.0\LocalShare.Common.pdb
+D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Debug\net10.0\LocalSha.E6884309.Up2Date
+D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Debug\net10.0\LocalShare.Networking.dll
+D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Debug\net10.0\refint\LocalShare.Networking.dll
+D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Debug\net10.0\LocalShare.Networking.pdb
+D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Debug\net10.0\ref\LocalShare.Networking.dll
