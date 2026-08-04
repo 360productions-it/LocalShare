@@ -41,7 +41,7 @@ public partial class ProfileSettingsViewModel : ObservableObject
     private string _currentVersion = "v1.0.0";
 
     [ObservableProperty]
-    private string _updateManifestUrl = "https://raw.githubusercontent.com/Antigravity/360-LocalShare/main/dist/latest_version.json";
+    private string _updateManifestUrl = "https://raw.githubusercontent.com/360productions-it/LocalShare/main/dist/latest_version.json";
 
     [ObservableProperty]
     private string _updateStatusMessage = "Check for available software updates on LAN / Web.";

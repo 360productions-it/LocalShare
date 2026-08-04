@@ -30,8 +30,6 @@
     <AssemblyProduct>360 LocalShare</AssemblyProduct>
     <AssemblyCompany>Antigravity Software</AssemblyCompany>
     <Description>Fast P2P LAN File Sharing and Real-time Instant Messenger</Description>
-    <FileVersion>1.0.0.0</FileVersion>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
 </Project>

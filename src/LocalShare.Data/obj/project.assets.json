@@ -185,7 +185,7 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
-      "LocalShare.Common/1.0.0": {
+      "LocalShare.Common/1.2.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "compile": {
@@ -195,11 +195,128 @@
           "bin/placeholder/LocalShare.Common.dll": {}
         }
       },
-      "LocalShare.Core/1.0.0": {
+      "LocalShare.Core/1.2.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "LocalShare.Common": "1.0.0"
+          "LocalShare.Common": "1.2.0"
+        },
+        "compile": {
+          "bin/placeholder/LocalShare.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LocalShare.Core.dll": {}
+        }
+      }
+    },
+    "net10.0/win-x64": {
+      "Dapper/2.1.79": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/Dapper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Dapper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Data.Sqlite/10.0.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Data.Sqlite.Core": "10.0.10",
+          "SQLitePCLRaw.bundle_e_sqlite3": "2.1.11",
+          "SQLitePCLRaw.core": "2.1.11"
+        },
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        }
+      },
+      "Microsoft.Data.Sqlite.Core/10.0.10": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.1.11"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.Data.Sqlite.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Data.Sqlite.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3/2.1.11": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.lib.e_sqlite3": "2.1.11",
+          "SQLitePCLRaw.provider.e_sqlite3": "2.1.11"
+        },
+        "compile": {
+          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
+        }
+      },
+      "SQLitePCLRaw.core/2.1.11": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "SQLitePCLRaw.lib.e_sqlite3/2.1.11": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "native": {
+          "runtimes/win-x64/native/e_sqlite3.dll": {}
+        },
+        "build": {
+          "buildTransitive/net9.0/SQLitePCLRaw.lib.e_sqlite3.targets": {}
+        }
+      },
+      "SQLitePCLRaw.provider.e_sqlite3/2.1.11": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.1.11"
+        },
+        "compile": {
+          "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        }
+      },
+      "LocalShare.Common/1.2.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/LocalShare.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LocalShare.Common.dll": {}
+        }
+      },
+      "LocalShare.Core/1.2.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LocalShare.Common": "1.2.0"
         },
         "compile": {
           "bin/placeholder/LocalShare.Core.dll": {}
@@ -357,12 +474,12 @@
         "sqlitepclraw.provider.e_sqlite3.nuspec"
       ]
     },
-    "LocalShare.Common/1.0.0": {
+    "LocalShare.Common/1.2.0": {
       "type": "project",
       "path": "../LocalShare.Common/LocalShare.Common.csproj",
       "msbuildProject": "../LocalShare.Common/LocalShare.Common.csproj"
     },
-    "LocalShare.Core/1.0.0": {
+    "LocalShare.Core/1.2.0": {
       "type": "project",
       "path": "../LocalShare.Core/LocalShare.Core.csproj",
       "msbuildProject": "../LocalShare.Core/LocalShare.Core.csproj"
@@ -371,8 +488,8 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "Dapper >= 2.1.79",
-      "LocalShare.Common >= 1.0.0",
-      "LocalShare.Core >= 1.0.0",
+      "LocalShare.Common >= 1.2.0",
+      "LocalShare.Core >= 1.2.0",
       "Microsoft.Data.Sqlite >= 10.0.10"
     ]
   },
@@ -381,7 +498,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.2.0",
     "restore": {
       "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Data\\LocalShare.Data.csproj",
       "projectName": "LocalShare.Data",
@@ -453,6 +570,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+            "version": "[10.0.3, 10.0.3]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.win-x64",
+            "version": "[10.0.3, 10.0.3]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+            "version": "[10.0.3, 10.0.3]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -734,6 +865,11 @@
           "System.Xml.XPath.XDocument": "(,5.0.32767]"
         }
       }
+    },
+    "runtimes": {
+      "win-x64": {
+        "#import": []
+      }
     }
   },
   "logs": [
@@ -744,7 +880,8 @@
       "message": "Package 'SQLitePCLRaw.lib.e_sqlite3' 2.1.11 has a known high severity vulnerability, https://github.com/advisories/GHSA-2m69-gcr7-jv3q",
       "libraryId": "SQLitePCLRaw.lib.e_sqlite3",
       "targetGraphs": [
-        "net10.0"
+        "net10.0",
+        "net10.0/win-x64"
       ]
     }
   ]

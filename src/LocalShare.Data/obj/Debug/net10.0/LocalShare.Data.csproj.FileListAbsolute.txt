@@ -15,3 +15,4 @@ D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\LocalShare.Data.dll
 D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\refint\LocalShare.Data.dll
 D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\LocalShare.Data.pdb
 D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\ref\LocalShare.Data.dll
+D:\dotnet\LocalShare\src\LocalShare.Data\obj\Debug\net10.0\LocalShare.Data.sourcelink.json

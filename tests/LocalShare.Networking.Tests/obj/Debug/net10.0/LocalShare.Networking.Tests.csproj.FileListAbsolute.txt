@@ -116,3 +116,4 @@ D:\dotnet\LocalShare\tests\LocalShare.Networking.Tests\obj\Debug\net10.0\refint\
 D:\dotnet\LocalShare\tests\LocalShare.Networking.Tests\obj\Debug\net10.0\LocalShare.Networking.Tests.pdb
 D:\dotnet\LocalShare\tests\LocalShare.Networking.Tests\obj\Debug\net10.0\LocalShare.Networking.Tests.genruntimeconfig.cache
 D:\dotnet\LocalShare\tests\LocalShare.Networking.Tests\obj\Debug\net10.0\ref\LocalShare.Networking.Tests.dll
+D:\dotnet\LocalShare\tests\LocalShare.Networking.Tests\obj\Debug\net10.0\LocalShare.Networking.Tests.sourcelink.json

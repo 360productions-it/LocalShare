@@ -13,21 +13,14 @@ namespace LocalShare.Networking.Services;
 public class UpdateService : IUpdateService
 {
     private readonly HttpClient _httpClient;
-    public const string DefaultUpdateManifestUrl = "https://raw.githubusercontent.com/Antigravity/360-LocalShare/main/dist/latest_version.json";
+    public const string DefaultUpdateManifestUrl = "https://raw.githubusercontent.com/360productions-it/LocalShare/main/dist/latest_version.json";
 
     public UpdateService(HttpClient? httpClient = null)
     {
         _httpClient = httpClient ?? new HttpClient();
     }
 
-    public string CurrentVersion
-    {
-        get
-        {
-            var ver = Assembly.GetEntryAssembly()?.GetName().Version ?? new Version(1, 0, 0);
-            return $"{ver.Major}.{ver.Minor}.{ver.Build}";
-        }
-    }
+    public string CurrentVersion => AppVersionInfo.Version;
 
     public async Task<Result<UpdateInfo?>> CheckForUpdatesAsync(string? updateManifestUrl = null, CancellationToken cancellationToken = default)
     {

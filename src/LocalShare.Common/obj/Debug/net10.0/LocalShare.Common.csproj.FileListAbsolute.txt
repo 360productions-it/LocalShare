@@ -9,3 +9,4 @@ D:\dotnet\LocalShare\src\LocalShare.Common\obj\Debug\net10.0\LocalShare.Common.d
 D:\dotnet\LocalShare\src\LocalShare.Common\obj\Debug\net10.0\refint\LocalShare.Common.dll
 D:\dotnet\LocalShare\src\LocalShare.Common\obj\Debug\net10.0\LocalShare.Common.pdb
 D:\dotnet\LocalShare\src\LocalShare.Common\obj\Debug\net10.0\ref\LocalShare.Common.dll
+D:\dotnet\LocalShare\src\LocalShare.Common\obj\Debug\net10.0\LocalShare.Common.sourcelink.json

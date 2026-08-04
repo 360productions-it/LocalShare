@@ -45,7 +45,7 @@
           }
         }
       },
-      "LocalShare.Common/1.0.0": {
+      "LocalShare.Common/1.2.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "compile": {
@@ -55,11 +55,79 @@
           "bin/placeholder/LocalShare.Common.dll": {}
         }
       },
-      "LocalShare.Core/1.0.0": {
+      "LocalShare.Core/1.2.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "LocalShare.Common": "1.0.0"
+          "LocalShare.Common": "1.2.0"
+        },
+        "compile": {
+          "bin/placeholder/LocalShare.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LocalShare.Core.dll": {}
+        }
+      }
+    },
+    "net10.0/win-x64": {
+      "Microsoft.AspNetCore.Http.Connections.Client/10.0.10": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/Microsoft.AspNetCore.Http.Connections.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.Http.Connections.Client.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Client/10.0.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Connections.Client": "10.0.10",
+          "Microsoft.AspNetCore.SignalR.Client.Core": "10.0.10"
+        },
+        "compile": {
+          "lib/net10.0/Microsoft.AspNetCore.SignalR.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.SignalR.Client.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Client.Core/10.0.10": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/Microsoft.AspNetCore.SignalR.Client.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.SignalR.Client.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "LocalShare.Common/1.2.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/LocalShare.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LocalShare.Common.dll": {}
+        }
+      },
+      "LocalShare.Core/1.2.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "LocalShare.Common": "1.2.0"
         },
         "compile": {
           "bin/placeholder/LocalShare.Core.dll": {}
@@ -134,12 +202,12 @@
         "microsoft.aspnetcore.signalr.client.core.nuspec"
       ]
     },
-    "LocalShare.Common/1.0.0": {
+    "LocalShare.Common/1.2.0": {
       "type": "project",
       "path": "../LocalShare.Common/LocalShare.Common.csproj",
       "msbuildProject": "../LocalShare.Common/LocalShare.Common.csproj"
     },
-    "LocalShare.Core/1.0.0": {
+    "LocalShare.Core/1.2.0": {
       "type": "project",
       "path": "../LocalShare.Core/LocalShare.Core.csproj",
       "msbuildProject": "../LocalShare.Core/LocalShare.Core.csproj"
@@ -147,8 +215,8 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "LocalShare.Common >= 1.0.0",
-      "LocalShare.Core >= 1.0.0",
+      "LocalShare.Common >= 1.2.0",
+      "LocalShare.Core >= 1.2.0",
       "Microsoft.AspNetCore.SignalR.Client >= 10.0.10"
     ]
   },
@@ -157,7 +225,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.2.0",
     "restore": {
       "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Networking\\LocalShare.Networking.csproj",
       "projectName": "LocalShare.Networking",
@@ -225,6 +293,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+            "version": "[10.0.3, 10.0.3]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.win-x64",
+            "version": "[10.0.3, 10.0.3]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+            "version": "[10.0.3, 10.0.3]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -648,6 +730,11 @@
           "System.Xml.XPath": "(,4.3.32767]",
           "System.Xml.XPath.XDocument": "(,5.0.32767]"
         }
+      }
+    },
+    "runtimes": {
+      "win-x64": {
+        "#import": []
       }
     }
   }

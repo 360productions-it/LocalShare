@@ -56,8 +56,11 @@
                         <Image Source="pack://application:,,,/Assets/360-logo.png" Width="42" Height="42" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Center"/>
 
                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="12,0,0,0">
-                            <TextBlock Text="LocalShare" FontSize="18" FontWeight="Bold" Foreground="White"/>
-                            <TextBlock Text="P2P LAN Network" FontSize="11" Foreground="#38BDF8" FontWeight="SemiBold"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="LocalShare " FontSize="18" FontWeight="Bold" Foreground="White"/>
+                                <TextBlock Text="{Binding AppVersion}" FontSize="11" FontWeight="Bold" Foreground="#38BDF8" VerticalAlignment="Bottom" Margin="2,0,0,2"/>
+                            </StackPanel>
+                            <TextBlock Text="P2P LAN Network" FontSize="11" Foreground="#94A3B8" FontWeight="SemiBold"/>
                         </StackPanel>
                     </Grid>
 

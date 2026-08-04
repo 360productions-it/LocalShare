@@ -2,9 +2,11 @@
 ; Inno Setup 6.0+ Compiler Script
 
 #define MyAppName "360 LocalShare"
+#ifndef MyAppVersion
 #define MyAppVersion "1.0.0"
+#endif
 #define MyAppPublisher "360 Software"
-#define MyAppURL "https://github.com/Antigravity/360-LocalShare"
+#define MyAppURL "https://github.com/360productions-it/LocalShare"
 #define MyAppExeName "LocalShare.App.exe"
 #define MyAppIcon "..\src\LocalShare.App\Assets\360-logo.ico"
 
@@ -20,7 +22,7 @@ DefaultDirName={autopf}\360 LocalShare
 DisableProgramGroupPage=yes
 LicenseFile=
 OutputDir=..\dist\installer
-OutputBaseFilename=360LocalShare_Setup_v1.0.0
+OutputBaseFilename=360LocalShare_Setup_v{#MyAppVersion}
 SetupIconFile={#MyAppIcon}
 UninstallDisplayIcon={app}\{#MyAppExeName}
 Compression=lzma2/ultra64

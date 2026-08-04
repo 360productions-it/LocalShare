@@ -1,5 +1,9 @@
 # 360 LocalShare Automated Release & Installer Build Script
-# Run this script in PowerShell to build a self-contained x64 release and installer.
+# Usage: powershell -File .\build-release.ps1 [-Version 1.1.0]
+
+param(
+    [string]$Version
+)
 
 $ErrorActionPreference = "Stop"
 
@@ -11,43 +15,82 @@ $ProjectDir = Get-Location
 $PublishDir = Join-Path $ProjectDir "dist\publish"
 $InstallerOutputDir = Join-Path $ProjectDir "dist\installer"
 $IssScript = Join-Path $ProjectDir "installer\installer.iss"
+$PropsPath = Join-Path $ProjectDir "Directory.Build.props"
 
-# 1. Clean previous build artifacts
-Write-Host "[1/4] Cleaning previous build output folders..." -ForegroundColor Yellow
+# 1. Update Directory.Build.props if -Version parameter is passed
+if ($Version) {
+    Write-Host "`n[Version Update] Setting application version to v$Version..." -ForegroundColor Yellow
+    $CleanVer = $Version.TrimStart('v', 'V')
+    $PropsXml = @"
+<Project>
+  <PropertyGroup>
+    <Version>$CleanVer</Version>
+    <AssemblyVersion>$CleanVer.0</AssemblyVersion>
+    <FileVersion>$CleanVer.0</FileVersion>
+    <InformationalVersion>$CleanVer</InformationalVersion>
+  </PropertyGroup>
+</Project>
+"@
+    $PropsXml | Out-File -FilePath $PropsPath -Encoding utf8
+    Write-Host "✅ Directory.Build.props updated with version v$CleanVer" -ForegroundColor Green
+}
+
+# 2. Extract current dynamic version
+$CurrentVersion = "1.0.0"
+if (Test-Path $PropsPath) {
+    [xml]$xml = Get-Content $PropsPath
+    if ($xml.Project.PropertyGroup.Version) {
+        $CurrentVersion = $xml.Project.PropertyGroup.Version
+    }
+}
+
+Write-Host "`n[Building Target Version]: v$CurrentVersion" -ForegroundColor Green
+
+# 3. Clean previous build artifacts
+Write-Host "`n[1/5] Cleaning previous build output folders..." -ForegroundColor Yellow
 if (Test-Path $PublishDir) { Remove-Item $PublishDir -Recurse -Force }
 if (Test-Path $InstallerOutputDir) { Remove-Item $InstallerOutputDir -Recurse -Force }
 
 New-Item -ItemType Directory -Path $PublishDir -Force | Out-Null
 New-Item -ItemType Directory -Path $InstallerOutputDir -Force | Out-Null
 
-# 2. Run dotnet publish for self-contained x64 Single File
-Write-Host "[2/4] Publishing self-contained single-file x64 release..." -ForegroundColor Yellow
-dotnet publish src/LocalShare.App/LocalShare.App.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o $PublishDir
+# 4. Restore dependencies for target runtime win-x64
+Write-Host "`n[2/5] Restoring project dependencies for win-x64..." -ForegroundColor Yellow
+dotnet restore src/LocalShare.App/LocalShare.App.csproj -r win-x64
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Dotnet restore failed!" -ForegroundColor Red
+    exit 1
+}
+
+# 5. Run dotnet publish for self-contained x64 Single File
+Write-Host "`n[3/5] Publishing self-contained single-file x64 release..." -ForegroundColor Yellow
+dotnet publish src/LocalShare.App/LocalShare.App.csproj -c Release -r win-x64 --no-restore --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o $PublishDir
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Dotnet publish failed!" -ForegroundColor Red
     exit 1
 }
 
-Write-Host "Self-contained release published to: $PublishDir" -ForegroundColor Green
+Write-Host "Self-contained release v$CurrentVersion published to: $PublishDir" -ForegroundColor Green
 
-# 3. Create sample latest_version.json manifest for update server
-Write-Host "[3/4] Generating update manifest (latest_version.json)..." -ForegroundColor Yellow
+# 6. Create sample latest_version.json manifest for update server
+Write-Host "`n[4/5] Generating update manifest (latest_version.json)..." -ForegroundColor Yellow
 $ManifestObj = [PSCustomObject]@{
-    version = "1.0.0"
+    version = $CurrentVersion
     releaseDate = (Get-Date -Format "yyyy-MM-dd")
-    downloadUrl = "https://github.com/Antigravity/360-LocalShare/releases/download/v1.0.0/360LocalShare_Setup_v1.0.0.exe"
-    changelog = "Initial stable release with Obsidian Glass UI, dark high-visibility controls, Public Space browser, multi-peer streaming, and built-in auto-updater."
+    downloadUrl = "https://github.com/360productions-it/LocalShare/releases/download/v$CurrentVersion/360LocalShare_Setup_v$CurrentVersion.exe"
+    changelog = "Release version v$CurrentVersion with Obsidian Glass UI, dark high-visibility controls, Public Space browser, multi-peer streaming, and dynamic version management."
     sha256 = ""
     isMandatory = $false
 }
 
 $ManifestPath = Join-Path $ProjectDir "dist\latest_version.json"
 $ManifestObj | ConvertTo-Json -Depth 4 | Out-File -FilePath $ManifestPath -Encoding utf8
-Write-Host "Update manifest generated: $ManifestPath" -ForegroundColor Green
+Write-Host "Update manifest v$CurrentVersion generated: $ManifestPath" -ForegroundColor Green
 
-# 4. Search for Inno Setup Compiler (ISCC.exe) to generate installer .exe
-Write-Host "[4/4] Searching for Inno Setup Compiler (ISCC.exe)..." -ForegroundColor Yellow
+# 7. Search for Inno Setup Compiler (ISCC.exe) to generate installer .exe
+Write-Host "`n[5/5] Searching for Inno Setup Compiler (ISCC.exe)..." -ForegroundColor Yellow
 $IsccPaths = @(
     "ISCC.exe",
     "C:\Program Files (x86)\Inno Setup 6\ISCC.exe",
@@ -68,18 +111,18 @@ foreach ($p in $IsccPaths) {
 
 if ($IsccCmd) {
     Write-Host "Compiling setup installer using Inno Setup ($IsccCmd)..." -ForegroundColor Cyan
-    & $IsccCmd $IssScript
+    & $IsccCmd "/DMyAppVersion=$CurrentVersion" $IssScript
     if ($LASTEXITCODE -eq 0) {
-        Write-Host "Installer generated at: $InstallerOutputDir\360LocalShare_Setup_v1.0.0.exe" -ForegroundColor Green
+        Write-Host "Installer generated at: $InstallerOutputDir\360LocalShare_Setup_v$CurrentVersion.exe" -ForegroundColor Green
     } else {
         Write-Host "Inno Setup script compilation failed!" -ForegroundColor Red
     }
 } else {
     Write-Host "Inno Setup (ISCC.exe) is not installed on this machine." -ForegroundColor Yellow
-    Write-Host "Your standalone single-file release is ready in: $PublishDir" -ForegroundColor White
+    Write-Host "Your standalone single-file release v$CurrentVersion is ready in: $PublishDir" -ForegroundColor White
     Write-Host "To build the setup installer, install Inno Setup 6 from https://jrsoftware.org/isdl.php and rerun this script." -ForegroundColor White
 }
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host " Release build process complete!" -ForegroundColor Cyan
+Write-Host " Release build process complete for v$CurrentVersion!" -ForegroundColor Cyan
 Write-Host "==========================================================" -ForegroundColor Cyan

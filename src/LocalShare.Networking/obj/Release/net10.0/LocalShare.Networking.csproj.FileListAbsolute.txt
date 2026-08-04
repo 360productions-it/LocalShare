@@ -15,3 +15,4 @@ D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Release\net10.0\LocalShare.Ne
 D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Release\net10.0\refint\LocalShare.Networking.dll
 D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Release\net10.0\LocalShare.Networking.pdb
 D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Release\net10.0\ref\LocalShare.Networking.dll
+D:\dotnet\LocalShare\src\LocalShare.Networking\obj\Release\net10.0\LocalShare.Networking.sourcelink.json

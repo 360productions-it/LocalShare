@@ -130,3 +130,4 @@ D:\dotnet\LocalShare\tests\LocalShare.Data.Tests\obj\Debug\net10.0\refint\LocalS
 D:\dotnet\LocalShare\tests\LocalShare.Data.Tests\obj\Debug\net10.0\LocalShare.Data.Tests.pdb
 D:\dotnet\LocalShare\tests\LocalShare.Data.Tests\obj\Debug\net10.0\LocalShare.Data.Tests.genruntimeconfig.cache
 D:\dotnet\LocalShare\tests\LocalShare.Data.Tests\obj\Debug\net10.0\ref\LocalShare.Data.Tests.dll
+D:\dotnet\LocalShare\tests\LocalShare.Data.Tests\obj\Debug\net10.0\LocalShare.Data.Tests.sourcelink.json

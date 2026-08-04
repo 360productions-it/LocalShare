@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LocalShare.Common;
 using LocalShare.Core.Models;
 
 namespace LocalShare.App.ViewModels;
@@ -16,6 +17,9 @@ public partial class ShellViewModel : ObservableObject
 
     [ObservableProperty]
     private string _accentColor;
+
+    [ObservableProperty]
+    private string _appVersion = AppVersionInfo.DisplayVersion;
 
     public PeersViewModel PeersVM { get; }
     public ChatViewModel ChatVM { get; }
