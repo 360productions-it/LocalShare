@@ -5,7 +5,7 @@
   },
   "projects": {
     "D:\\dotnet\\LocalShare\\src\\LocalShare.App\\LocalShare.App.csproj": {
-      "version": "1.2.0",
+      "version": "1.3.0",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.App\\LocalShare.App.csproj",
         "projectName": "LocalShare.App",
@@ -413,7 +413,7 @@
       }
     },
     "D:\\dotnet\\LocalShare\\src\\LocalShare.Common\\LocalShare.Common.csproj": {
-      "version": "1.2.0",
+      "version": "1.3.0",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Common\\LocalShare.Common.csproj",
         "projectName": "LocalShare.Common",
@@ -771,7 +771,7 @@
       }
     },
     "D:\\dotnet\\LocalShare\\src\\LocalShare.Core\\LocalShare.Core.csproj": {
-      "version": "1.2.0",
+      "version": "1.3.0",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Core\\LocalShare.Core.csproj",
         "projectName": "LocalShare.Core",
@@ -1133,7 +1133,7 @@
       }
     },
     "D:\\dotnet\\LocalShare\\src\\LocalShare.Data\\LocalShare.Data.csproj": {
-      "version": "1.2.0",
+      "version": "1.3.0",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Data\\LocalShare.Data.csproj",
         "projectName": "LocalShare.Data",
@@ -1508,7 +1508,7 @@
       }
     },
     "D:\\dotnet\\LocalShare\\src\\LocalShare.Networking\\LocalShare.Networking.csproj": {
-      "version": "1.2.0",
+      "version": "1.3.0",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Networking\\LocalShare.Networking.csproj",
         "projectName": "LocalShare.Networking",
