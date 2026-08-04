@@ -85,6 +85,11 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
+# Copy Assets folder into publish output directory for Windows Shortcut icon resolution
+$PublishAssetsDir = Join-Path $PublishDir "Assets"
+if (-not (Test-Path $PublishAssetsDir)) { New-Item -ItemType Directory -Path $PublishAssetsDir -Force | Out-Null }
+Copy-Item "src\LocalShare.App\Assets\*" $PublishAssetsDir -Force
+
 Write-Host "Self-contained release v$CurrentVersion published to: $PublishDir" -ForegroundColor Green
 
 # 6. Create sample latest_version.json manifest for update server

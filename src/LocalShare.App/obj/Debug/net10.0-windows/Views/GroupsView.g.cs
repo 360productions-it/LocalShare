@@ -63,7 +63,7 @@ namespace LocalShare.App.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/LocalShare.App;V1.7.0.0;component/views/groupsview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/LocalShare.App;V1.9.0.0;component/views/groupsview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\GroupsView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
