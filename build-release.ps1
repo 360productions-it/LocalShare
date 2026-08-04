@@ -1,8 +1,9 @@
 # 360 LocalShare Automated Release & Installer Build Script
-# Usage: powershell -File .\build-release.ps1 [-Version 1.1.0]
+# Usage: powershell -File .\build-release.ps1 [-Version 1.4.0] [-GitHubToken "your_token"]
 
 param(
-    [string]$Version
+    [string]$Version,
+    [string]$GitHubToken = $env:GITHUB_TOKEN
 )
 
 $ErrorActionPreference = "Stop"
@@ -121,6 +122,12 @@ if ($IsccCmd) {
     Write-Host "Inno Setup (ISCC.exe) is not installed on this machine." -ForegroundColor Yellow
     Write-Host "Your standalone single-file release v$CurrentVersion is ready in: $PublishDir" -ForegroundColor White
     Write-Host "To build the setup installer, install Inno Setup 6 from https://jrsoftware.org/isdl.php and rerun this script." -ForegroundColor White
+}
+
+# 8. Optional Auto-publish to GitHub Releases
+if (-not [string]::IsNullOrWhiteSpace($GitHubToken) -or (Get-Command gh -ErrorAction SilentlyContinue)) {
+    Write-Host "`n[GitHub Release Upload] Triggering GitHub Release upload script..." -ForegroundColor Yellow
+    & powershell -File .\publish-github-release.ps1 -Version $CurrentVersion -GitHubToken $GitHubToken
 }
 
 Write-Host "==========================================================" -ForegroundColor Cyan

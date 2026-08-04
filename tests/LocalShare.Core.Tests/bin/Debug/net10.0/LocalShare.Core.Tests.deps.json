@@ -6,10 +6,10 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v10.0": {
-      "LocalShare.Core.Tests/1.3.0": {
+      "LocalShare.Core.Tests/1.4.0": {
         "dependencies": {
-          "LocalShare.Common": "1.3.0",
-          "LocalShare.Core": "1.3.0",
+          "LocalShare.Common": "1.4.0",
+          "LocalShare.Core": "1.4.0",
           "Microsoft.NET.Test.Sdk": "17.14.1",
           "xunit": "2.9.3"
         },
@@ -332,29 +332,29 @@
           }
         }
       },
-      "LocalShare.Common/1.3.0": {
+      "LocalShare.Common/1.4.0": {
         "runtime": {
           "LocalShare.Common.dll": {
-            "assemblyVersion": "1.3.0.0",
-            "fileVersion": "1.3.0.0"
+            "assemblyVersion": "1.4.0.0",
+            "fileVersion": "1.4.0.0"
           }
         }
       },
-      "LocalShare.Core/1.3.0": {
+      "LocalShare.Core/1.4.0": {
         "dependencies": {
-          "LocalShare.Common": "1.3.0"
+          "LocalShare.Common": "1.4.0"
         },
         "runtime": {
           "LocalShare.Core.dll": {
-            "assemblyVersion": "1.3.0.0",
-            "fileVersion": "1.3.0.0"
+            "assemblyVersion": "1.4.0.0",
+            "fileVersion": "1.4.0.0"
           }
         }
       }
     }
   },
   "libraries": {
-    "LocalShare.Core.Tests/1.3.0": {
+    "LocalShare.Core.Tests/1.4.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -436,12 +436,12 @@
       "path": "xunit.extensibility.execution/2.9.3",
       "hashPath": "xunit.extensibility.execution.2.9.3.nupkg.sha512"
     },
-    "LocalShare.Common/1.3.0": {
+    "LocalShare.Common/1.4.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "LocalShare.Core/1.3.0": {
+    "LocalShare.Core/1.4.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,6 +1,6 @@
 # 🚀 360 LocalShare - Build, Dynamic Versioning & Update Guide
 
-This guide explains how to dynamically set and view application versions, build stable releases, generate setup installers, and host software updates for **360 LocalShare**.
+This guide explains how to dynamically set versions, build single-file releases, compile setup installers, and **automatically publish releases to GitHub**.
 
 ---
 
@@ -8,70 +8,57 @@ This guide explains how to dynamically set and view application versions, build 
 
 The application uses a **Single Source of Truth** for its version number:
 
-1. **`Directory.Build.props`**: Solution-level property file holding the master version string (`<Version>1.2.0</Version>`).
-2. **`AppVersionInfo.cs`**: Dynamically reads the assembly informational version at runtime (`AppVersionInfo.Version` and `AppVersionInfo.DisplayVersion`).
+1. **`Directory.Build.props`**: Solution-level property file holding the master version string (`<Version>1.4.0</Version>`).
+2. **`AppVersionInfo.cs`**: Dynamically reads assembly informational version at runtime (`AppVersionInfo.Version` and `AppVersionInfo.DisplayVersion`).
 3. **UI Integration**:
-   - **Sidebar Header**: Displays `LocalShare v1.2.0` in the top left brand section.
-   - **Settings Dashboard**: Displays `v1.2.0` in the Software Updates & Maintenance card.
+   - **Sidebar Header**: Displays `LocalShare v1.4.0` in the top left brand section.
+   - **Settings Dashboard**: Displays `v1.4.0` in the Software Updates & Maintenance card.
    - **Compiled Executable**: `LocalShare.App.exe` file version metadata is populated automatically.
    - **Update Checker**: Automatically compares dynamic local version against remote `latest_version.json`.
 
 ---
 
-## 🛠️ 2. How to Dynamically Change Application Version
+## 🛠️ 2. How to Build & Publish Releases Automatically
 
-You can change the version dynamically using **either** of the following two simple methods:
+You can build and publish a release (e.g. `v1.4.0`) using **any** of the following methods:
 
-### Method A: Via Command Line (Recommended)
-Pass the `-Version` parameter when running the build script:
+### Method 1: Using GitHub Personal Access Token (PAT) [Recommended]
+Run the build script with your GitHub Personal Access Token (PAT):
 ```powershell
-powershell -File .\build-release.ps1 -Version 1.3.0
+powershell -File .\build-release.ps1 -Version 1.4.0 -GitHubToken "ghp_yourPersonalAccessTokenHere"
 ```
-*This command automatically updates `Directory.Build.props`, builds `dist/publish/LocalShare.App.exe`, generates `dist/latest_version.json`, and compiles `dist/installer/360LocalShare_Setup_v1.3.0.exe`.*
+*This command automatically:*
+1. Updates `Directory.Build.props` to `v1.4.0`.
+2. Compiles `dist/publish/LocalShare.App.exe` single-file executable.
+3. Generates `dist/latest_version.json` update manifest.
+4. Compiles `dist/installer/360LocalShare_Setup_v1.4.0.exe` using Inno Setup.
+5. **Creates GitHub Release `v1.4.0` and uploads `360LocalShare_Setup_v1.4.0.exe` directly to GitHub Releases!**
 
-### Method B: Manual File Edit
-Edit `Directory.Build.props` in the root of the repository:
-```xml
-<Project>
-  <PropertyGroup>
-    <Version>1.3.0</Version>
-    <AssemblyVersion>1.3.0.0</AssemblyVersion>
-    <FileVersion>1.3.0.0</FileVersion>
-    <InformationalVersion>1.3.0</InformationalVersion>
-  </PropertyGroup>
-</Project>
+---
+
+### Method 2: Using GitHub CLI (`gh`)
+If you have **GitHub CLI** installed (`winget install --id GitHub.cli`):
+```powershell
+# 1. Build installer
+powershell -File .\build-release.ps1 -Version 1.4.0
+
+# 2. Upload to GitHub Releases
+powershell -File .\publish-github-release.ps1 -Version 1.4.0
 ```
-*Next time you run or compile the app, both the UI header, Settings dashboard, and compiled binaries will automatically update to `v1.3.0`.*
 
 ---
 
-## 🛠️ 3. How to View Application Version
-
-1. **In the Running App (UI)**:
-   - Look at the sidebar top header under `LocalShare vX.Y.Z`.
-   - Go to **⚙️ Settings & Profile** ➔ **🚀 Software Updates & Release Maintenance**.
-2. **In Windows File Explorer**:
-   - Right-click `LocalShare.App.exe` or `360LocalShare_Setup_vX.Y.Z.exe` ➔ **Properties** ➔ **Details** tab ➔ **File version / Product version**.
-3. **In Code**:
-   - Call `AppVersionInfo.Version` (e.g. `"1.2.0"`) or `AppVersionInfo.DisplayVersion` (e.g. `"v1.2.0"`).
+### Method 3: Manual Upload via Web Browser
+If you prefer manual upload:
+1. Build installer: `powershell -File .\build-release.ps1 -Version 1.4.0`
+2. Open: [360productions-it/LocalShare New Release](https://github.com/360productions-it/LocalShare/releases/new)
+3. Set Tag: `v1.4.0`
+4. Attach File: `dist\installer\360LocalShare_Setup_v1.4.0.exe`
+5. Publish Release!
 
 ---
 
-## 📡 4. How to Publish Software Updates
-
-When you release a new version (e.g. `v1.3.0`), follow these steps:
-
-1. **Build the New Version**:
-   ```powershell
-   powershell -File .\build-release.ps1 -Version 1.3.0
-   ```
-2. **Host the Release Artifacts**:
-   - Upload `dist/installer/360LocalShare_Setup_v1.3.0.exe` to **GitHub Releases** or your Web Server.
-   - Deploy `dist/latest_version.json` to your update URL (`https://raw.githubusercontent.com/360productions-it/LocalShare/main/dist/latest_version.json`).
-
----
-
-## 🖥️ 5. How the Auto-Updater Works for End-Users
+## 🖥️ 3. How the Auto-Updater Works for End-Users
 
 1. **Check for Updates**:
    - Users open **360 LocalShare** ➔ Navigate to **⚙️ Settings & Profile**.
@@ -79,7 +66,7 @@ When you release a new version (e.g. `v1.3.0`), follow these steps:
 
 2. **Automatic Download & Installation**:
    - If a newer version is detected, the app displays the **Changelog** and an **`📥 Download & Install Update Now`** button.
-   - Clicking update downloads `360LocalShare_Setup_Update.exe` into Windows `%TEMP%` with real-time percentage progress.
+   - Clicking update downloads `360LocalShare_Setup_v1.4.0.exe` into Windows `%TEMP%` with real-time percentage progress.
    - The installer runs silently (`/SILENT /NORESTART`) in the background, updating application files and restarting 360 LocalShare automatically.
 
 ---
@@ -90,5 +77,5 @@ When you release a new version (e.g. `v1.3.0`), follow these steps:
 | :--- | :--- |
 | **Run Dev Server** | `dotnet run --project src/LocalShare.App/LocalShare.App.csproj` |
 | **Run Unit Tests** | `dotnet test LocalShare.slnx` |
-| **Build Current Version Release** | `powershell -File .\build-release.ps1` |
-| **Build & Change Version Dynamically** | `powershell -File .\build-release.ps1 -Version 1.3.0` |
+| **Build & Publish Release Automatically** | `powershell -File .\build-release.ps1 -Version 1.4.0 -GitHubToken "YOUR_TOKEN"` |
+| **Upload Existing Installer Artifact** | `powershell -File .\publish-github-release.ps1 -Version 1.4.0 -GitHubToken "YOUR_TOKEN"` |

@@ -51,7 +51,7 @@ namespace LocalShare.App.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/LocalShare.App;V1.4.0.0;component/views/peersview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/LocalShare.App;V1.5.0.0;component/views/peersview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\PeersView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
