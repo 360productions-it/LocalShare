@@ -5,7 +5,7 @@
   },
   "projects": {
     "D:\\dotnet\\LocalShare\\src\\LocalShare.App\\LocalShare.App.csproj": {
-      "version": "1.5.0",
+      "version": "1.7.0",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.App\\LocalShare.App.csproj",
         "projectName": "LocalShare.App",
@@ -74,6 +74,12 @@
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[10.0.10, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.3, )",
+              "autoReferenced": true
             },
             "WPF-UI": {
               "target": "Package",
@@ -413,7 +419,7 @@
       }
     },
     "D:\\dotnet\\LocalShare\\src\\LocalShare.Common\\LocalShare.Common.csproj": {
-      "version": "1.5.0",
+      "version": "1.7.0",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Common\\LocalShare.Common.csproj",
         "projectName": "LocalShare.Common",
@@ -457,6 +463,14 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.3, )",
+              "autoReferenced": true
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -771,7 +785,7 @@
       }
     },
     "D:\\dotnet\\LocalShare\\src\\LocalShare.Core\\LocalShare.Core.csproj": {
-      "version": "1.5.0",
+      "version": "1.7.0",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Core\\LocalShare.Core.csproj",
         "projectName": "LocalShare.Core",
@@ -819,6 +833,14 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.3, )",
+              "autoReferenced": true
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -1133,7 +1155,7 @@
       }
     },
     "D:\\dotnet\\LocalShare\\src\\LocalShare.Data\\LocalShare.Data.csproj": {
-      "version": "1.5.0",
+      "version": "1.7.0",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Data\\LocalShare.Data.csproj",
         "projectName": "LocalShare.Data",
@@ -1192,6 +1214,12 @@
             "Microsoft.Data.Sqlite": {
               "target": "Package",
               "version": "[10.0.10, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.3, )",
+              "autoReferenced": true
             }
           },
           "imports": [
@@ -1508,7 +1536,7 @@
       }
     },
     "D:\\dotnet\\LocalShare\\src\\LocalShare.Networking\\LocalShare.Networking.csproj": {
-      "version": "1.5.0",
+      "version": "1.7.0",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Networking\\LocalShare.Networking.csproj",
         "projectName": "LocalShare.Networking",
@@ -1563,6 +1591,12 @@
             "Microsoft.AspNetCore.SignalR.Client": {
               "target": "Package",
               "version": "[10.0.10, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.3, )",
+              "autoReferenced": true
             }
           },
           "imports": [

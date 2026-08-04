@@ -9,6 +9,19 @@ param(
 $ErrorActionPreference = "Stop"
 $RepoOwner = "360productions-it"
 $RepoName = "LocalShare"
+
+# Automatically parse .env file if GITHUB_TOKEN is not passed directly
+if ([string]::IsNullOrWhiteSpace($GitHubToken)) {
+    $EnvFile = Join-Path (Get-Location) ".env"
+    if (Test-Path $EnvFile) {
+        Get-Content $EnvFile | ForEach-Object {
+            if ($_ -match '^\s*GITHUB_TOKEN\s*=\s*(.*)\s*$') {
+                $GitHubToken = $matches[1].Trim('"', "'", ' ')
+            }
+        }
+    }
+}
+
 $Tag = "v$($Version.TrimStart('v', 'V'))"
 $InstallerFile = Join-Path (Get-Location) "dist\installer\360LocalShare_Setup_$Tag.exe"
 
@@ -35,10 +48,9 @@ if (Get-Command gh -ErrorAction SilentlyContinue) {
 
 # Method B: Use GitHub REST API with Personal Access Token (PAT)
 if ([string]::IsNullOrWhiteSpace($GitHubToken)) {
-    Write-Host "`n⚠️ GitHub Token (PAT) not found." -ForegroundColor Yellow
-    Write-Host "To publish automatically using GitHub REST API, run:" -ForegroundColor White
-    Write-Host "   powershell -File .\publish-github-release.ps1 -Version $Version -GitHubToken `"YOUR_GITHUB_PAT_TOKEN`"" -ForegroundColor Cyan
-    Write-Host "`nOr install GitHub CLI (gh) via 'winget install --id GitHub.cli' and authenticate using 'gh auth login'." -ForegroundColor White
+    Write-Host "`n⚠️ GitHub Token (PAT) not found in environment or .env file." -ForegroundColor Yellow
+    Write-Host "Please add GITHUB_TOKEN=your_token in .env or run:" -ForegroundColor White
+    Write-Host "   powershell -File .\publish-github-release.ps1 -Version $Version -GitHubToken `"YOUR_TOKEN`"" -ForegroundColor Cyan
     exit 1
 }
 
@@ -65,11 +77,23 @@ try {
     Write-Host "Creating GitHub release tag $Tag..." -ForegroundColor Cyan
     $ReleaseResp = Invoke-RestMethod -Uri $ReleaseUrl -Method Post -Headers $Headers -Body $ReleaseBody -ContentType "application/json"
 } catch {
-    Write-Host "Release tag $Tag may already exist, fetching existing release info..." -ForegroundColor Yellow
+    Write-Host "Release tag $Tag already exists, fetching existing release info..." -ForegroundColor Yellow
     $ReleaseResp = Invoke-RestMethod -Uri "https://api.github.com/repos/$RepoOwner/$RepoName/releases/tags/$Tag" -Headers $Headers
 }
 
 $UploadUrl = $ReleaseResp.upload_url -replace '\{\?name,label\}', "?name=360LocalShare_Setup_$Tag.exe"
+
+# Delete existing asset if present to allow overwrite
+if ($ReleaseResp.assets) {
+    foreach ($asset in $ReleaseResp.assets) {
+        if ($asset.name -eq "360LocalShare_Setup_$Tag.exe") {
+            Write-Host "Overwriting existing asset 360LocalShare_Setup_$Tag.exe on GitHub..." -ForegroundColor Yellow
+            try {
+                Invoke-RestMethod -Uri $asset.url -Method Delete -Headers $Headers
+            } catch {}
+        }
+    }
+}
 
 # 2. Upload asset binary
 Write-Host "Uploading installer asset 360LocalShare_Setup_$Tag.exe to GitHub Releases..." -ForegroundColor Cyan

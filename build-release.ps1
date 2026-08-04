@@ -1,5 +1,5 @@
 # 360 LocalShare Automated Release & Installer Build Script
-# Usage: powershell -File .\build-release.ps1 [-Version 1.4.0] [-GitHubToken "your_token"]
+# Usage: powershell -File .\build-release.ps1 [-Version 1.4.0]
 
 param(
     [string]$Version,
@@ -7,6 +7,18 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+
+# Automatically parse .env file if GITHUB_TOKEN is not passed directly
+if ([string]::IsNullOrWhiteSpace($GitHubToken)) {
+    $EnvFile = Join-Path (Get-Location) ".env"
+    if (Test-Path $EnvFile) {
+        Get-Content $EnvFile | ForEach-Object {
+            if ($_ -match '^\s*GITHUB_TOKEN\s*=\s*(.*)\s*$') {
+                $GitHubToken = $matches[1].Trim('"', "'", ' ')
+            }
+        }
+    }
+}
 
 Write-Host "==========================================================" -ForegroundColor Cyan
 Write-Host " 🚀 360 LocalShare - Stable Release & Installer Builder" -ForegroundColor Cyan
@@ -66,7 +78,7 @@ if ($LASTEXITCODE -ne 0) {
 
 # 5. Run dotnet publish for self-contained x64 Single File
 Write-Host "`n[3/5] Publishing self-contained single-file x64 release..." -ForegroundColor Yellow
-dotnet publish src/LocalShare.App/LocalShare.App.csproj -c Release -r win-x64 --no-restore --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o $PublishDir
+dotnet publish src/LocalShare.App/LocalShare.App.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o $PublishDir
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Dotnet publish failed!" -ForegroundColor Red
@@ -124,9 +136,9 @@ if ($IsccCmd) {
     Write-Host "To build the setup installer, install Inno Setup 6 from https://jrsoftware.org/isdl.php and rerun this script." -ForegroundColor White
 }
 
-# 8. Optional Auto-publish to GitHub Releases
+# 8. Auto-publish to GitHub Releases using .env token
 if (-not [string]::IsNullOrWhiteSpace($GitHubToken) -or (Get-Command gh -ErrorAction SilentlyContinue)) {
-    Write-Host "`n[GitHub Release Upload] Triggering GitHub Release upload script..." -ForegroundColor Yellow
+    Write-Host "`n[GitHub Release Upload] Uploading release v$CurrentVersion to GitHub Releases..." -ForegroundColor Yellow
     & powershell -File .\publish-github-release.ps1 -Version $CurrentVersion -GitHubToken $GitHubToken
 }
 
