@@ -120,10 +120,22 @@ public class SqliteRepositories : IProfileRepository, IPeerRepository, IMessageR
             DeliveredAtStr = message.DeliveredAt?.ToString("o")
         });
 
-        // Update Conversation LastMessageAt
-        await conn.ExecuteAsync(
-            "UPDATE Conversations SET LastMessageAt = @LastMessageAt WHERE Id = @Id",
-            new { Id = message.ConversationId, LastMessageAt = message.SentAt.ToString("o") });
+        // Upsert Conversation so it is guaranteed to exist and display in conversations list
+        var sqlConv = @"
+            INSERT INTO Conversations (Id, Type, DisplayName, TargetDeviceId, LastMessageAt, UnreadCount)
+            VALUES (@Id, @Type, @DisplayName, @TargetDeviceId, @LastMessageAtStr, 0)
+            ON CONFLICT(Id) DO UPDATE SET
+                DisplayName = excluded.DisplayName,
+                LastMessageAt = excluded.LastMessageAt;
+        ";
+        await conn.ExecuteAsync(sqlConv, new
+        {
+            Id = message.ConversationId,
+            Type = (int)ConversationType.Direct,
+            DisplayName = message.SenderDisplayName,
+            TargetDeviceId = message.SenderDeviceId,
+            LastMessageAtStr = message.SentAt.ToString("o")
+        });
     }
 
     public async Task<IReadOnlyList<Message>> GetMessagesAsync(string conversationId, int limit = 50)

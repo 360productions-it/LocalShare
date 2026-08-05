@@ -88,17 +88,24 @@
                 </Border>
 
                 <!-- Message Input & Send Control -->
-                <Grid Grid.Row="3" Margin="14">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="3" Margin="14">
+                    <TextBlock Text="{Binding StatusMessage}" Foreground="#EF4444" FontSize="12" FontWeight="Bold" Margin="0,0,0,8" Visibility="{Binding HasStatusMessage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Button Content="📎 Attach" Command="{Binding SelectAttachmentCommand}" Background="#334155" Foreground="White" FontWeight="Bold" Padding="14,8" Margin="0,0,8,0" Cursor="Hand"/>
-                    <TextBox Grid.Column="1" Text="{Binding MessageInput, UpdateSourceTrigger=PropertyChanged}" Background="#0F172A" Foreground="White" BorderBrush="#334155" Padding="12,8" VerticalContentAlignment="Center" FontSize="14"/>
-                    <Button Grid.Column="2" Content="🚀 Send Message" Command="{Binding SendMessageCommand}" Style="{StaticResource ModernPrimaryButton}" Margin="8,0,0,0"/>
-                </Grid>
+                        <Button Content="📎 Attach" Command="{Binding SelectAttachmentCommand}" Background="#334155" Foreground="White" FontWeight="Bold" Padding="14,8" Margin="0,0,8,0" Cursor="Hand"/>
+                        <TextBox Grid.Column="1" Text="{Binding MessageInput, UpdateSourceTrigger=PropertyChanged}" Background="#0F172A" Foreground="White" BorderBrush="#334155" Padding="12,8" VerticalContentAlignment="Center" FontSize="14">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding SendMessageCommand}"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <Button Grid.Column="2" Content="🚀 Send Message" Command="{Binding SendMessageCommand}" Style="{StaticResource ModernPrimaryButton}" Margin="8,0,0,0"/>
+                    </Grid>
+                </StackPanel>
             </Grid>
         </Border>
     </Grid>

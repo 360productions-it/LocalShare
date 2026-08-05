@@ -90,3 +90,6 @@ D:\dotnet\LocalShare\src\LocalShare.App\obj\Debug\net10.0-windows\LocalShare.App
 D:\dotnet\LocalShare\src\LocalShare.App\obj\Debug\net10.0-windows\ref\LocalShare.App.dll
 D:\dotnet\LocalShare\src\LocalShare.App\bin\Debug\net10.0-windows\Wpf.Ui.Abstractions.dll
 D:\dotnet\LocalShare\src\LocalShare.App\obj\Debug\net10.0-windows\LocalShare.App.sourcelink.json
+D:\dotnet\LocalShare\src\LocalShare.App\obj\Debug\net10.0-windows\Views\NotificationToastWindow.baml
+D:\dotnet\LocalShare\src\LocalShare.App\obj\Debug\net10.0-windows\Views\NotificationToastWindow.g.cs
+D:\dotnet\LocalShare\src\LocalShare.App\bin\Debug\net10.0-windows\Assets\fahhh.mp3

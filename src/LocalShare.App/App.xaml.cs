@@ -14,6 +14,7 @@ using LocalShare.Networking.Services;
 using LocalShare.App.ViewModels;
 using LocalShare.App.Views;
 using LocalShare.App.Helpers;
+using LocalShare.App.Services;
 
 namespace LocalShare.App;
 
@@ -50,6 +51,9 @@ public partial class App : Application
 
             services.AddSingleton(profile);
 
+            // Notification Service
+            services.AddSingleton<INotificationService, WindowsNotificationService>();
+
             // Networking Services
             services.AddSingleton<PeerRegistry>();
             services.AddSingleton<IDiscoveryService, UdpBeaconService>();
@@ -73,15 +77,30 @@ public partial class App : Application
 
             ServiceProvider = services.BuildServiceProvider();
 
-            // 4. Start Kestrel Server Host (HTTP & SignalR)
+            // 4. Subscribe to FileReceived event for Windows Notifications
+            var transferService = ServiceProvider.GetRequiredService<ITransferService>();
+            var notificationService = ServiceProvider.GetRequiredService<INotificationService>();
+            transferService.FileReceived += (sender, transfer) =>
+            {
+                if (profile.EnableNotifications)
+                {
+                    notificationService.ShowFileReceivedNotification(
+                        transfer.PeerDisplayName,
+                        transfer.FileName,
+                        transfer.FilePath
+                    );
+                }
+            };
+
+            // 5. Start Kestrel Server Host (HTTP & SignalR)
             var kestrelHost = ServiceProvider.GetRequiredService<KestrelServerHost>();
             await kestrelHost.StartAsync();
 
-            // 5. Start UDP Discovery Beacon
+            // 6. Start UDP Discovery Beacon
             var discoveryService = ServiceProvider.GetRequiredService<IDiscoveryService>();
             await discoveryService.StartAsync();
 
-            // 6. Show Shell Window
+            // 7. Show Shell Window
             var shellView = ServiceProvider.GetRequiredService<ShellView>();
             shellView.Show();
         }
@@ -101,6 +120,12 @@ public partial class App : Application
 
             var kestrel = ServiceProvider.GetService<KestrelServerHost>();
             if (kestrel != null) await kestrel.StopAsync();
+
+            var notificationService = ServiceProvider.GetService<INotificationService>();
+            if (notificationService is IDisposable disposableNotification)
+            {
+                disposableNotification.Dispose();
+            }
         }
 
         base.OnExit(e);

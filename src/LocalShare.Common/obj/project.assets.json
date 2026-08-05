@@ -80,7 +80,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.9.2",
+    "version": "1.9.3",
     "restore": {
       "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Common\\LocalShare.Common.csproj",
       "projectName": "LocalShare.Common",

@@ -28,6 +28,9 @@ public partial class ProfileSettingsViewModel : ObservableObject
     private string _receivedFilesRoot = string.Empty;
 
     [ObservableProperty]
+    private bool _enableNotifications = true;
+
+    [ObservableProperty]
     private string _deviceId = string.Empty;
 
     [ObservableProperty]
@@ -83,6 +86,7 @@ public partial class ProfileSettingsViewModel : ObservableObject
         AccentColor = string.IsNullOrWhiteSpace(_localProfile.AccentColor) ? "#0078D4" : _localProfile.AccentColor;
         PublicSpacePath = _localProfile.PublicSpacePath ?? string.Empty;
         ReceivedFilesRoot = _localProfile.ReceivedFilesRoot;
+        EnableNotifications = _localProfile.EnableNotifications;
         DeviceId = _localProfile.DeviceId;
         LocalIp = NetworkHelpers.GetLocalIpAddress();
         CurrentVersion = $"v{_updateService.CurrentVersion}";
@@ -221,6 +225,7 @@ public partial class ProfileSettingsViewModel : ObservableObject
         _localProfile.AccentColor = AccentColor;
         _localProfile.PublicSpacePath = PublicSpacePath;
         _localProfile.ReceivedFilesRoot = ReceivedFilesRoot;
+        _localProfile.EnableNotifications = EnableNotifications;
 
         await _profileRepo.SaveProfileAsync(_localProfile);
         StatusMessage = "✅ Profile & Storage settings saved successfully!";

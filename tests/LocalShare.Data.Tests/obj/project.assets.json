@@ -577,7 +577,7 @@
           "build/net8.0/xunit.runner.visualstudio.props": {}
         }
       },
-      "LocalShare.Common/1.9.2": {
+      "LocalShare.Common/1.9.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "compile": {
@@ -587,11 +587,11 @@
           "bin/placeholder/LocalShare.Common.dll": {}
         }
       },
-      "LocalShare.Core/1.9.2": {
+      "LocalShare.Core/1.9.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "LocalShare.Common": "1.9.2"
+          "LocalShare.Common": "1.9.3"
         },
         "compile": {
           "bin/placeholder/LocalShare.Core.dll": {}
@@ -600,13 +600,13 @@
           "bin/placeholder/LocalShare.Core.dll": {}
         }
       },
-      "LocalShare.Data/1.9.2": {
+      "LocalShare.Data/1.9.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "Dapper": "2.1.79",
-          "LocalShare.Common": "1.9.2",
-          "LocalShare.Core": "1.9.2",
+          "LocalShare.Common": "1.9.3",
+          "LocalShare.Core": "1.9.3",
           "Microsoft.Data.Sqlite": "10.0.10"
         },
         "compile": {
@@ -1272,17 +1272,17 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "LocalShare.Common/1.9.2": {
+    "LocalShare.Common/1.9.3": {
       "type": "project",
       "path": "../../src/LocalShare.Common/LocalShare.Common.csproj",
       "msbuildProject": "../../src/LocalShare.Common/LocalShare.Common.csproj"
     },
-    "LocalShare.Core/1.9.2": {
+    "LocalShare.Core/1.9.3": {
       "type": "project",
       "path": "../../src/LocalShare.Core/LocalShare.Core.csproj",
       "msbuildProject": "../../src/LocalShare.Core/LocalShare.Core.csproj"
     },
-    "LocalShare.Data/1.9.2": {
+    "LocalShare.Data/1.9.3": {
       "type": "project",
       "path": "../../src/LocalShare.Data/LocalShare.Data.csproj",
       "msbuildProject": "../../src/LocalShare.Data/LocalShare.Data.csproj"
@@ -1290,9 +1290,9 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "LocalShare.Common >= 1.9.2",
-      "LocalShare.Core >= 1.9.2",
-      "LocalShare.Data >= 1.9.2",
+      "LocalShare.Common >= 1.9.3",
+      "LocalShare.Core >= 1.9.3",
+      "LocalShare.Data >= 1.9.3",
       "Microsoft.NET.Test.Sdk >= 17.14.1",
       "coverlet.collector >= 6.0.4",
       "xunit >= 2.9.3",
@@ -1304,7 +1304,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.9.2",
+    "version": "1.9.3",
     "restore": {
       "projectUniqueName": "D:\\dotnet\\LocalShare\\tests\\LocalShare.Data.Tests\\LocalShare.Data.Tests.csproj",
       "projectName": "LocalShare.Data.Tests",

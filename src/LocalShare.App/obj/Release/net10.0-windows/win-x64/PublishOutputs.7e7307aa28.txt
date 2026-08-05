@@ -1,4 +1,5 @@
 D:\dotnet\LocalShare\dist\publish\LocalShare.App.pdb
+D:\dotnet\LocalShare\dist\publish\Assets\fahhh.mp3
 D:\dotnet\LocalShare\dist\publish\D3DCompiler_47_cor3.dll
 D:\dotnet\LocalShare\dist\publish\PenImc_cor3.dll
 D:\dotnet\LocalShare\dist\publish\PresentationNative_cor3.dll

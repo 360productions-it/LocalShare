@@ -17,6 +17,9 @@
   <ItemGroup>
     <Resource Include="Assets\360-logo.png" />
     <Resource Include="Assets\logo.ico" />
+    <None Update="Assets\fahhh.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <PropertyGroup>

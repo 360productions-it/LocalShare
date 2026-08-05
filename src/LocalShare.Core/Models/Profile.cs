@@ -9,6 +9,7 @@ public class Profile
     public string? PublicSpacePath { get; set; }
     public string ReceivedFilesRoot { get; set; } = string.Empty;
     public int HttpPort { get; set; } = 53211;
+    public bool EnableNotifications { get; set; } = true;
     public string ProtocolVersion { get; set; } = Common.Constants.ProtocolVersion;
     public string AppVersion { get; set; } = Common.Constants.AppVersion;
 }

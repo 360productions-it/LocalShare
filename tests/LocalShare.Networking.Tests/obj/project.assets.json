@@ -637,7 +637,7 @@
           "build/net8.0/xunit.runner.visualstudio.props": {}
         }
       },
-      "LocalShare.Common/1.9.2": {
+      "LocalShare.Common/1.9.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "compile": {
@@ -647,11 +647,11 @@
           "bin/placeholder/LocalShare.Common.dll": {}
         }
       },
-      "LocalShare.Core/1.9.2": {
+      "LocalShare.Core/1.9.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "LocalShare.Common": "1.9.2"
+          "LocalShare.Common": "1.9.3"
         },
         "compile": {
           "bin/placeholder/LocalShare.Core.dll": {}
@@ -660,12 +660,12 @@
           "bin/placeholder/LocalShare.Core.dll": {}
         }
       },
-      "LocalShare.Networking/1.9.2": {
+      "LocalShare.Networking/1.9.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "LocalShare.Common": "1.9.2",
-          "LocalShare.Core": "1.9.2",
+          "LocalShare.Common": "1.9.3",
+          "LocalShare.Core": "1.9.3",
           "Microsoft.AspNetCore.SignalR.Client": "10.0.10"
         },
         "compile": {
@@ -1588,17 +1588,17 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "LocalShare.Common/1.9.2": {
+    "LocalShare.Common/1.9.3": {
       "type": "project",
       "path": "../../src/LocalShare.Common/LocalShare.Common.csproj",
       "msbuildProject": "../../src/LocalShare.Common/LocalShare.Common.csproj"
     },
-    "LocalShare.Core/1.9.2": {
+    "LocalShare.Core/1.9.3": {
       "type": "project",
       "path": "../../src/LocalShare.Core/LocalShare.Core.csproj",
       "msbuildProject": "../../src/LocalShare.Core/LocalShare.Core.csproj"
     },
-    "LocalShare.Networking/1.9.2": {
+    "LocalShare.Networking/1.9.3": {
       "type": "project",
       "path": "../../src/LocalShare.Networking/LocalShare.Networking.csproj",
       "msbuildProject": "../../src/LocalShare.Networking/LocalShare.Networking.csproj"
@@ -1606,9 +1606,9 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "LocalShare.Common >= 1.9.2",
-      "LocalShare.Core >= 1.9.2",
-      "LocalShare.Networking >= 1.9.2",
+      "LocalShare.Common >= 1.9.3",
+      "LocalShare.Core >= 1.9.3",
+      "LocalShare.Networking >= 1.9.3",
       "Microsoft.NET.Test.Sdk >= 17.14.1",
       "coverlet.collector >= 6.0.4",
       "xunit >= 2.9.3",
@@ -1620,7 +1620,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.9.2",
+    "version": "1.9.3",
     "restore": {
       "projectUniqueName": "D:\\dotnet\\LocalShare\\tests\\LocalShare.Networking.Tests\\LocalShare.Networking.Tests.csproj",
       "projectName": "LocalShare.Networking.Tests",

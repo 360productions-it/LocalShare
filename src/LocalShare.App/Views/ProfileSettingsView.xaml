@@ -106,6 +106,23 @@
                     </StackPanel>
                 </Border>
 
+                <!-- CARD 2.5: Notifications & Alerts -->
+                <Border Background="#1E293B" CornerRadius="12" Padding="20" Margin="0,0,0,20" BorderBrush="#334155" BorderThickness="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="🔔 Windows Notifications &amp; Alerts" FontSize="15" FontWeight="Bold" Foreground="White" Margin="0,0,0,4"/>
+                            <TextBlock Text="Show a Windows system notification alert whenever a file is received from another peer (Default: ON)." Foreground="#94A3B8" FontSize="12" TextWrapping="Wrap"/>
+                        </StackPanel>
+
+                        <CheckBox Grid.Column="1" IsChecked="{Binding EnableNotifications, Mode=TwoWay}" Content="Enable File Alerts" Foreground="#34D399" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" Cursor="Hand"/>
+                    </Grid>
+                </Border>
+
                 <!-- CARD 3: Device Info -->
                 <Border Background="#1E293B" CornerRadius="12" Padding="20" Margin="0,0,0,20" BorderBrush="#334155" BorderThickness="1">
                     <Grid>

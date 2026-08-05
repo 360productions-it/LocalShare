@@ -27,6 +27,7 @@ public class TransferService : ITransferService
     private readonly ConcurrentDictionary<string, FileStream> _incomingStreams = new();
 
     public event EventHandler<TransferItem>? TransferProgressChanged;
+    public event EventHandler<TransferItem>? FileReceived;
 
     public TransferService(Profile localProfile, ITransferRepository transferRepo, HttpClient? httpClient = null)
     {
@@ -222,6 +223,11 @@ public class TransferService : ITransferService
             transfer.Status = TransferStatus.Completed;
             transfer.CompletedAt = DateTime.UtcNow;
             await _transferRepo.UpdateTransferStatusAsync(transferId, TransferStatus.Completed, transfer.BytesTransferred, transfer.FilePath);
+
+            if (transfer.Direction == TransferDirection.Incoming)
+            {
+                FileReceived?.Invoke(this, transfer);
+            }
         }
 
         TransferProgressChanged?.Invoke(this, transfer);
