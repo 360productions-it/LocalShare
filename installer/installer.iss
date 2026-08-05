@@ -25,7 +25,7 @@ OutputDir=..\dist\installer
 OutputBaseFilename=360LocalShare_Setup_v{#MyAppVersion}
 SetupIconFile={#MyAppIcon}
 UninstallDisplayIcon={app}\{#MyAppExeName}
-Compression=lzma2/ultra64
+Compression=lzma2/max
 SolidCompression=yes
 WizardStyle=modern
 ArchitecturesInstallIn64BitMode=x64compatible
@@ -47,10 +47,4 @@ Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFile
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
-Filename: "netsh"; Parameters: "advfirewall firewall add rule name=""360 LocalShare P2P LAN (TCP)"" dir=in action=allow program=""{app}\{#MyAppExeName}"" enable=yes profile=any protocol=TCP"; Flags: runhidden
-Filename: "netsh"; Parameters: "advfirewall firewall add rule name=""360 LocalShare P2P LAN (UDP)"" dir=in action=allow program=""{app}\{#MyAppExeName}"" enable=yes profile=any protocol=UDP"; Flags: runhidden
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-
-[UninstallRun]
-Filename: "netsh"; Parameters: "advfirewall firewall delete rule name=""360 LocalShare P2P LAN (TCP)"""; Flags: runhidden
-Filename: "netsh"; Parameters: "advfirewall firewall delete rule name=""360 LocalShare P2P LAN (UDP)"""; Flags: runhidden

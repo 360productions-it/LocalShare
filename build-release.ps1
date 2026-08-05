@@ -78,7 +78,7 @@ if ($LASTEXITCODE -ne 0) {
 
 # 5. Run dotnet publish for self-contained x64 Single File
 Write-Host "`n[3/5] Publishing self-contained single-file x64 release..." -ForegroundColor Yellow
-dotnet publish src/LocalShare.App/LocalShare.App.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o $PublishDir
+dotnet publish src/LocalShare.App/LocalShare.App.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o $PublishDir
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Dotnet publish failed!" -ForegroundColor Red

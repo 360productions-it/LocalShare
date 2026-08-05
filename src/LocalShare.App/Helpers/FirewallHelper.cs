@@ -1,12 +1,37 @@
 using System.Diagnostics;
 using System.IO;
+using System.Security.Principal;
 
 namespace LocalShare.App.Helpers;
 
 public static class FirewallHelper
 {
-    public static void RegisterFirewallRules()
+    /// <summary>
+    /// Checks if current process is running with Administrator privileges.
+    /// Only attempts netsh firewall registration if elevated, avoiding AV/Defender behavioral warnings on standard user runs.
+    /// </summary>
+    public static bool IsAdministrator()
     {
+        try
+        {
+            using var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    public static void RegisterFirewallRulesIfElevated()
+    {
+        if (!IsAdministrator())
+        {
+            // Standard non-elevated user mode. Windows automatically prompts standard firewall dialog on socket bind.
+            return;
+        }
+
         try
         {
             var exePath = Process.GetCurrentProcess().MainModule?.FileName;
@@ -14,17 +39,15 @@ public static class FirewallHelper
 
             var ruleName = "360 LocalShare P2P LAN Network";
 
-            // Add Inbound TCP Allow Rule via Netsh
             var tcpArgs = $"advfirewall firewall add rule name=\"{ruleName} (TCP)\" dir=in action=allow program=\"{exePath}\" enable=yes profile=any protocol=TCP";
             RunNetshCommand(tcpArgs);
 
-            // Add Inbound UDP Allow Rule via Netsh
             var udpArgs = $"advfirewall firewall add rule name=\"{ruleName} (UDP)\" dir=in action=allow program=\"{exePath}\" enable=yes profile=any protocol=UDP";
             RunNetshCommand(udpArgs);
         }
         catch
         {
-            // Ignore non-admin or silent firewall registration errors
+            // Ignore firewall registration errors
         }
     }
 
@@ -41,7 +64,7 @@ public static class FirewallHelper
                 WindowStyle = ProcessWindowStyle.Hidden
             };
             using var proc = Process.Start(startInfo);
-            proc?.WaitForExit(1000);
+            proc?.WaitForExit(2000);
         }
         catch { }
     }

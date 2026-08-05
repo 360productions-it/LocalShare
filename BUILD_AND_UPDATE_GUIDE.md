@@ -71,6 +71,28 @@ If you prefer manual upload:
 
 ---
 
+## 🛡️ 4. Windows Defender & Anti-Virus Compatibility Guide
+
+To ensure smooth installation without Windows Defender or SmartScreen false-positive blocks:
+
+1. **Clean Installer Architecture**:
+   - **No Hidden Netsh Process Executions**: The installer does not invoke silent `netsh` commands without elevation.
+   - **Standard Packing**: Inno Setup uses `lzma2/max` instead of `lzma2/ultra64` to prevent generic heuristic detection.
+   - **Explicit Manifest**: `LocalShare.App` embeds an explicit `app.manifest` declaring `asInvoker` execution level.
+
+2. **Code Signing (Recommended for Production)**:
+   Sign the compiled installer (`.exe`) with a Code Signing Certificate using `signtool.exe`:
+   ```powershell
+   signtool sign /tr http://timestamp.digicert.com /td sha256 /fd sha256 /f "YourCert.pfx" /p "YourPassword" "dist\installer\360LocalShare_Setup_v1.4.0.exe"
+   ```
+
+3. **Submitting False Positives to Microsoft**:
+   If Microsoft SmartScreen displays an "Unknown Publisher" warning on newly compiled binaries:
+   - Submit your compiled setup binary to [Microsoft Security Intelligence Sample Submission](https://www.microsoft.com/wdsi/filesubmission).
+   - Select **Software Developer** and submit as **Incorrectly Detected (False Positive)**. Microsoft typically whitelists clean submissions within a few hours.
+
+---
+
 ## ⚡ Summary of Commands
 
 | Action | Command |
@@ -79,3 +101,4 @@ If you prefer manual upload:
 | **Run Unit Tests** | `dotnet test LocalShare.slnx` |
 | **Build & Publish Release Automatically** | `powershell -File .\build-release.ps1 -Version 1.4.0 -GitHubToken "YOUR_TOKEN"` |
 | **Upload Existing Installer Artifact** | `powershell -File .\publish-github-release.ps1 -Version 1.4.0 -GitHubToken "YOUR_TOKEN"` |
+

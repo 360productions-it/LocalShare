@@ -1,4 +1,11 @@
 D:\dotnet\LocalShare\dist\publish\LocalShare.App.pdb
+D:\dotnet\LocalShare\dist\publish\D3DCompiler_47_cor3.dll
+D:\dotnet\LocalShare\dist\publish\PenImc_cor3.dll
+D:\dotnet\LocalShare\dist\publish\PresentationNative_cor3.dll
+D:\dotnet\LocalShare\dist\publish\vcruntime140_cor3.dll
+D:\dotnet\LocalShare\dist\publish\wpfgfx_cor3.dll
+D:\dotnet\LocalShare\dist\publish\aspnetcorev2_inprocess.dll
+D:\dotnet\LocalShare\dist\publish\e_sqlite3.dll
 D:\dotnet\LocalShare\dist\publish\LocalShare.Core.pdb
 D:\dotnet\LocalShare\dist\publish\LocalShare.Networking.pdb
 D:\dotnet\LocalShare\dist\publish\LocalShare.Data.pdb

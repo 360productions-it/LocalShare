@@ -27,9 +27,6 @@ public partial class App : Application
 
         try
         {
-            // Auto-register Windows Defender Firewall rule for P2P network traffic
-            FirewallHelper.RegisterFirewallRules();
-
             // Apply WPF-UI Dark Theme
             ApplicationThemeManager.Apply(ApplicationTheme.Dark);
 
