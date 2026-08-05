@@ -1,8 +1,8 @@
 ﻿{
-    "version":  "1.9.1",
+    "version":  "1.9.2",
     "releaseDate":  "2026-08-05",
-    "downloadUrl":  "https://github.com/360productions-it/LocalShare/releases/download/v1.9.1/360LocalShare_Setup_v1.9.1.exe",
-    "changelog":  "Release version v1.9.1 with Obsidian Glass UI, dark high-visibility controls, Public Space browser, multi-peer streaming, and dynamic version management.",
+    "downloadUrl":  "https://github.com/360productions-it/LocalShare/releases/download/v1.9.2/360LocalShare_Setup_v1.9.2.exe",
+    "changelog":  "Release version v1.9.2 with Obsidian Glass UI, dark high-visibility controls, Public Space browser, multi-peer streaming, and dynamic version management.",
     "sha256":  "",
     "isMandatory":  false
 }

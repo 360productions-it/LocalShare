@@ -6,11 +6,11 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v10.0": {
-      "LocalShare.Data/1.9.1": {
+      "LocalShare.Data/1.9.2": {
         "dependencies": {
           "Dapper": "2.1.79",
-          "LocalShare.Common": "1.9.1",
-          "LocalShare.Core": "1.9.1",
+          "LocalShare.Common": "1.9.2",
+          "LocalShare.Core": "1.9.2",
           "Microsoft.Data.Sqlite": "10.0.10"
         },
         "runtime": {
@@ -193,29 +193,29 @@
           }
         }
       },
-      "LocalShare.Common/1.9.1": {
+      "LocalShare.Common/1.9.2": {
         "runtime": {
           "LocalShare.Common.dll": {
-            "assemblyVersion": "1.9.1.0",
-            "fileVersion": "1.9.1.0"
+            "assemblyVersion": "1.9.2.0",
+            "fileVersion": "1.9.2.0"
           }
         }
       },
-      "LocalShare.Core/1.9.1": {
+      "LocalShare.Core/1.9.2": {
         "dependencies": {
-          "LocalShare.Common": "1.9.1"
+          "LocalShare.Common": "1.9.2"
         },
         "runtime": {
           "LocalShare.Core.dll": {
-            "assemblyVersion": "1.9.1.0",
-            "fileVersion": "1.9.1.0"
+            "assemblyVersion": "1.9.2.0",
+            "fileVersion": "1.9.2.0"
           }
         }
       }
     }
   },
   "libraries": {
-    "LocalShare.Data/1.9.1": {
+    "LocalShare.Data/1.9.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -269,12 +269,12 @@
       "path": "sqlitepclraw.provider.e_sqlite3/2.1.11",
       "hashPath": "sqlitepclraw.provider.e_sqlite3.2.1.11.nupkg.sha512"
     },
-    "LocalShare.Common/1.9.1": {
+    "LocalShare.Common/1.9.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "LocalShare.Core/1.9.1": {
+    "LocalShare.Core/1.9.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
