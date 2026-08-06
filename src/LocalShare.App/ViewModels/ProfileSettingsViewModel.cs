@@ -44,6 +44,12 @@ public partial class ProfileSettingsViewModel : ObservableObject
     private string _currentVersion = "v1.0.0";
 
     [ObservableProperty]
+    private string _developerName = "Isuru Bandara";
+
+    [ObservableProperty]
+    private string _developerWebsite = "https://razorisuru.com";
+
+    [ObservableProperty]
     private string _updateManifestUrl = "https://raw.githubusercontent.com/360productions-it/LocalShare/main/dist/latest_version.json";
 
     [ObservableProperty]
@@ -215,6 +221,23 @@ public partial class ProfileSettingsViewModel : ObservableObject
         {
             Clipboard.SetText(DeviceId);
             StatusMessage = "Device ID copied to clipboard!";
+        }
+    }
+
+    [RelayCommand]
+    private void OpenDeveloperWebsite()
+    {
+        try
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = DeveloperWebsite,
+                UseShellExecute = true
+            });
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = $"Could not open browser: {ex.Message}";
         }
     }
 

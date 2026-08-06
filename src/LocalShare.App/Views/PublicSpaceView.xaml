@@ -1,7 +1,7 @@
 <UserControl x:Class="LocalShare.App.Views.PublicSpaceView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Grid Margin="24">
+    <Grid Margin="28,24,28,20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -9,11 +9,43 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Top Title Bar -->
-        <TextBlock Text="📁 Public Space Browser" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,0,0,16"/>
+        <!-- ═══════════════════════════════════ -->
+        <!-- TOP TITLE BAR                      -->
+        <!-- ═══════════════════════════════════ -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,18">
+            <Border Width="34" Height="34" CornerRadius="10" VerticalAlignment="Center" Margin="0,0,12,0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#2563EB" Offset="0"/>
+                        <GradientStop Color="#7C3AED" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="12" Color="#2563EB" Direction="0" ShadowDepth="0" Opacity="0.2"/>
+                </Border.Effect>
+                <TextBlock Text="📁" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <TextBlock Text="Public Space Browser" FontSize="24" FontWeight="Bold" VerticalAlignment="Center">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#60A5FA" Offset="0.0"/>
+                        <GradientStop Color="#38BDF8" Offset="0.5"/>
+                        <GradientStop Color="#818CF8" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
+        </StackPanel>
         
-        <!-- Action & Peer Selection Bar -->
-        <Border Grid.Row="1" Background="#1E293B" CornerRadius="12" Padding="16,12" Margin="0,0,0,16" BorderBrush="#334155" BorderThickness="1">
+        <!-- ═══════════════════════════════════ -->
+        <!-- ACTION & PEER SELECTION BAR        -->
+        <!-- ═══════════════════════════════════ -->
+        <Border Grid.Row="1" CornerRadius="14" Padding="16,12" Margin="0,0,0,14" BorderThickness="1" BorderBrush="#1A2744">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#0E1525" Offset="0"/>
+                    <GradientStop Color="#111B2E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -22,17 +54,17 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Select LAN Peer:" Foreground="White" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                <TextBlock Text="Select LAN Peer:" Foreground="#94A3B8" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,12,0"/>
                 
-                <!-- High Visibility ComboBox -->
-                <ComboBox Grid.Column="1" ItemsSource="{Binding Peers}" SelectedItem="{Binding SelectedPeer}" Width="280" Background="#0F172A" Foreground="White" BorderBrush="#38BDF8" BorderThickness="2" FontSize="14" VerticalContentAlignment="Center" Cursor="Hand">
+                <!-- Peer ComboBox -->
+                <ComboBox Grid.Column="1" ItemsSource="{Binding Peers}" SelectedItem="{Binding SelectedPeer}" Width="280" Background="#0D1321" Foreground="White" BorderBrush="#1E293B" BorderThickness="1" FontSize="14" VerticalContentAlignment="Center" Cursor="Hand" Padding="8,4">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <Border Padding="6,4" Background="#1E293B" CornerRadius="6">
+                            <Border Padding="6,4" Background="Transparent" CornerRadius="6">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="💻 " FontSize="14" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding IpAddress, StringFormat=' ({0})'}" Foreground="#38BDF8" FontSize="12" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                                    <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding IpAddress, StringFormat=' ({0})'}" Foreground="#64748B" FontSize="12" VerticalAlignment="Center" Margin="6,0,0,0"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -40,68 +72,120 @@
                 </ComboBox>
 
                 <StackPanel Grid.Column="3" Orientation="Horizontal">
-                    <Button Content="🔄 Refresh Peers" Command="{Binding RefreshPeersCommand}" Background="#334155" Foreground="White" FontWeight="Bold" Padding="14,8" Cursor="Hand" Margin="0,0,8,0"/>
-                    <Button Content="📥 Open Downloads Folder" Command="{Binding OpenReceivedFolderCommand}" Style="{StaticResource ModernPrimaryButton}"/>
+                    <Button Content="🔄  Refresh Peers" Command="{Binding RefreshPeersCommand}" Style="{StaticResource GhostButton}" Margin="0,0,10,0"/>
+                    <Button Content="📥  Open Downloads" Command="{Binding OpenReceivedFolderCommand}" Style="{StaticResource ModernPrimaryButton}"/>
                 </StackPanel>
             </Grid>
         </Border>
 
-        <!-- Status Message Banner -->
-        <Border Grid.Row="2" Background="#1E3A5F" BorderBrush="#38BDF8" BorderThickness="1" Padding="14,9" CornerRadius="8" Margin="0,0,0,16">
+        <!-- ═══════════════════════════════════ -->
+        <!-- STATUS MESSAGE BANNER              -->
+        <!-- ═══════════════════════════════════ -->
+        <Border Grid.Row="2" CornerRadius="10" Padding="14,10" Margin="0,0,0,14" BorderThickness="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#0C1A33" Offset="0"/>
+                    <GradientStop Color="#0F1D38" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border.BorderBrush>
+                <SolidColorBrush Color="#1D4ED8" Opacity="0.3"/>
+            </Border.BorderBrush>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="⚡ " FontSize="14" VerticalAlignment="Center"/>
-                <TextBlock Text="{Binding StatusMessage}" Foreground="#38BDF8" FontSize="13" FontWeight="Bold" VerticalAlignment="Center"/>
+                <Border Width="6" Height="6" CornerRadius="3" Margin="0,0,10,0" VerticalAlignment="Center">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#3B82F6" Offset="0"/>
+                            <GradientStop Color="#22D3EE" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <TextBlock Text="{Binding StatusMessage}" Foreground="#60A5FA" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center"/>
             </StackPanel>
         </Border>
 
-        <!-- Public Files Grid Browser -->
-        <Border Grid.Row="3" Background="#1E293B" CornerRadius="12" Padding="16" BorderBrush="#334155" BorderThickness="1">
+        <!-- ═══════════════════════════════════ -->
+        <!-- PUBLIC FILES GRID BROWSER          -->
+        <!-- ═══════════════════════════════════ -->
+        <Border Grid.Row="3" CornerRadius="14" Padding="20" BorderThickness="1" BorderBrush="#1A2744">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#0E1525" Offset="0"/>
+                    <GradientStop Color="#0B1120" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <DockPanel>
-                <Grid DockPanel.Dock="Top" Margin="0,0,0,12">
+                <Grid DockPanel.Dock="Top" Margin="0,0,0,16">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Border Width="32" Height="32" CornerRadius="16" Background="{StaticResource PrimaryGradient}" Margin="0,0,10,0">
+                        <Border Width="36" Height="36" CornerRadius="18" Background="#131B2E" BorderBrush="#1A2744" BorderThickness="1" Margin="0,0,12,0">
                             <TextBlock Text="📁" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-                        <TextBlock Text="{Binding SelectedPeer.DisplayName, StringFormat='Shared Public Files ({0})', FallbackValue='Shared Public Files'}" FontSize="17" FontWeight="Bold" Foreground="White"/>
+                        <TextBlock Text="{Binding SelectedPeer.DisplayName, StringFormat='Shared Public Files ({0})', FallbackValue='Shared Public Files'}" FontSize="17" FontWeight="Bold" Foreground="#F1F5F9"/>
                     </StackPanel>
                     
-                    <TextBlock Text="Read-Only Shared on LAN" FontSize="12" Foreground="#34D399" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <Border CornerRadius="6" Padding="10,5" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Border.Background>
+                            <SolidColorBrush Color="#10B981" Opacity="0.1"/>
+                        </Border.Background>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🔒 " FontSize="11" VerticalAlignment="Center"/>
+                            <TextBlock Text="Read-Only Shared on LAN" FontSize="12" Foreground="#10B981" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Border>
                 </Grid>
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <ItemsControl ItemsSource="{Binding PublicFiles}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Margin="0,4" Padding="14,10" Background="#0F172A" CornerRadius="10" BorderBrush="#334155" BorderThickness="1">
+                                <Border x:Name="fileCard" Margin="0,3" Padding="16,12" CornerRadius="10" BorderThickness="1" BorderBrush="#162033">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="#0D1321"/>
+                                    </Border.Background>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="220"/>
-                                            <ColumnDefinition Width="130"/>
-                                            <ColumnDefinition Width="130"/>
+                                            <ColumnDefinition Width="Auto" MinWidth="180"/>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
                                         <!-- File Extension Icon -->
-                                        <TextBlock Text="{Binding FileIcon}" FontSize="22" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                                        <TextBlock Text="{Binding FileIcon}" FontSize="24" VerticalAlignment="Center" Margin="0,0,16,0"/>
 
                                         <!-- File Name -->
-                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                            <TextBlock Text="{Binding FileName}" Foreground="White" FontSize="14" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,16,0">
+                                            <TextBlock Text="{Binding FileName}" Foreground="#F1F5F9" FontSize="14" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
                                         </StackPanel>
 
                                         <!-- Relative Path Pill -->
-                                        <Border Grid.Column="2" Background="#1E293B" CornerRadius="6" Padding="8,4" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                            <TextBlock Text="{Binding RelativePath, StringFormat='Path: /{0}'}" Foreground="#94A3B8" FontSize="11" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                                        <Border Grid.Column="2" Background="#131B2E" CornerRadius="6" Padding="10,5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,16,0">
+                                            <TextBlock Text="{Binding RelativePath, StringFormat='/{0}'}" Foreground="#94A3B8" FontSize="12" FontWeight="Medium" TextTrimming="CharacterEllipsis"/>
                                         </Border>
 
                                         <!-- Formatted Size -->
-                                        <TextBlock Grid.Column="3" Text="{Binding FormattedSize}" Foreground="#38BDF8" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding FormattedSize}" Foreground="#60A5FA" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,16,0"/>
 
                                         <!-- Download Button -->
-                                        <Button Grid.Column="4" Content="⬇️ Download" Command="{Binding DataContext.DownloadFileCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Style="{StaticResource ModernPrimaryButton}" HorizontalAlignment="Right"/>
+                                        <Button Grid.Column="4" Content="⬇  Download" Command="{Binding DataContext.DownloadFileCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Style="{StaticResource ModernPrimaryButton}" FontSize="12" Padding="14,7"/>
                                     </Grid>
                                 </Border>
+                                <DataTemplate.Triggers>
+                                    <Trigger SourceName="fileCard" Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="fileCard" Property="BorderBrush" Value="#2563EB"/>
+                                        <Setter TargetName="fileCard" Property="Background">
+                                            <Setter.Value>
+                                                <SolidColorBrush Color="#111B2E"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter TargetName="fileCard" Property="Effect">
+                                            <Setter.Value>
+                                                <DropShadowEffect BlurRadius="12" Color="#2563EB" Direction="0" ShadowDepth="0" Opacity="0.1"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </DataTemplate.Triggers>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

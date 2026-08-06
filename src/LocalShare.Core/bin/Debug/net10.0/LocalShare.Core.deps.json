@@ -6,31 +6,31 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v10.0": {
-      "LocalShare.Core/1.9.2": {
+      "LocalShare.Core/1.9.3": {
         "dependencies": {
-          "LocalShare.Common": "1.9.2"
+          "LocalShare.Common": "1.9.3"
         },
         "runtime": {
           "LocalShare.Core.dll": {}
         }
       },
-      "LocalShare.Common/1.9.2": {
+      "LocalShare.Common/1.9.3": {
         "runtime": {
           "LocalShare.Common.dll": {
-            "assemblyVersion": "1.9.2.0",
-            "fileVersion": "1.9.2.0"
+            "assemblyVersion": "1.9.3.0",
+            "fileVersion": "1.9.3.0"
           }
         }
       }
     }
   },
   "libraries": {
-    "LocalShare.Core/1.9.2": {
+    "LocalShare.Core/1.9.3": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "LocalShare.Common/1.9.2": {
+    "LocalShare.Common/1.9.3": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

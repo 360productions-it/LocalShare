@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\360-logo.png" />
-    <Resource Include="Assets\logo.ico" />
+    <Resource Include="Assets\logo.png" />
+    <Resource Include="Assets\logo-new.ico" />
     <None Update="Assets\fahhh.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -28,7 +28,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\logo-new.ico</ApplicationIcon>
     <AssemblyTitle>360 LocalShare - P2P LAN Sharing &amp; Messenger</AssemblyTitle>
     <AssemblyProduct>360 LocalShare</AssemblyProduct>
     <AssemblyCompany>Antigravity Software</AssemblyCompany>

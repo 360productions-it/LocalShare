@@ -6,10 +6,10 @@
         xmlns:views="clr-namespace:LocalShare.App.Views"
         xmlns:behaviors="clr-namespace:LocalShare.App.Behaviors"
         Title="360 LocalShare - Ultra P2P LAN Sharing &amp; Messenger"
-        Icon="pack://application:,,,/Assets/360-logo.png"
+        Icon="pack://application:,,,/Assets/logo.png"
         Height="780" Width="1200" MinHeight="640" MinWidth="900"
         WindowStartupLocation="CenterScreen"
-        Background="#0F172A"
+        Background="#080D1A"
         behaviors:AdaptiveLayoutBehavior.CompactWidthThreshold="880">
 
     <Window.Resources>
@@ -37,58 +37,161 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240" x:Name="NavColumn"/>
+            <ColumnDefinition Width="250" x:Name="NavColumn"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Sidebar Navigation Rail -->
-        <Border Background="#0B0F19" BorderBrush="#1E293B" BorderThickness="0,0,1,0">
-            <DockPanel Margin="12,15">
-                <!-- App Title & User Badge Header -->
-                <StackPanel DockPanel.Dock="Top" Margin="5,10,5,25">
-                    <Grid Margin="0,0,0,15">
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- SIDEBAR NAVIGATION RAIL (Glassmorphism)    -->
+        <!-- ═══════════════════════════════════════════ -->
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#060A14" Offset="0.0"/>
+                    <GradientStop Color="#0A0F1E" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#1A2744" Offset="0.0"/>
+                    <GradientStop Color="#0F172A" Offset="0.5"/>
+                    <GradientStop Color="#1A2744" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.BorderThickness>
+                <Thickness Right="1"/>
+            </Border.BorderThickness>
+
+            <DockPanel Margin="14,18">
+                <!-- ─── App Header & User Badge ─── -->
+                <StackPanel DockPanel.Dock="Top" Margin="4,8,4,28">
+                    <!-- Brand Header -->
+                    <Grid Margin="0,0,0,18">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Brand Logo Image -->
-                        <Image Source="pack://application:,,,/Assets/360-logo.png" Width="42" Height="42" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Center"/>
+                        <!-- Logo with ambient glow -->
+                        <Border Width="44" Height="44" CornerRadius="12" VerticalAlignment="Center">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="16" Color="#2563EB" Direction="0" ShadowDepth="0" Opacity="0.2"/>
+                            </Border.Effect>
+                            <Image Source="pack://application:,,,/Assets/logo.png" Width="42" Height="42" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Border>
 
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="12,0,0,0">
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="14,0,0,0">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="LocalShare " FontSize="18" FontWeight="Bold" Foreground="White"/>
-                                <TextBlock Text="{Binding AppVersion}" FontSize="11" FontWeight="Bold" Foreground="#38BDF8" VerticalAlignment="Bottom" Margin="2,0,0,2"/>
+                                <TextBlock Text="LocalShare " FontSize="18" FontWeight="Bold" Foreground="#F1F5F9"/>
+                                <!-- Version pill badge -->
+                                <Border Background="#0F1D38" CornerRadius="6" Padding="6,2" VerticalAlignment="Center" Margin="2,0,0,0">
+                                    <TextBlock Text="{Binding AppVersion}" FontSize="10" FontWeight="Bold" Foreground="#60A5FA"/>
+                                </Border>
                             </StackPanel>
-                            <TextBlock Text="P2P LAN Network" FontSize="11" Foreground="#94A3B8" FontWeight="SemiBold"/>
+                            <TextBlock Text="P2P LAN Network" FontSize="11" Foreground="#64748B" FontWeight="SemiBold" Margin="0,3,0,0"/>
                         </StackPanel>
                     </Grid>
 
-                    <!-- Logged-in User Pill -->
-                    <Border Background="#1E293B" CornerRadius="8" Padding="10,8" BorderBrush="#334155" BorderThickness="1">
+                    <!-- User Status Pill (Glassmorphism) -->
+                    <Border CornerRadius="12" Padding="12,10" BorderThickness="1">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#0E1525" Offset="0.0"/>
+                                <GradientStop Color="#111B2E" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#1A2744" Offset="0.0"/>
+                                <GradientStop Color="#162033" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
                         <StackPanel Orientation="Horizontal">
-                            <Ellipse Width="10" Height="10" Fill="#10B981" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <!-- Pulsing Online Indicator -->
+                            <Grid Width="12" Height="12" Margin="0,0,10,0" VerticalAlignment="Center">
+                                <Ellipse Width="12" Height="12" Fill="#10B981"/>
+                                <Ellipse Width="12" Height="12" Opacity="0.4" RenderTransformOrigin="0.5,0.5">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush>
+                                            <GradientStop Color="#10B981" Offset="0"/>
+                                            <GradientStop Color="Transparent" Offset="1"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                    <Ellipse.RenderTransform>
+                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    </Ellipse.RenderTransform>
+                                    <Ellipse.Triggers>
+                                        <EventTrigger RoutedEvent="Loaded">
+                                            <BeginStoryboard>
+                                                <Storyboard RepeatBehavior="Forever">
+                                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="2.2" Duration="0:0:1.8">
+                                                        <DoubleAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" From="1" To="2.2" Duration="0:0:1.8">
+                                                        <DoubleAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.5" To="0" Duration="0:0:1.8"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Ellipse.Triggers>
+                                </Ellipse>
+                            </Grid>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="{Binding DisplayName}" FontSize="13" FontWeight="Bold" Foreground="White"/>
-                                <TextBlock Text="Online &amp; Broadcasting" FontSize="10" Foreground="#94A3B8"/>
+                                <TextBlock Text="{Binding DisplayName}" FontSize="13" FontWeight="Bold" Foreground="#F1F5F9"/>
+                                <TextBlock Text="Online &amp; Broadcasting" FontSize="10" Foreground="#64748B" Margin="0,1,0,0"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>
                 </StackPanel>
 
-                <!-- Navigation Links -->
-                <StackPanel>
-                    <RadioButton Content="🌐 Discovered Peers" Command="{Binding NavigateCommand}" CommandParameter="Peers" IsChecked="True" Style="{StaticResource NavRadioButtonStyle}"/>
-                    <RadioButton Content="💬 Instant Messenger" Command="{Binding NavigateCommand}" CommandParameter="Chat" Style="{StaticResource NavRadioButtonStyle}"/>
-                    <RadioButton Content="📁 Public Space" Command="{Binding NavigateCommand}" CommandParameter="PublicSpace" Style="{StaticResource NavRadioButtonStyle}"/>
-                    <RadioButton Content="👥 LAN Groups" Command="{Binding NavigateCommand}" CommandParameter="Groups" Style="{StaticResource NavRadioButtonStyle}"/>
-                    <RadioButton Content="⚡ Transfers &amp; Logs" Command="{Binding NavigateCommand}" CommandParameter="Transfers" Style="{StaticResource NavRadioButtonStyle}"/>
-                    <RadioButton Content="⚙️ Settings &amp; Profile" Command="{Binding NavigateCommand}" CommandParameter="Profile" Style="{StaticResource NavRadioButtonStyle}"/>
+                <!-- ─── Settings (Bottom-Docked) ─── -->
+                <StackPanel DockPanel.Dock="Bottom" Margin="0,8,0,0">
+                    <!-- Separator -->
+                    <Border Height="1" Margin="8,0,8,10" Opacity="0.3">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="Transparent" Offset="0"/>
+                                <GradientStop Color="#334155" Offset="0.5"/>
+                                <GradientStop Color="Transparent" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <RadioButton Content="⚙  Settings &amp; Profile" Command="{Binding NavigateCommand}" CommandParameter="Profile" Style="{StaticResource NavRadioButtonStyle}"/>
+                </StackPanel>
+
+                <!-- ─── Navigation Links ─── -->
+                <StackPanel Margin="0,4,0,0">
+                    <TextBlock Text="N A V I G A T I O N" FontSize="9.5" FontWeight="Bold" Foreground="#475569" Margin="8,0,0,14"/>
+                    <RadioButton Content="🌐  Discovered Peers" Command="{Binding NavigateCommand}" CommandParameter="Peers" IsChecked="True" Style="{StaticResource NavRadioButtonStyle}"/>
+                    <RadioButton Content="💬  Instant Messenger" Command="{Binding NavigateCommand}" CommandParameter="Chat" Style="{StaticResource NavRadioButtonStyle}"/>
+                    <RadioButton Content="📁  Public Space" Command="{Binding NavigateCommand}" CommandParameter="PublicSpace" Style="{StaticResource NavRadioButtonStyle}"/>
+                    <RadioButton Content="👥  LAN Groups" Command="{Binding NavigateCommand}" CommandParameter="Groups" Style="{StaticResource NavRadioButtonStyle}"/>
+                    <RadioButton Content="⚡  Transfers &amp; Logs" Command="{Binding NavigateCommand}" CommandParameter="Transfers" Style="{StaticResource NavRadioButtonStyle}"/>
                 </StackPanel>
             </DockPanel>
         </Border>
 
-        <!-- Main Workspace Area -->
-        <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}" Background="#0F172A"/>
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- MAIN WORKSPACE AREA (with page transitions) -->
+        <!-- ═══════════════════════════════════════════ -->
+        <Border Grid.Column="1" Background="#080D1A">
+            <ContentControl Content="{Binding CurrentViewModel}">
+                <ContentControl.RenderTransform>
+                    <TranslateTransform/>
+                </ContentControl.RenderTransform>
+                <ContentControl.Triggers>
+                    <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.25">
+                                    <DoubleAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </ContentControl.Triggers>
+            </ContentControl>
+        </Border>
     </Grid>
 </Window>

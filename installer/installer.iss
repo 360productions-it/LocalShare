@@ -8,7 +8,7 @@
 #define MyAppPublisher "360 Software"
 #define MyAppURL "https://github.com/360productions-it/LocalShare"
 #define MyAppExeName "LocalShare.App.exe"
-#define MyAppIcon "..\src\LocalShare.App\Assets\logo.ico"
+#define MyAppIcon "..\src\LocalShare.App\Assets\logo-new.ico"
 
 [Setup]
 AppId={{D1A3F5B8-43B0-4A91-889D-6F479D19E52C}
