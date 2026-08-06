@@ -5,7 +5,7 @@
   },
   "projects": {
     "D:\\dotnet\\LocalShare\\src\\LocalShare.Common\\LocalShare.Common.csproj": {
-      "version": "1.9.9",
+      "version": "2.0.1",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Common\\LocalShare.Common.csproj",
         "projectName": "LocalShare.Common",
@@ -344,7 +344,7 @@
       }
     },
     "D:\\dotnet\\LocalShare\\src\\LocalShare.Core\\LocalShare.Core.csproj": {
-      "version": "1.9.9",
+      "version": "2.0.1",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Core\\LocalShare.Core.csproj",
         "projectName": "LocalShare.Core",
@@ -687,7 +687,7 @@
       }
     },
     "D:\\dotnet\\LocalShare\\tests\\LocalShare.Core.Tests\\LocalShare.Core.Tests.csproj": {
-      "version": "1.9.9",
+      "version": "2.0.1",
       "restore": {
         "projectUniqueName": "D:\\dotnet\\LocalShare\\tests\\LocalShare.Core.Tests\\LocalShare.Core.Tests.csproj",
         "projectName": "LocalShare.Core.Tests",

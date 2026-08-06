@@ -1,4 +1,4 @@
-# 360 LocalShare — Managing software updates
+# LocalShare — Managing software updates
 
 Split into two parts: how updates get built and applied to a machine, and how the update file actually reaches machines that might not have internet — the second one's slightly unusual here given the "no internet needed" premise.
 
@@ -6,7 +6,7 @@ Split into two parts: how updates get built and applied to a machine, and how th
 
 Recommended over ClickOnce or a hand-rolled updater — [Velopack](https://velopack.io) is the actively maintained successor to Squirrel.Windows, purpose-built for this. It applies updates in seconds without UAC prompts, its CLI (`vpk`) generates the installer, delta update packages, and a self-updating portable package from a build in one command, and the update feed can live anywhere — GitHub Releases, S3, a plain file server, or a folder on your own LAN.
 
-Fit for 360 LocalShare specifically:
+Fit for LocalShare specifically:
 - Delta patching means a client going from v1.2.0 → v1.2.1 downloads a small diff, not the whole app again.
 - Feed hosting flexibility means you're not locked into requiring internet for the check itself.
 

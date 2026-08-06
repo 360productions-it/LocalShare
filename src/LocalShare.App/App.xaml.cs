@@ -106,7 +106,7 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Startup Error: {ex.Message}\n{ex.StackTrace}", "360 LocalShare Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show($"Startup Error: {ex.Message}\n{ex.StackTrace}", "LocalShare Error", MessageBoxButton.OK, MessageBoxImage.Error);
             Shutdown();
         }
     }

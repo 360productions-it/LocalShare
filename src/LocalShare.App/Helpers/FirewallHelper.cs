@@ -37,7 +37,7 @@ public static class FirewallHelper
             var exePath = Process.GetCurrentProcess().MainModule?.FileName;
             if (string.IsNullOrWhiteSpace(exePath) || !File.Exists(exePath)) return;
 
-            var ruleName = "360 LocalShare P2P LAN Network";
+            var ruleName = "LocalShare P2P LAN Network";
 
             var tcpArgs = $"advfirewall firewall add rule name=\"{ruleName} (TCP)\" dir=in action=allow program=\"{exePath}\" enable=yes profile=any protocol=TCP";
             RunNetshCommand(tcpArgs);

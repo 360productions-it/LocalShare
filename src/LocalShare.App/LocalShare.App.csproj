@@ -29,8 +29,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Assets\logo-new.ico</ApplicationIcon>
-    <AssemblyTitle>360 LocalShare - P2P LAN Sharing &amp; Messenger</AssemblyTitle>
-    <AssemblyProduct>360 LocalShare</AssemblyProduct>
+    <AssemblyTitle>LocalShare - P2P LAN Sharing &amp; Messenger</AssemblyTitle>
+    <AssemblyProduct>LocalShare</AssemblyProduct>
     <AssemblyCompany>Antigravity Software</AssemblyCompany>
     <Description>Fast P2P LAN File Sharing and Real-time Instant Messenger</Description>
     <ApplicationManifest>app.manifest</ApplicationManifest>

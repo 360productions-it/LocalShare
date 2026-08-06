@@ -120,7 +120,7 @@ public partial class ProfileSettingsViewModel : ObservableObject
                 {
                     AvailableUpdateInfo = null;
                     IsUpdateAvailable = false;
-                    UpdateStatusMessage = $"✅ You are running the latest version of 360 LocalShare ({CurrentVersion}).";
+                    UpdateStatusMessage = $"✅ You are running the latest version of LocalShare ({CurrentVersion}).";
                 }
             }
             else
@@ -144,7 +144,7 @@ public partial class ProfileSettingsViewModel : ObservableObject
         }
 
         IsDownloadingUpdate = true;
-        UpdateStatusMessage = $"Downloading 360 LocalShare v{AvailableUpdateInfo.Version} installer...";
+        UpdateStatusMessage = $"Downloading LocalShare v{AvailableUpdateInfo.Version} installer...";
         UpdateProgressPercentage = 0;
 
         var result = await _updateService.DownloadAndApplyUpdateAsync(AvailableUpdateInfo, progress =>

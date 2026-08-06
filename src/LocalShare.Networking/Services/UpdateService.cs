@@ -88,13 +88,13 @@ public class UpdateService : IUpdateService
                 return Result.Success();
             }
 
-            var tempInstallerPath = Path.Combine(Path.GetTempPath(), $"360LocalShare_Setup_v{updateInfo.Version}.exe");
+            var tempInstallerPath = Path.Combine(Path.GetTempPath(), $"LocalShare_Setup_v{updateInfo.Version}.exe");
 
             using (var response = await _httpClient.GetAsync(updateInfo.DownloadUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken))
             {
                 if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
-                    return Result.Failure($"Remote installer file for v{updateInfo.Version} was not found on GitHub Releases (HTTP 404).\n\nTo resolve this: Please upload '360LocalShare_Setup_v{updateInfo.Version}.exe' to your GitHub Release assets at:\nhttps://github.com/360productions-it/LocalShare/releases/tag/v{updateInfo.Version}");
+                    return Result.Failure($"Remote installer file for v{updateInfo.Version} was not found on GitHub Releases (HTTP 404).\n\nTo resolve this: Please upload 'LocalShare_Setup_v{updateInfo.Version}.exe' to your GitHub Release assets at:\nhttps://github.com/360productions-it/LocalShare/releases/tag/v{updateInfo.Version}");
                 }
 
                 response.EnsureSuccessStatusCode();

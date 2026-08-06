@@ -2,7 +2,7 @@ namespace LocalShare.Common;
 
 public static class Constants
 {
-    public const string AppName = "360 LocalShare";
+    public const string AppName = "LocalShare";
     public const string ProtocolVersion = "1.0.0";
     public const string AppVersion = "1.0.0";
 
@@ -11,7 +11,7 @@ public static class Constants
     public const int DefaultHttpPort = 53211;
 
     public static string AppDataRoot =>
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "360LocalShare");
+        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LocalShare");
 
     public static string ProfileFolder => Path.Combine(AppDataRoot, "Profile");
     public static string ReceivedFolder => Path.Combine(AppDataRoot, "Received");

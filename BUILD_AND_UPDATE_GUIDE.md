@@ -1,4 +1,4 @@
-# 🚀 360 LocalShare - Build, Dynamic Versioning & Update Guide
+# 🚀 LocalShare - Build, Dynamic Versioning & Update Guide
 
 This guide explains how to dynamically set versions, build single-file releases, compile setup installers, and **automatically publish releases to GitHub**.
 
@@ -31,8 +31,8 @@ powershell -File .\build-release.ps1 -Version 1.4.0 -GitHubToken "ghp_yourPerson
 1. Updates `Directory.Build.props` to `v1.4.0`.
 2. Compiles `dist/publish/LocalShare.App.exe` single-file executable.
 3. Generates `dist/latest_version.json` update manifest.
-4. Compiles `dist/installer/360LocalShare_Setup_v1.4.0.exe` using Inno Setup.
-5. **Creates GitHub Release `v1.4.0` and uploads `360LocalShare_Setup_v1.4.0.exe` directly to GitHub Releases!**
+4. Compiles `dist/installer/LocalShare_Setup_v1.4.0.exe` using Inno Setup.
+5. **Creates GitHub Release `v1.4.0` and uploads `LocalShare_Setup_v1.4.0.exe` directly to GitHub Releases!**
 
 ---
 
@@ -53,7 +53,7 @@ If you prefer manual upload:
 1. Build installer: `powershell -File .\build-release.ps1 -Version 1.4.0`
 2. Open: [360productions-it/LocalShare New Release](https://github.com/360productions-it/LocalShare/releases/new)
 3. Set Tag: `v1.4.0`
-4. Attach File: `dist\installer\360LocalShare_Setup_v1.4.0.exe`
+4. Attach File: `dist\installer\LocalShare_Setup_v1.4.0.exe`
 5. Publish Release!
 
 ---
@@ -61,13 +61,13 @@ If you prefer manual upload:
 ## 🖥️ 3. How the Auto-Updater Works for End-Users
 
 1. **Check for Updates**:
-   - Users open **360 LocalShare** ➔ Navigate to **⚙️ Settings & Profile**.
+   - Users open **LocalShare** ➔ Navigate to **⚙️ Settings & Profile**.
    - Under **🚀 Software Updates & Release Maintenance**, click **`🔍 Check for Updates`**.
 
 2. **Automatic Download & Installation**:
    - If a newer version is detected, the app displays the **Changelog** and an **`📥 Download & Install Update Now`** button.
-   - Clicking update downloads `360LocalShare_Setup_v1.4.0.exe` into Windows `%TEMP%` with real-time percentage progress.
-   - The installer runs silently (`/SILENT /NORESTART`) in the background, updating application files and restarting 360 LocalShare automatically.
+   - Clicking update downloads `LocalShare_Setup_v1.4.0.exe` into Windows `%TEMP%` with real-time percentage progress.
+   - The installer runs silently (`/SILENT /NORESTART`) in the background, updating application files and restarting LocalShare automatically.
 
 ---
 
@@ -83,7 +83,7 @@ To ensure smooth installation without Windows Defender or SmartScreen false-posi
 2. **Code Signing (Recommended for Production)**:
    Sign the compiled installer (`.exe`) with a Code Signing Certificate using `signtool.exe`:
    ```powershell
-   signtool sign /tr http://timestamp.digicert.com /td sha256 /fd sha256 /f "YourCert.pfx" /p "YourPassword" "dist\installer\360LocalShare_Setup_v1.4.0.exe"
+   signtool sign /tr http://timestamp.digicert.com /td sha256 /fd sha256 /f "YourCert.pfx" /p "YourPassword" "dist\installer\LocalShare_Setup_v1.4.0.exe"
    ```
 
 3. **Submitting False Positives to Microsoft**:

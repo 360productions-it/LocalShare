@@ -191,7 +191,7 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
-      "LocalShare.Common/1.9.9": {
+      "LocalShare.Common/2.0.1": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "compile": {
@@ -201,11 +201,11 @@
           "bin/placeholder/LocalShare.Common.dll": {}
         }
       },
-      "LocalShare.Core/1.9.9": {
+      "LocalShare.Core/2.0.1": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "LocalShare.Common": "1.9.9"
+          "LocalShare.Common": "2.0.1"
         },
         "compile": {
           "bin/placeholder/LocalShare.Core.dll": {}
@@ -314,7 +314,7 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
-      "LocalShare.Common/1.9.9": {
+      "LocalShare.Common/2.0.1": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "compile": {
@@ -324,11 +324,11 @@
           "bin/placeholder/LocalShare.Common.dll": {}
         }
       },
-      "LocalShare.Core/1.9.9": {
+      "LocalShare.Core/2.0.1": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "LocalShare.Common": "1.9.9"
+          "LocalShare.Common": "2.0.1"
         },
         "compile": {
           "bin/placeholder/LocalShare.Core.dll": {}
@@ -536,12 +536,12 @@
         "sqlitepclraw.provider.e_sqlite3.nuspec"
       ]
     },
-    "LocalShare.Common/1.9.9": {
+    "LocalShare.Common/2.0.1": {
       "type": "project",
       "path": "../LocalShare.Common/LocalShare.Common.csproj",
       "msbuildProject": "../LocalShare.Common/LocalShare.Common.csproj"
     },
-    "LocalShare.Core/1.9.9": {
+    "LocalShare.Core/2.0.1": {
       "type": "project",
       "path": "../LocalShare.Core/LocalShare.Core.csproj",
       "msbuildProject": "../LocalShare.Core/LocalShare.Core.csproj"
@@ -550,8 +550,8 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "Dapper >= 2.1.79",
-      "LocalShare.Common >= 1.9.9",
-      "LocalShare.Core >= 1.9.9",
+      "LocalShare.Common >= 2.0.1",
+      "LocalShare.Core >= 2.0.1",
       "Microsoft.Data.Sqlite >= 10.0.10",
       "Microsoft.NET.ILLink.Tasks >= 10.0.3"
     ]
@@ -561,7 +561,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.9.9",
+    "version": "2.0.1",
     "restore": {
       "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.Data\\LocalShare.Data.csproj",
       "projectName": "LocalShare.Data",

@@ -1,4 +1,4 @@
-# 360 LocalShare Automated Release & Installer Build Script
+# LocalShare Automated Release & Installer Build Script
 # Usage: powershell -File .\build-release.ps1 [-Version 1.4.0]
 
 param(
@@ -21,7 +21,7 @@ if ([string]::IsNullOrWhiteSpace($GitHubToken)) {
 }
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host " 🚀 360 LocalShare - Stable Release & Installer Builder" -ForegroundColor Cyan
+Write-Host " 🚀 LocalShare - Stable Release & Installer Builder" -ForegroundColor Cyan
 Write-Host "==========================================================" -ForegroundColor Cyan
 
 $ProjectDir = Get-Location
@@ -97,7 +97,7 @@ Write-Host "`n[4/5] Generating update manifest (latest_version.json)..." -Foregr
 $ManifestObj = [PSCustomObject]@{
     version = $CurrentVersion
     releaseDate = (Get-Date -Format "yyyy-MM-dd")
-    downloadUrl = "https://github.com/360productions-it/LocalShare/releases/download/v$CurrentVersion/360LocalShare_Setup_v$CurrentVersion.exe"
+    downloadUrl = "https://github.com/360productions-it/LocalShare/releases/download/v$CurrentVersion/LocalShare_Setup_v$CurrentVersion.exe"
     changelog = "Release version v$CurrentVersion with Obsidian Glass UI, dark high-visibility controls, Public Space browser, multi-peer streaming, and dynamic version management."
     sha256 = ""
     isMandatory = $false
@@ -131,7 +131,7 @@ if ($IsccCmd) {
     Write-Host "Compiling setup installer using Inno Setup ($IsccCmd)..." -ForegroundColor Cyan
     & $IsccCmd "/DMyAppVersion=$CurrentVersion" $IssScript
     if ($LASTEXITCODE -eq 0) {
-        Write-Host "Installer generated at: $InstallerOutputDir\360LocalShare_Setup_v$CurrentVersion.exe" -ForegroundColor Green
+        Write-Host "Installer generated at: $InstallerOutputDir\LocalShare_Setup_v$CurrentVersion.exe" -ForegroundColor Green
     } else {
         Write-Host "Inno Setup script compilation failed!" -ForegroundColor Red
     }

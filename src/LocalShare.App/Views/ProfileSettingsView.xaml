@@ -333,7 +333,7 @@
                         <Grid Margin="0,0,0,16">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                 <TextBlock Text="ℹ️" FontSize="18" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                <TextBlock Text="About 360 LocalShare" FontSize="16" FontWeight="Bold" Foreground="#F1F5F9" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                                <TextBlock Text="About LocalShare" FontSize="16" FontWeight="Bold" Foreground="#F1F5F9" VerticalAlignment="Center" Margin="0,0,12,0"/>
                                 <Border Background="#0D1321" CornerRadius="6" Padding="8,4" BorderBrush="#1A2744" BorderThickness="1">
                                     <TextBlock Text="{Binding CurrentVersion}" Foreground="#60A5FA" FontSize="12" FontWeight="Bold"/>
                                 </Border>
@@ -341,7 +341,7 @@
                         </Grid>
 
                         <!-- Software Description -->
-                        <TextBlock Text="360 LocalShare is a secure, high-speed peer-to-peer Local Area Network (LAN) file sharing, instant messaging, and public space file discovery application. Built with .NET 10 and WPF Fluent Design, it provides zero-cloud local networking with private local transfers."
+                        <TextBlock Text="LocalShare is a secure, high-speed peer-to-peer Local Area Network (LAN) file sharing, instant messaging, and public space file discovery application. Built with .NET 10 and WPF Fluent Design, it provides zero-cloud local networking with private local transfers."
                                    Foreground="#94A3B8" FontSize="13" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,18"/>
 
                         <Border Height="1" Background="#162033" Margin="0,0,0,18"/>
@@ -362,7 +362,7 @@
                                         <TextBlock Text="Lead Engineer &amp; Creator" FontSize="11" Foreground="#818CF8" FontWeight="SemiBold"/>
                                     </Border>
                                 </StackPanel>
-                                <TextBlock Text="360 Productions" FontSize="12" Foreground="#64748B" Margin="22,0,0,0"/>
+                                <TextBlock Text="Productions" FontSize="12" Foreground="#64748B" Margin="22,0,0,0"/>
                             </StackPanel>
 
                             <!-- Website Link Button -->

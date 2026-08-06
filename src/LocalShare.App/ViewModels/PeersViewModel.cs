@@ -338,7 +338,7 @@ public partial class PeersViewModel : ObservableObject
     private async Task ScanNetworkAsync()
     {
         IsScanning = true;
-        StatusMessage = "Scanning local network range for 360 LocalShare peers...";
+        StatusMessage = "Scanning local network range for LocalShare peers...";
         try
         {
             await _discoveryService.ScanSubnetNowAsync();

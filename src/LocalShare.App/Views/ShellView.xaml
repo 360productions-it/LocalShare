@@ -5,7 +5,7 @@
         xmlns:vm="clr-namespace:LocalShare.App.ViewModels"
         xmlns:views="clr-namespace:LocalShare.App.Views"
         xmlns:behaviors="clr-namespace:LocalShare.App.Behaviors"
-        Title="360 LocalShare - Ultra P2P LAN Sharing &amp; Messenger"
+        Title="LocalShare - Ultra P2P LAN Sharing &amp; Messenger"
         Icon="pack://application:,,,/Assets/logo.png"
         Height="780" Width="1200" MinHeight="640" MinWidth="900"
         WindowStartupLocation="CenterScreen"

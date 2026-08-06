@@ -1,4 +1,4 @@
-# 360 LocalShare — Architecture & Project Structure
+# LocalShare — Architecture & Project Structure
 
 A LAN-only file sharing, chat, and group-sharing app for Windows. No internet, no central server — every machine on the network is a peer.
 
@@ -25,7 +25,7 @@ I'd steer away from **WinForms** (fights you hard on responsive layout) and away
 
 ## 3. High-level architecture
 
-Every installed copy of 360 LocalShare is a full peer: it runs its own embedded HTTP server, announces itself via UDP, and talks directly to other peers. There's no coordinator machine — the diagram above shows two peers, but the same shape repeats for every machine on the LAN.
+Every installed copy of LocalShare is a full peer: it runs its own embedded HTTP server, announces itself via UDP, and talks directly to other peers. There's no coordinator machine — the diagram above shows two peers, but the same shape repeats for every machine on the LAN.
 
 ## 4. Solution structure
 
@@ -136,7 +136,7 @@ TransferLog    (Id, Direction[In|Out], PeerDeviceId, FileName, SizeBytes, Sha256
 ## 7. File storage conventions
 
 ```
-%LOCALAPPDATA%\360LocalShare\
+%LOCALAPPDATA%\LocalShare\
 ├── Profile\                          avatar, settings.json
 ├── Received\
 │   ├── Kavindu\                      sender's display name (+ short deviceId suffix if it collides)
@@ -199,7 +199,7 @@ Split into two parts: how updates get built and applied to a machine, and how th
 
 Recommended over ClickOnce or a hand-rolled updater — [Velopack](https://velopack.io) is the actively maintained successor to Squirrel.Windows, purpose-built for this. It applies updates in seconds without UAC prompts, its CLI (`vpk`) generates the installer, delta update packages, and a self-updating portable package from a build in one command, and the update feed can live anywhere — GitHub Releases, S3, a plain file server, or a folder on your own LAN.
 
-Fit for 360 LocalShare specifically:
+Fit for LocalShare specifically:
 - Delta patching means a client going from v1.2.0 → v1.2.1 downloads a small diff, not the whole app again.
 - Feed hosting flexibility means you're not locked into requiring internet for the check itself.
 

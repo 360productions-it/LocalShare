@@ -1,15 +1,15 @@
-# 360 LocalShare
+# LocalShare
 
 > **LAN-Only P2P File Sharing, Real-Time Chat & Public Space Sharing App for Windows**
 
-360 LocalShare is a zero-configuration, decentralized peer-to-peer Windows application built on **.NET 10**. It operates without any internet connection or central server—every machine on the local network acts as a full peer running UDP beacon discovery, an embedded ASP.NET Core Kestrel server, SignalR chat hub, and SQLite storage.
+LocalShare is a zero-configuration, decentralized peer-to-peer Windows application built on **.NET 10**. It operates without any internet connection or central server—every machine on the local network acts as a full peer running UDP beacon discovery, an embedded ASP.NET Core Kestrel server, SignalR chat hub, and SQLite storage.
 
 ---
 
 ## 🚀 Features
 
 - **P2P Peer Discovery**: Zero-config LAN discovery using UDP multicast announcements on `239.255.10.10:53210`.
-- **Direct P2P File Transfers**: High-speed chunked HTTP file transfers with SHA256 integrity verification, saved under `%LOCALAPPDATA%\360LocalShare\Received\<SenderDisplayName>\`.
+- **Direct P2P File Transfers**: High-speed chunked HTTP file transfers with SHA256 integrity verification, saved under `%LOCALAPPDATA%\LocalShare\Received\<SenderDisplayName>\`.
 - **Real-Time 1:1 Chat**: Embedded self-hosted SignalR WebSockets (`/hub/chat`) with typing indicators and drag-and-drop chat attachments.
 - **Public Space Folder Sharing**: Expose a local directory read-only over HTTP with Range header support for resumable file browsing and downloading by LAN peers.
 - **Group Management & Fan-Out Chat**: Local group rosters with P2P fan-out messaging to all online members.
@@ -88,8 +88,8 @@ dotnet publish src/LocalShare.App/LocalShare.App.csproj -c Release -r win-x64 --
 
 ## 📁 Storage & Configuration
 
-- **Received Files**: `%LOCALAPPDATA%\360LocalShare\Received\<SenderDisplayName>\`
-- **Database File**: `%LOCALAPPDATA%\360LocalShare\localshare.db`
+- **Received Files**: `%LOCALAPPDATA%\LocalShare\Received\<SenderDisplayName>\`
+- **Database File**: `%LOCALAPPDATA%\LocalShare\localshare.db`
 - **Default UDP Multicast**: `239.255.10.10:53210`
 - **Default HTTP Server**: `http://0.0.0.0:53211`
 

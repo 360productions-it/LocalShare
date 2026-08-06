@@ -6,11 +6,11 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v10.0": {
-      "LocalShare.Networking.Tests/1.9.3": {
+      "LocalShare.Networking.Tests/1.9.9": {
         "dependencies": {
-          "LocalShare.Common": "1.9.3",
-          "LocalShare.Core": "1.9.3",
-          "LocalShare.Networking": "1.9.3",
+          "LocalShare.Common": "1.9.9",
+          "LocalShare.Core": "1.9.9",
+          "LocalShare.Networking": "1.9.9",
           "Microsoft.NET.Test.Sdk": "17.14.1",
           "xunit": "2.9.3"
         },
@@ -488,42 +488,42 @@
           }
         }
       },
-      "LocalShare.Common/1.9.3": {
+      "LocalShare.Common/1.9.9": {
         "runtime": {
           "LocalShare.Common.dll": {
-            "assemblyVersion": "1.9.3.0",
-            "fileVersion": "1.9.3.0"
+            "assemblyVersion": "1.9.9.0",
+            "fileVersion": "1.9.9.0"
           }
         }
       },
-      "LocalShare.Core/1.9.3": {
+      "LocalShare.Core/1.9.9": {
         "dependencies": {
-          "LocalShare.Common": "1.9.3"
+          "LocalShare.Common": "1.9.9"
         },
         "runtime": {
           "LocalShare.Core.dll": {
-            "assemblyVersion": "1.9.3.0",
-            "fileVersion": "1.9.3.0"
+            "assemblyVersion": "1.9.9.0",
+            "fileVersion": "1.9.9.0"
           }
         }
       },
-      "LocalShare.Networking/1.9.3": {
+      "LocalShare.Networking/1.9.9": {
         "dependencies": {
-          "LocalShare.Common": "1.9.3",
-          "LocalShare.Core": "1.9.3",
+          "LocalShare.Common": "1.9.9",
+          "LocalShare.Core": "1.9.9",
           "Microsoft.AspNetCore.SignalR.Client": "10.0.10"
         },
         "runtime": {
           "LocalShare.Networking.dll": {
-            "assemblyVersion": "1.9.3.0",
-            "fileVersion": "1.9.3.0"
+            "assemblyVersion": "1.9.9.0",
+            "fileVersion": "1.9.9.0"
           }
         }
       }
     }
   },
   "libraries": {
-    "LocalShare.Networking.Tests/1.9.3": {
+    "LocalShare.Networking.Tests/1.9.9": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -703,17 +703,17 @@
       "path": "xunit.extensibility.execution/2.9.3",
       "hashPath": "xunit.extensibility.execution.2.9.3.nupkg.sha512"
     },
-    "LocalShare.Common/1.9.3": {
+    "LocalShare.Common/1.9.9": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "LocalShare.Core/1.9.3": {
+    "LocalShare.Core/1.9.9": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "LocalShare.Networking/1.9.3": {
+    "LocalShare.Networking/1.9.9": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
