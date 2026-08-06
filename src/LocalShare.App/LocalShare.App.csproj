@@ -31,7 +31,8 @@
     <ApplicationIcon>Assets\logo-new.ico</ApplicationIcon>
     <AssemblyTitle>LocalShare - P2P LAN Sharing &amp; Messenger</AssemblyTitle>
     <AssemblyProduct>LocalShare</AssemblyProduct>
-    <AssemblyCompany>Antigravity Software</AssemblyCompany>
+    <AssemblyCompany>RaZoR Isuru</AssemblyCompany>
+    <Authors>RaZoR Isuru</Authors>
     <Description>Fast P2P LAN File Sharing and Real-time Instant Messenger</Description>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>

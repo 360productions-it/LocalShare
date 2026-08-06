@@ -5,8 +5,8 @@
 #ifndef MyAppVersion
 #define MyAppVersion "1.0.0"
 #endif
-#define MyAppPublisher "Software"
-#define MyAppURL "https://github.com/360productions-it/LocalShare"
+#define MyAppPublisher "RaZoR Isuru"
+#define MyAppURL "https://razorisuru.com"
 #define MyAppExeName "LocalShare.App.exe"
 #define MyAppIcon "..\src\LocalShare.App\Assets\logo-new.ico"
 

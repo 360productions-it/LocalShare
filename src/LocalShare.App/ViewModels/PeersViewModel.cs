@@ -269,6 +269,58 @@ public partial class PeersViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private void PasteFromClipboard()
+    {
+        try
+        {
+            if (System.Windows.Clipboard.ContainsImage())
+            {
+                var bitmap = System.Windows.Clipboard.GetImage();
+                if (bitmap != null)
+                {
+                    string tempDir = Path.Combine(Path.GetTempPath(), "LocalShare_Screenshots");
+                    if (!Directory.Exists(tempDir))
+                    {
+                        Directory.CreateDirectory(tempDir);
+                    }
+
+                    string fileName = $"Screenshot_{DateTime.Now:yyyyMMdd_HHmmss}.png";
+                    string filePath = Path.Combine(tempDir, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        var encoder = new System.Windows.Media.Imaging.PngBitmapEncoder();
+                        encoder.Frames.Add(System.Windows.Media.Imaging.BitmapFrame.Create(bitmap));
+                        encoder.Save(stream);
+                    }
+
+                    HandleDroppedFiles(new[] { filePath });
+                    StatusMessage = $"📋 Pasted screenshot ({fileName}) into send queue!";
+                }
+            }
+            else if (System.Windows.Clipboard.ContainsFileDropList())
+            {
+                var fileList = System.Windows.Clipboard.GetFileDropList();
+                if (fileList != null && fileList.Count > 0)
+                {
+                    var files = new string[fileList.Count];
+                    fileList.CopyTo(files, 0);
+                    HandleDroppedFiles(files);
+                    StatusMessage = $"📋 Pasted {files.Length} file(s) from clipboard.";
+                }
+            }
+            else
+            {
+                StatusMessage = "No image or file found in Windows clipboard to paste.";
+            }
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = $"Error pasting from clipboard: {ex.Message}";
+        }
+    }
+
+    [RelayCommand]
     private void RemoveStagedFile(StagedFile? file)
     {
         if (file != null)

@@ -3,7 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              AllowDrop="True"
              Drop="UserControl_Drop"
-             DragOver="UserControl_DragOver">
+             DragOver="UserControl_DragOver"
+             PreviewKeyDown="UserControl_PreviewKeyDown">
+
+    <UserControl.InputBindings>
+        <KeyBinding Key="V" Modifiers="Control" Command="{Binding PasteFromClipboardCommand}"/>
+    </UserControl.InputBindings>
 
     <Grid Margin="28,24,28,20">
         <Grid.RowDefinitions>
@@ -520,19 +525,28 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Button Content="➕  Add Files"
                                 Command="{Binding AddStagedFilesCommand}"
                                 Style="{StaticResource GhostButton}"
                                 FontSize="12"
-                                Padding="12,7"/>
+                                Padding="10,7"/>
                         <Button Grid.Column="1"
+                                Content="📋  Paste Image"
+                                Command="{Binding PasteFromClipboardCommand}"
+                                Style="{StaticResource ModernPrimaryButton}"
+                                FontSize="12"
+                                Padding="10,7"
+                                Margin="6,0,0,0"
+                                ToolTip="Paste image or files from Windows Clipboard (Ctrl+V)"/>
+                        <Button Grid.Column="2"
                                 Content="Clear All"
                                 Command="{Binding ClearStagedFilesCommand}"
                                 Style="{StaticResource ModernDangerButton}"
                                 FontSize="12"
-                                Padding="12,7"
-                                Margin="8,0,0,0"/>
+                                Padding="10,7"
+                                Margin="6,0,0,0"/>
                     </Grid>
 
                     <!-- SEND NOW Button -->

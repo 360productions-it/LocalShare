@@ -57,4 +57,22 @@ public partial class PeersView : UserControl
             vm.TogglePeerSelectionCommand.Execute(clickedPeer);
         }
     }
+
+    private void UserControl_PreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.V && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+        {
+            // If focused element is a TextBox and clipboard contains text (not image), let TextBox handle normal text paste
+            if (Keyboard.FocusedElement is TextBox && Clipboard.ContainsText() && !Clipboard.ContainsImage())
+            {
+                return;
+            }
+
+            if (DataContext is PeersViewModel vm)
+            {
+                vm.PasteFromClipboardCommand.Execute(null);
+                e.Handled = true;
+            }
+        }
+    }
 }

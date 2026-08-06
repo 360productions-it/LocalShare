@@ -66,7 +66,7 @@ namespace LocalShare.App.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/LocalShare.App;V2.0.1.0;component/views/shellview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/LocalShare.App;V2.0.2.0;component/views/shellview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\ShellView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

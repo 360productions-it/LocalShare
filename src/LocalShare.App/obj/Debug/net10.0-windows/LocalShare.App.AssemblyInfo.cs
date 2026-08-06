@@ -10,14 +10,14 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("LocalShare.App")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("RaZoR Isuru")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Fast P2P LAN File Sharing and Real-time Instant Messenger")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("2.0.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.0.1+8b745c2f03f7d1b0e8d1bf78d01573b7f99be664")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("2.0.2.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.0.2+d55f33e995c69cfaa494825d4a35754c7dfbde12")]
 [assembly: System.Reflection.AssemblyProductAttribute("LocalShare.App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LocalShare - P2P LAN Sharing & Messenger")]
-[assembly: System.Reflection.AssemblyVersionAttribute("2.0.1.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("2.0.2.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
 

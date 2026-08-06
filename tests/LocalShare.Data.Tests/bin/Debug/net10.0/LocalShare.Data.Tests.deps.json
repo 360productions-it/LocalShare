@@ -6,11 +6,11 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v10.0": {
-      "LocalShare.Data.Tests/1.9.9": {
+      "LocalShare.Data.Tests/2.0.1": {
         "dependencies": {
-          "LocalShare.Common": "1.9.9",
-          "LocalShare.Core": "1.9.9",
-          "LocalShare.Data": "1.9.9",
+          "LocalShare.Common": "2.0.1",
+          "LocalShare.Core": "2.0.1",
+          "LocalShare.Data": "2.0.1",
           "Microsoft.NET.Test.Sdk": "17.14.1",
           "xunit": "2.9.3"
         },
@@ -509,43 +509,43 @@
           }
         }
       },
-      "LocalShare.Common/1.9.9": {
+      "LocalShare.Common/2.0.1": {
         "runtime": {
           "LocalShare.Common.dll": {
-            "assemblyVersion": "1.9.9.0",
-            "fileVersion": "1.9.9.0"
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
           }
         }
       },
-      "LocalShare.Core/1.9.9": {
+      "LocalShare.Core/2.0.1": {
         "dependencies": {
-          "LocalShare.Common": "1.9.9"
+          "LocalShare.Common": "2.0.1"
         },
         "runtime": {
           "LocalShare.Core.dll": {
-            "assemblyVersion": "1.9.9.0",
-            "fileVersion": "1.9.9.0"
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
           }
         }
       },
-      "LocalShare.Data/1.9.9": {
+      "LocalShare.Data/2.0.1": {
         "dependencies": {
           "Dapper": "2.1.79",
-          "LocalShare.Common": "1.9.9",
-          "LocalShare.Core": "1.9.9",
+          "LocalShare.Common": "2.0.1",
+          "LocalShare.Core": "2.0.1",
           "Microsoft.Data.Sqlite": "10.0.10"
         },
         "runtime": {
           "LocalShare.Data.dll": {
-            "assemblyVersion": "1.9.9.0",
-            "fileVersion": "1.9.9.0"
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
           }
         }
       }
     }
   },
   "libraries": {
-    "LocalShare.Data.Tests/1.9.9": {
+    "LocalShare.Data.Tests/2.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -676,17 +676,17 @@
       "path": "xunit.extensibility.execution/2.9.3",
       "hashPath": "xunit.extensibility.execution.2.9.3.nupkg.sha512"
     },
-    "LocalShare.Common/1.9.9": {
+    "LocalShare.Common/2.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "LocalShare.Core/1.9.9": {
+    "LocalShare.Core/2.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "LocalShare.Data/1.9.9": {
+    "LocalShare.Data/2.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

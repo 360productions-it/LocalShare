@@ -6,10 +6,10 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v10.0": {
-      "LocalShare.Networking/1.9.9": {
+      "LocalShare.Networking/2.0.1": {
         "dependencies": {
-          "LocalShare.Common": "1.9.9",
-          "LocalShare.Core": "1.9.9",
+          "LocalShare.Common": "2.0.1",
+          "LocalShare.Core": "2.0.1",
           "Microsoft.AspNetCore.SignalR.Client": "10.0.10"
         },
         "runtime": {
@@ -44,29 +44,29 @@
           }
         }
       },
-      "LocalShare.Common/1.9.9": {
+      "LocalShare.Common/2.0.1": {
         "runtime": {
           "LocalShare.Common.dll": {
-            "assemblyVersion": "1.9.9.0",
-            "fileVersion": "1.9.9.0"
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
           }
         }
       },
-      "LocalShare.Core/1.9.9": {
+      "LocalShare.Core/2.0.1": {
         "dependencies": {
-          "LocalShare.Common": "1.9.9"
+          "LocalShare.Common": "2.0.1"
         },
         "runtime": {
           "LocalShare.Core.dll": {
-            "assemblyVersion": "1.9.9.0",
-            "fileVersion": "1.9.9.0"
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
           }
         }
       }
     }
   },
   "libraries": {
-    "LocalShare.Networking/1.9.9": {
+    "LocalShare.Networking/2.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -92,12 +92,12 @@
       "path": "microsoft.aspnetcore.signalr.client.core/10.0.10",
       "hashPath": "microsoft.aspnetcore.signalr.client.core.10.0.10.nupkg.sha512"
     },
-    "LocalShare.Common/1.9.9": {
+    "LocalShare.Common/2.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "LocalShare.Core/1.9.9": {
+    "LocalShare.Core/2.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
