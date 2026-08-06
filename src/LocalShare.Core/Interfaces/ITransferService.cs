@@ -15,5 +15,6 @@ public interface ITransferService
     Task<Result> ResumeTransferAsync(string transferId);
     Task<Result> CancelTransferAsync(string transferId);
     Task<IReadOnlyList<TransferItem>> GetTransferLogsAsync();
+    Task ClearAllTransferLogsAsync();
     TransferItem? GetTransfer(string transferId);
 }

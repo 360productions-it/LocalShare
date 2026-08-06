@@ -85,6 +85,8 @@ public class TransferItem : INotifyPropertyChanged
                 OnPropertyChanged(nameof(FormattedSize));
                 OnPropertyChanged(nameof(FormattedTransferred));
                 OnPropertyChanged(nameof(FormattedProgressDetails));
+                OnPropertyChanged(nameof(StatusText));
+                OnPropertyChanged(nameof(StatusColor));
             }
         }
     }
@@ -101,6 +103,8 @@ public class TransferItem : INotifyPropertyChanged
                 OnPropertyChanged(nameof(ProgressPercentage));
                 OnPropertyChanged(nameof(FormattedTransferred));
                 OnPropertyChanged(nameof(FormattedProgressDetails));
+                OnPropertyChanged(nameof(StatusText));
+                OnPropertyChanged(nameof(StatusColor));
             }
         }
     }
@@ -163,7 +167,7 @@ public class TransferItem : INotifyPropertyChanged
     public string StatusText => Status switch
     {
         TransferStatus.Pending => "⏳ Pending",
-        TransferStatus.InProgress => $"🚀 {ProgressPercentage:F0}%",
+        TransferStatus.InProgress => $"🚀",
         TransferStatus.Completed => "✅ Completed",
         TransferStatus.Failed => "❌ Failed",
         TransferStatus.Paused => "⏸️ Paused",

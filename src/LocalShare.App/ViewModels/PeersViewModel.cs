@@ -195,6 +195,14 @@ public partial class PeersViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private async Task ClearActiveTransfersHistoryAsync()
+    {
+        await _transferService.ClearAllTransferLogsAsync();
+        ActiveTransfers.Clear();
+        StatusMessage = "Cleared all transfer records!";
+    }
+
+    [RelayCommand]
     private async Task CancelTransferAsync(TransferItem? transfer)
     {
         if (transfer != null)

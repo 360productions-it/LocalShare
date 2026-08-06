@@ -784,15 +784,22 @@
                                    VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <Button Command="{Binding ToggleLiveTransfersCommand}"
-                            Style="{StaticResource GhostButton}"
-                            FontSize="12"
-                            Padding="12,6"
-                            HorizontalAlignment="Right">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="👁  Toggle View"/>
-                        </StackPanel>
-                    </Button>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button Command="{Binding ClearActiveTransfersHistoryCommand}"
+                                Style="{StaticResource ModernDangerButton}"
+                                FontSize="11"
+                                Padding="10,5"
+                                Margin="0,0,8,0"
+                                Content="🗑️ Clear Records"/>
+                        <Button Command="{Binding ToggleLiveTransfersCommand}"
+                                Style="{StaticResource GhostButton}"
+                                FontSize="12"
+                                Padding="12,6">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="👁  Toggle View"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
                 </Grid>
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto"

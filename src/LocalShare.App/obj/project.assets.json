@@ -482,7 +482,7 @@
           }
         }
       },
-      "LocalShare.Common/2.0.2": {
+      "LocalShare.Common/2.0.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "compile": {
@@ -492,11 +492,11 @@
           "bin/placeholder/LocalShare.Common.dll": {}
         }
       },
-      "LocalShare.Core/2.0.2": {
+      "LocalShare.Core/2.0.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "LocalShare.Common": "2.0.2"
+          "LocalShare.Common": "2.0.3"
         },
         "compile": {
           "bin/placeholder/LocalShare.Core.dll": {}
@@ -505,13 +505,13 @@
           "bin/placeholder/LocalShare.Core.dll": {}
         }
       },
-      "LocalShare.Data/2.0.2": {
+      "LocalShare.Data/2.0.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "Dapper": "2.1.79",
-          "LocalShare.Common": "2.0.2",
-          "LocalShare.Core": "2.0.2",
+          "LocalShare.Common": "2.0.3",
+          "LocalShare.Core": "2.0.3",
           "Microsoft.Data.Sqlite": "10.0.10"
         },
         "compile": {
@@ -521,12 +521,12 @@
           "bin/placeholder/LocalShare.Data.dll": {}
         }
       },
-      "LocalShare.Networking/2.0.2": {
+      "LocalShare.Networking/2.0.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "LocalShare.Common": "2.0.2",
-          "LocalShare.Core": "2.0.2",
+          "LocalShare.Common": "2.0.3",
+          "LocalShare.Core": "2.0.3",
           "Microsoft.AspNetCore.SignalR.Client": "10.0.10"
         },
         "compile": {
@@ -930,7 +930,7 @@
           }
         }
       },
-      "LocalShare.Common/2.0.2": {
+      "LocalShare.Common/2.0.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "compile": {
@@ -940,11 +940,11 @@
           "bin/placeholder/LocalShare.Common.dll": {}
         }
       },
-      "LocalShare.Core/2.0.2": {
+      "LocalShare.Core/2.0.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "LocalShare.Common": "2.0.2"
+          "LocalShare.Common": "2.0.3"
         },
         "compile": {
           "bin/placeholder/LocalShare.Core.dll": {}
@@ -953,13 +953,13 @@
           "bin/placeholder/LocalShare.Core.dll": {}
         }
       },
-      "LocalShare.Data/2.0.2": {
+      "LocalShare.Data/2.0.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "Dapper": "2.1.79",
-          "LocalShare.Common": "2.0.2",
-          "LocalShare.Core": "2.0.2",
+          "LocalShare.Common": "2.0.3",
+          "LocalShare.Core": "2.0.3",
           "Microsoft.Data.Sqlite": "10.0.10"
         },
         "compile": {
@@ -969,12 +969,12 @@
           "bin/placeholder/LocalShare.Data.dll": {}
         }
       },
-      "LocalShare.Networking/2.0.2": {
+      "LocalShare.Networking/2.0.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "LocalShare.Common": "2.0.2",
-          "LocalShare.Core": "2.0.2",
+          "LocalShare.Common": "2.0.3",
+          "LocalShare.Core": "2.0.3",
           "Microsoft.AspNetCore.SignalR.Client": "10.0.10"
         },
         "compile": {
@@ -1700,22 +1700,22 @@
         "wpf-ui.abstractions.nuspec"
       ]
     },
-    "LocalShare.Common/2.0.2": {
+    "LocalShare.Common/2.0.3": {
       "type": "project",
       "path": "../LocalShare.Common/LocalShare.Common.csproj",
       "msbuildProject": "../LocalShare.Common/LocalShare.Common.csproj"
     },
-    "LocalShare.Core/2.0.2": {
+    "LocalShare.Core/2.0.3": {
       "type": "project",
       "path": "../LocalShare.Core/LocalShare.Core.csproj",
       "msbuildProject": "../LocalShare.Core/LocalShare.Core.csproj"
     },
-    "LocalShare.Data/2.0.2": {
+    "LocalShare.Data/2.0.3": {
       "type": "project",
       "path": "../LocalShare.Data/LocalShare.Data.csproj",
       "msbuildProject": "../LocalShare.Data/LocalShare.Data.csproj"
     },
-    "LocalShare.Networking/2.0.2": {
+    "LocalShare.Networking/2.0.3": {
       "type": "project",
       "path": "../LocalShare.Networking/LocalShare.Networking.csproj",
       "msbuildProject": "../LocalShare.Networking/LocalShare.Networking.csproj"
@@ -1724,10 +1724,10 @@
   "projectFileDependencyGroups": {
     "net10.0-windows7.0": [
       "CommunityToolkit.Mvvm >= 8.4.2",
-      "LocalShare.Common >= 2.0.2",
-      "LocalShare.Core >= 2.0.2",
-      "LocalShare.Data >= 2.0.2",
-      "LocalShare.Networking >= 2.0.2",
+      "LocalShare.Common >= 2.0.3",
+      "LocalShare.Core >= 2.0.3",
+      "LocalShare.Data >= 2.0.3",
+      "LocalShare.Networking >= 2.0.3",
       "Microsoft.AspNetCore.SignalR.Client >= 10.0.10",
       "Microsoft.Extensions.DependencyInjection >= 10.0.10",
       "Microsoft.NET.ILLink.Tasks >= 10.0.3",
@@ -1739,7 +1739,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "2.0.2",
+    "version": "2.0.3",
     "restore": {
       "projectUniqueName": "D:\\dotnet\\LocalShare\\src\\LocalShare.App\\LocalShare.App.csproj",
       "projectName": "LocalShare.App",

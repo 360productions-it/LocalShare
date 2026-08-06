@@ -277,6 +277,12 @@ public class TransferService : ITransferService
 
     public async Task<IReadOnlyList<TransferItem>> GetTransferLogsAsync() => await _transferRepo.GetAllTransfersAsync();
 
+    public async Task ClearAllTransferLogsAsync()
+    {
+        _activeTransfers.Clear();
+        await _transferRepo.ClearAllTransfersAsync();
+    }
+
     public TransferItem? GetTransfer(string transferId)
     {
         _activeTransfers.TryGetValue(transferId, out var item);

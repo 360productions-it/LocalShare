@@ -58,4 +58,11 @@ public partial class TransfersViewModel : ObservableObject
         if (item == null) return;
         await _transferService.ResumeTransferAsync(item.Id);
     }
+
+    [RelayCommand]
+    private async Task ClearAllTransfersAsync()
+    {
+        await _transferService.ClearAllTransferLogsAsync();
+        Transfers.Clear();
+    }
 }

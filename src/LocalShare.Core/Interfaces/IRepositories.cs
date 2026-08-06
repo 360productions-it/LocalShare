@@ -37,4 +37,5 @@ public interface ITransferRepository
     Task UpdateTransferStatusAsync(string id, TransferStatus status, long bytesTransferred, string? filePath = null);
     Task<IReadOnlyList<TransferItem>> GetAllTransfersAsync();
     Task<TransferItem?> GetTransferByIdAsync(string id);
+    Task ClearAllTransfersAsync();
 }

@@ -359,5 +359,11 @@ public class SqliteRepositories : IProfileRepository, IPeerRepository, IMessageR
             ChatMessageId = r.ChatMessageId
         };
     }
+
+    public async Task ClearAllTransfersAsync()
+    {
+        using var conn = _db.CreateConnection();
+        await conn.ExecuteAsync("DELETE FROM Transfers;");
+    }
     #endregion
 }
