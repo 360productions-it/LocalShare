@@ -67,7 +67,6 @@ public partial class PeersViewModel : ObservableObject
         if (Peers.Count > 0 && SelectedPeer == null)
         {
             SelectedPeer = Peers.First();
-            SelectedPeer.IsSelected = true;
         }
         UpdateStatus();
     }
@@ -78,13 +77,11 @@ public partial class PeersViewModel : ObservableObject
         {
             if (!Peers.Any(p => p.DeviceId == peer.DeviceId))
             {
-                peer.IsSelected = true;
                 Peers.Add(peer);
             }
             if (SelectedPeer == null)
             {
                 SelectedPeer = peer;
-                SelectedPeer.IsSelected = true;
             }
             UpdateStatus();
         });
@@ -117,7 +114,6 @@ public partial class PeersViewModel : ObservableObject
             if (SelectedPeer?.DeviceId == deviceId)
             {
                 SelectedPeer = Peers.FirstOrDefault();
-                if (SelectedPeer != null) SelectedPeer.IsSelected = true;
             }
             UpdateStatus();
         });
@@ -347,12 +343,6 @@ public partial class PeersViewModel : ObservableObject
     private async Task SendStagedFilesNowAsync()
     {
         var targetPeers = Peers.Where(p => p.IsSelected).ToList();
-
-        if (targetPeers.Count == 0 && SelectedPeer != null)
-        {
-            SelectedPeer.IsSelected = true;
-            targetPeers.Add(SelectedPeer);
-        }
 
         if (targetPeers.Count == 0)
         {
