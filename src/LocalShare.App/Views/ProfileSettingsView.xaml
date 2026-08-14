@@ -24,7 +24,7 @@
                 <!-- ═══════════════════════════════════ -->
                 <!-- STATUS MESSAGE BANNER              -->
                 <!-- ═══════════════════════════════════ -->
-                <Border Visibility="{Binding StatusMessage, Converter={StaticResource BooleanToVisibilityConverter}}" CornerRadius="10" Padding="14,10" Margin="0,0,0,20" BorderThickness="1" Background="{StaticResource StudioAccentSoftBrush}" BorderBrush="{StaticResource StudioBorderBrush}">
+                <Border Visibility="{Binding StatusMessage, Converter={StaticResource StringToVisibilityConverter}}" CornerRadius="10" Padding="14,10" Margin="0,0,0,20" BorderThickness="1" Background="{StaticResource StudioAccentSoftBrush}" BorderBrush="{StaticResource StudioBorderBrush}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="ℹ️ " FontSize="14" VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding StatusMessage}" Foreground="{StaticResource TextAccent}" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center"/>

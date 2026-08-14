@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using System.Net.Http.Json;
 using Microsoft.AspNetCore.SignalR.Client;
 using LocalShare.Common;
 using LocalShare.Core.Interfaces;
@@ -11,25 +12,27 @@ public class ChatService : IChatService
     private readonly Profile _localProfile;
     private readonly IMessageRepository _messageRepo;
     private readonly ITransferService _transferService;
+    private readonly HttpClient _httpClient;
     private readonly ConcurrentDictionary<string, HubConnection> _hubConnections = new();
 
     public event EventHandler<Message>? MessageReceived;
     public event EventHandler<string>? TypingIndicatorReceived;
 
-    public ChatService(Profile localProfile, IMessageRepository messageRepo, ITransferService transferService)
+    public ChatService(Profile localProfile, IMessageRepository messageRepo, ITransferService transferService, HttpClient? httpClient = null)
     {
         _localProfile = localProfile;
         _messageRepo = messageRepo;
         _transferService = transferService;
+        _httpClient = httpClient ?? new HttpClient();
     }
 
     public async Task<Result<Message>> SendDirectMessageAsync(Peer targetPeer, string body, string? attachmentPath = null, CancellationToken cancellationToken = default)
     {
         try
         {
-            var hub = await GetOrCreateConnectionAsync(targetPeer.IpAddress, targetPeer.HttpPort, cancellationToken);
-            if (hub.State != HubConnectionState.Connected)
-                return Result<Message>.Failure("Could not connect to peer chat endpoint.");
+            var msgId = Guid.NewGuid().ToString("N");
+            var conversationId = targetPeer.DeviceId;
+            var sentAt = DateTime.UtcNow;
 
             string? transferId = null;
             string? fileName = null;
@@ -37,18 +40,15 @@ public class ChatService : IChatService
 
             if (!string.IsNullOrWhiteSpace(attachmentPath) && File.Exists(attachmentPath))
             {
-                var sendRes = await _transferService.SendFileAsync(targetPeer, attachmentPath, null, cancellationToken);
-                if (sendRes.IsSuccess && sendRes.Value != null)
+                var sendRes = await _transferService.SendFileAsync(targetPeer, attachmentPath, msgId, cancellationToken);
+                if (!sendRes.IsSuccess || sendRes.Value == null)
                 {
-                    transferId = sendRes.Value.Id;
-                    fileName = sendRes.Value.FileName;
-                    sizeBytes = sendRes.Value.SizeBytes;
+                    return Result<Message>.Failure($"Failed to transfer attachment: {sendRes.Error}");
                 }
+                transferId = sendRes.Value.Id;
+                fileName = sendRes.Value.FileName;
+                sizeBytes = sendRes.Value.SizeBytes;
             }
-
-            var msgId = Guid.NewGuid().ToString("N");
-            var conversationId = targetPeer.DeviceId;
-            var sentAt = DateTime.UtcNow;
 
             var payload = new ChatMessagePayload
             {
@@ -63,7 +63,37 @@ public class ChatService : IChatService
                 SentAt = sentAt.ToString("o")
             };
 
-            await hub.InvokeAsync("SendDirectMessage", payload, cancellationToken);
+            bool sent = false;
+
+            // Attempt 1: SignalR WebSocket invocation
+            try
+            {
+                var hub = await GetOrCreateConnectionAsync(targetPeer.IpAddress, targetPeer.HttpPort, cancellationToken);
+                if (hub.State == HubConnectionState.Connected)
+                {
+                    await hub.InvokeAsync("SendDirectMessage", payload, cancellationToken);
+                    sent = true;
+                }
+            }
+            catch
+            {
+                // Fallback to HTTP REST endpoint
+            }
+
+            // Attempt 2: Direct HTTP POST fallback
+            if (!sent)
+            {
+                var httpUrl = $"http://{targetPeer.IpAddress}:{targetPeer.HttpPort}/api/chat/message";
+                var resp = await _httpClient.PostAsJsonAsync(httpUrl, payload, cancellationToken);
+                if (resp.IsSuccessStatusCode)
+                {
+                    sent = true;
+                }
+                else
+                {
+                    return Result<Message>.Failure($"Failed to deliver message to peer: {resp.StatusCode}");
+                }
+            }
 
             var message = new Message
             {
@@ -76,7 +106,8 @@ public class ChatService : IChatService
                 AttachmentFileName = fileName,
                 AttachmentSizeBytes = sizeBytes,
                 SentAt = sentAt,
-                DeliveredAt = sentAt
+                DeliveredAt = sentAt,
+                IsSentByMe = true
             };
 
             await _messageRepo.SaveMessageAsync(message);
@@ -103,34 +134,46 @@ public class ChatService : IChatService
 
             try
             {
-                var hub = await GetOrCreateConnectionAsync(memberPeer.IpAddress, memberPeer.HttpPort, cancellationToken);
-                if (hub.State == HubConnectionState.Connected)
+                if (!string.IsNullOrWhiteSpace(attachmentPath) && File.Exists(attachmentPath) && transferId == null)
                 {
-                    if (!string.IsNullOrWhiteSpace(attachmentPath) && File.Exists(attachmentPath) && transferId == null)
+                    var sendRes = await _transferService.SendFileAsync(memberPeer, attachmentPath, msgId, cancellationToken);
+                    if (sendRes.IsSuccess && sendRes.Value != null)
                     {
-                        var sendRes = await _transferService.SendFileAsync(memberPeer, attachmentPath, null, cancellationToken);
-                        if (sendRes.IsSuccess && sendRes.Value != null)
-                        {
-                            transferId = sendRes.Value.Id;
-                            fileName = sendRes.Value.FileName;
-                            sizeBytes = sendRes.Value.SizeBytes;
-                        }
+                        transferId = sendRes.Value.Id;
+                        fileName = sendRes.Value.FileName;
+                        sizeBytes = sendRes.Value.SizeBytes;
                     }
+                }
 
-                    var payload = new ChatMessagePayload
+                var payload = new ChatMessagePayload
+                {
+                    MessageId = msgId,
+                    GroupId = group.Id,
+                    SenderDeviceId = _localProfile.DeviceId,
+                    SenderDisplayName = _localProfile.DisplayName,
+                    Body = body,
+                    FileTransferId = transferId,
+                    AttachmentFileName = fileName,
+                    AttachmentSizeBytes = sizeBytes,
+                    SentAt = sentAt.ToString("o")
+                };
+
+                bool sent = false;
+                try
+                {
+                    var hub = await GetOrCreateConnectionAsync(memberPeer.IpAddress, memberPeer.HttpPort, cancellationToken);
+                    if (hub.State == HubConnectionState.Connected)
                     {
-                        MessageId = msgId,
-                        GroupId = group.Id,
-                        SenderDeviceId = _localProfile.DeviceId,
-                        SenderDisplayName = _localProfile.DisplayName,
-                        Body = body,
-                        FileTransferId = transferId,
-                        AttachmentFileName = fileName,
-                        AttachmentSizeBytes = sizeBytes,
-                        SentAt = sentAt.ToString("o")
-                    };
+                        await hub.InvokeAsync("SendGroupMessage", payload, cancellationToken);
+                        sent = true;
+                    }
+                }
+                catch { }
 
-                    await hub.InvokeAsync("SendGroupMessage", payload, cancellationToken);
+                if (!sent)
+                {
+                    var httpUrl = $"http://{memberPeer.IpAddress}:{memberPeer.HttpPort}/api/chat/group";
+                    await _httpClient.PostAsJsonAsync(httpUrl, payload, cancellationToken);
                 }
             }
             catch
@@ -150,7 +193,8 @@ public class ChatService : IChatService
             AttachmentFileName = fileName,
             AttachmentSizeBytes = sizeBytes,
             SentAt = sentAt,
-            DeliveredAt = sentAt
+            DeliveredAt = sentAt,
+            IsSentByMe = true
         };
 
         await _messageRepo.SaveMessageAsync(message);
@@ -161,35 +205,33 @@ public class ChatService : IChatService
     {
         try
         {
-            var hub = await GetOrCreateConnectionAsync(targetPeer.IpAddress, targetPeer.HttpPort);
-            if (hub.State == HubConnectionState.Connected)
+            bool sent = false;
+            try
             {
-                await hub.InvokeAsync("SendTyping", _localProfile.DeviceId);
+                var hub = await GetOrCreateConnectionAsync(targetPeer.IpAddress, targetPeer.HttpPort);
+                if (hub.State == HubConnectionState.Connected)
+                {
+                    await hub.InvokeAsync("SendTyping", _localProfile.DeviceId);
+                    sent = true;
+                }
+            }
+            catch { }
+
+            if (!sent)
+            {
+                var httpUrl = $"http://{targetPeer.IpAddress}:{targetPeer.HttpPort}/api/chat/typing";
+                var req = new TypingNotificationRequest { SenderDeviceId = _localProfile.DeviceId };
+                await _httpClient.PostAsJsonAsync(httpUrl, req);
             }
         }
         catch { }
     }
 
-    public async Task<IReadOnlyList<Conversation>> GetConversationsAsync() => await _messageRepo.GetConversationsAsync();
-
-    public async Task<IReadOnlyList<Message>> GetMessagesAsync(string conversationId, int limit = 50) => await _messageRepo.GetMessagesAsync(conversationId, limit);
-
-    private async Task<HubConnection> GetOrCreateConnectionAsync(string ip, int port, CancellationToken ct = default)
+    public async Task<Result> ReceiveDirectMessageAsync(ChatMessagePayload payload)
     {
-        var key = $"{ip}:{port}";
-        if (_hubConnections.TryGetValue(key, out var existingHub) && existingHub.State == HubConnectionState.Connected)
+        try
         {
-            return existingHub;
-        }
-
-        var url = $"http://{ip}:{port}/hub/chat";
-        var hub = new HubConnectionBuilder()
-            .WithUrl(url)
-            .WithAutomaticReconnect()
-            .Build();
-
-        hub.On<ChatMessagePayload>("ReceiveMessage", async (payload) =>
-        {
+            var sentAt = DateTime.TryParse(payload.SentAt, out DateTime dt) ? dt : DateTime.UtcNow;
             var msg = new Message
             {
                 Id = payload.MessageId,
@@ -200,16 +242,26 @@ public class ChatService : IChatService
                 FileTransferId = payload.FileTransferId,
                 AttachmentFileName = payload.AttachmentFileName,
                 AttachmentSizeBytes = payload.AttachmentSizeBytes,
-                SentAt = DateTime.TryParse(payload.SentAt, out DateTime dt) ? dt : DateTime.UtcNow,
-                DeliveredAt = DateTime.UtcNow
+                SentAt = sentAt,
+                DeliveredAt = DateTime.UtcNow,
+                IsSentByMe = false
             };
 
             await _messageRepo.SaveMessageAsync(msg);
             MessageReceived?.Invoke(this, msg);
-        });
-
-        hub.On<ChatMessagePayload>("ReceiveGroupMessage", async (payload) =>
+            return Result.Success();
+        }
+        catch (Exception ex)
         {
+            return Result.Failure($"Error processing received message: {ex.Message}");
+        }
+    }
+
+    public async Task<Result> ReceiveGroupMessageAsync(ChatMessagePayload payload)
+    {
+        try
+        {
+            var sentAt = DateTime.TryParse(payload.SentAt, out DateTime dt) ? dt : DateTime.UtcNow;
             var msg = new Message
             {
                 Id = payload.MessageId,
@@ -220,17 +272,67 @@ public class ChatService : IChatService
                 FileTransferId = payload.FileTransferId,
                 AttachmentFileName = payload.AttachmentFileName,
                 AttachmentSizeBytes = payload.AttachmentSizeBytes,
-                SentAt = DateTime.TryParse(payload.SentAt, out DateTime dt) ? dt : DateTime.UtcNow,
-                DeliveredAt = DateTime.UtcNow
+                SentAt = sentAt,
+                DeliveredAt = DateTime.UtcNow,
+                IsSentByMe = false
             };
 
             await _messageRepo.SaveMessageAsync(msg);
             MessageReceived?.Invoke(this, msg);
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure($"Error processing received group message: {ex.Message}");
+        }
+    }
+
+    public Task ReceiveTypingAsync(string senderDeviceId)
+    {
+        TypingIndicatorReceived?.Invoke(this, senderDeviceId);
+        return Task.CompletedTask;
+    }
+
+    public async Task<IReadOnlyList<Conversation>> GetConversationsAsync() => await _messageRepo.GetConversationsAsync();
+
+    public async Task<IReadOnlyList<Message>> GetMessagesAsync(string conversationId, int limit = 50) => await _messageRepo.GetMessagesAsync(conversationId, limit);
+
+    private async Task<HubConnection> GetOrCreateConnectionAsync(string ip, int port, CancellationToken ct = default)
+    {
+        var key = $"{ip}:{port}";
+        if (_hubConnections.TryGetValue(key, out var existingHub))
+        {
+            if (existingHub.State == HubConnectionState.Connected)
+            {
+                return existingHub;
+            }
+            try
+            {
+                await existingHub.DisposeAsync();
+            }
+            catch { }
+            _hubConnections.TryRemove(key, out _);
+        }
+
+        var url = $"http://{ip}:{port}/hub/chat";
+        var hub = new HubConnectionBuilder()
+            .WithUrl(url)
+            .WithAutomaticReconnect()
+            .Build();
+
+        hub.On<ChatMessagePayload>("ReceiveMessage", async (payload) =>
+        {
+            await ReceiveDirectMessageAsync(payload);
+        });
+
+        hub.On<ChatMessagePayload>("ReceiveGroupMessage", async (payload) =>
+        {
+            await ReceiveGroupMessageAsync(payload);
         });
 
         hub.On<string>("ReceiveTyping", (senderId) =>
         {
-            TypingIndicatorReceived?.Invoke(this, senderId);
+            ReceiveTypingAsync(senderId);
         });
 
         await hub.StartAsync(ct);

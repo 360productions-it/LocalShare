@@ -90,7 +90,7 @@
                             <!-- Typing Indicator -->
                             <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
                                 <TextBlock Text="{Binding TypingText}" FontSize="12" Foreground="{StaticResource TextAccent}" FontWeight="SemiBold"/>
-                                <Grid Style="{StaticResource PulsingOnlineIndicator}" Margin="8,0,0,0" VerticalAlignment="Center" Visibility="{Binding TypingText, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                                <Grid Style="{StaticResource PulsingOnlineIndicator}" Margin="8,0,0,0" VerticalAlignment="Center" Visibility="{Binding TypingText, Converter={StaticResource StringToVisibilityConverter}, FallbackValue=Collapsed}">
                                     <Ellipse Fill="{StaticResource StudioAccentBrush}">
                                         <Ellipse.Triggers>
                                             <EventTrigger RoutedEvent="Loaded">
@@ -137,13 +137,46 @@
                                         <StackPanel>
                                             <TextBlock x:Name="SenderText" Text="{Binding SenderDisplayName}" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextAccent}" Margin="0,0,0,4"/>
                                             
-                                            <TextBlock x:Name="BodyText" Text="{Binding Body}" FontSize="14" Foreground="{StaticResource TextPrimary}" TextWrapping="Wrap"/>
+                                            <TextBlock x:Name="BodyText" Text="{Binding Body}" FontSize="14" Foreground="{StaticResource TextPrimary}" TextWrapping="Wrap" Visibility="{Binding Body, Converter={StaticResource StringToVisibilityConverter}}"/>
                                             
-                                            <Border Visibility="{Binding AttachmentFileName, Converter={StaticResource BooleanToVisibilityConverter}}" Background="{StaticResource StudioElevatedBrush}" CornerRadius="8" Padding="10,6" Margin="0,8,0,0" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1">
-                                                <StackPanel Orientation="Horizontal">
-                                                    <ui:SymbolIcon Symbol="Document24" Foreground="{StaticResource TextAccent}" FontSize="16" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                                                    <TextBlock Text="{Binding AttachmentFileName}" Foreground="{StaticResource TextPrimary}" FontSize="13" FontWeight="Medium" VerticalAlignment="Center"/>
-                                                </StackPanel>
+                                            <!-- Attachment Badge with Open Action -->
+                                            <Border Visibility="{Binding AttachmentFileName, Converter={StaticResource StringToVisibilityConverter}}" 
+                                                    Background="{StaticResource StudioElevatedBrush}" 
+                                                    CornerRadius="10" 
+                                                    Padding="12,10" 
+                                                    Margin="0,8,0,0" 
+                                                    BorderBrush="{StaticResource StudioBorderBrush}" 
+                                                    BorderThickness="1"
+                                                    Cursor="Hand">
+                                                <Border.InputBindings>
+                                                    <MouseBinding Gesture="LeftClick" 
+                                                                  Command="{Binding DataContext.OpenFileAttachmentCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                                                  CommandParameter="{Binding}"/>
+                                                </Border.InputBindings>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border Width="34" Height="34" CornerRadius="8" Background="{StaticResource StudioPanelBrush}" VerticalAlignment="Center" Margin="0,0,10,0">
+                                                        <ui:SymbolIcon Symbol="Document24" Foreground="{StaticResource TextAccent}" FontSize="18"/>
+                                                    </Border>
+                                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                        <TextBlock Text="{Binding AttachmentFileName}" Foreground="{StaticResource TextPrimary}" FontSize="13" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                                                        <TextBlock Text="{Binding AttachmentSizeBytes, Converter={StaticResource FileSizeConverter}}" Foreground="{StaticResource TextSecondary}" FontSize="11" Margin="0,2,0,0"/>
+                                                    </StackPanel>
+                                                    <Button Grid.Column="2" 
+                                                            ToolTip="Open File" 
+                                                            Command="{Binding DataContext.OpenFileAttachmentCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                                            CommandParameter="{Binding}" 
+                                                            Style="{StaticResource GhostButton}" 
+                                                            Padding="8,6" 
+                                                            Margin="10,0,0,0"
+                                                            VerticalAlignment="Center">
+                                                        <ui:SymbolIcon Symbol="Open24" FontSize="14"/>
+                                                    </Button>
+                                                </Grid>
                                             </Border>
 
                                             <TextBlock x:Name="TimeText" Text="{Binding SentAt, StringFormat='{}{0:t}'}" FontSize="11" Foreground="{StaticResource TextSecondary}" HorizontalAlignment="Right" Margin="0,8,0,0"/>
@@ -175,7 +208,7 @@
                 </ScrollViewer>
 
                 <!-- Attachment Active Pill Bar -->
-                <Border Grid.Row="2" Background="{StaticResource StudioPanelBrush}" Margin="20,0,20,8" Padding="14,10" CornerRadius="10" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1" Visibility="{Binding SelectedAttachmentPath, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Border Grid.Row="2" Background="{StaticResource StudioPanelBrush}" Margin="20,0,20,8" Padding="14,10" CornerRadius="10" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1" Visibility="{Binding SelectedAttachmentPath, Converter={StaticResource StringToVisibilityConverter}}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -213,7 +246,7 @@
                             </TextBox>
                         </Border>
 
-                        <Button Grid.Column="2" Command="{Binding SendMessageCommand}" Style="{StaticResource ModernPrimaryButton}" Margin="12,0,0,0" Padding="20,12">
+                        <Button Grid.Column="2" Command="{Binding SendMessageCommand}" IsEnabled="{Binding IsSending, Converter={StaticResource InverseBooleanConverter}}" Style="{StaticResource ModernPrimaryButton}" Margin="12,0,0,0" Padding="20,12">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Send" Margin="0,0,8,0" VerticalAlignment="Center" FontSize="14" FontWeight="Bold"/>
                                 <ui:SymbolIcon Symbol="Send24" FontSize="18" VerticalAlignment="Center"/>

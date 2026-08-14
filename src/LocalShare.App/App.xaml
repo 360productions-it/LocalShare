@@ -1,6 +1,7 @@
 <Application x:Class="LocalShare.App.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:helpers="clr-namespace:LocalShare.App.Helpers">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -115,6 +116,10 @@
             <!--     CONVERTERS                     -->
             <!-- ═══════════════════════════════════ -->
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <helpers:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+            <helpers:FileSizeConverter x:Key="FileSizeConverter"/>
+            <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+            <helpers:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/>
 
             <!-- ═══════════════════════════════════ -->
             <!--     MODERN PRIMARY BUTTON STYLE    -->

@@ -16,13 +16,19 @@ public class KestrelServerHost
     private readonly Profile _localProfile;
     private readonly ITransferService _transferService;
     private readonly IPublicSpaceService _publicSpaceService;
+    private readonly IChatService _chatService;
     private WebApplication? _app;
 
-    public KestrelServerHost(Profile localProfile, ITransferService transferService, IPublicSpaceService publicSpaceService)
+    public KestrelServerHost(
+        Profile localProfile,
+        ITransferService transferService,
+        IPublicSpaceService publicSpaceService,
+        IChatService chatService)
     {
         _localProfile = localProfile;
         _transferService = transferService;
         _publicSpaceService = publicSpaceService;
+        _chatService = chatService;
     }
 
     public async Task StartAsync(CancellationToken cancellationToken = default)
@@ -33,6 +39,11 @@ public class KestrelServerHost
         {
             options.ListenAnyIP(_localProfile.HttpPort);
         });
+
+        builder.Services.AddSingleton(_chatService);
+        builder.Services.AddSingleton(_transferService);
+        builder.Services.AddSingleton(_publicSpaceService);
+        builder.Services.AddSingleton(_localProfile);
 
         builder.Services.AddSignalR();
         builder.Services.AddRouting();
@@ -100,6 +111,27 @@ public class KestrelServerHost
 
         // 7. WS /hub/chat
         _app.MapHub<ChatHub>("/hub/chat");
+
+        // 8. POST /api/chat/message (Direct Chat REST Endpoint)
+        _app.MapPost("/api/chat/message", async (ChatMessagePayload payload) =>
+        {
+            var res = await _chatService.ReceiveDirectMessageAsync(payload);
+            return res.IsSuccess ? Results.Ok() : Results.BadRequest(res.Error);
+        });
+
+        // 9. POST /api/chat/group (Group Chat REST Endpoint)
+        _app.MapPost("/api/chat/group", async (ChatMessagePayload payload) =>
+        {
+            var res = await _chatService.ReceiveGroupMessageAsync(payload);
+            return res.IsSuccess ? Results.Ok() : Results.BadRequest(res.Error);
+        });
+
+        // 10. POST /api/chat/typing (Typing Notification REST Endpoint)
+        _app.MapPost("/api/chat/typing", async (TypingNotificationRequest req) =>
+        {
+            await _chatService.ReceiveTypingAsync(req.SenderDeviceId);
+            return Results.Ok();
+        });
 
         await _app.StartAsync(cancellationToken);
     }

@@ -77,9 +77,11 @@ public partial class App : Application
 
             ServiceProvider = services.BuildServiceProvider();
 
-            // 4. Subscribe to FileReceived event for Windows Notifications
+            // 4. Subscribe to FileReceived and MessageReceived events for Windows Notifications
             var transferService = ServiceProvider.GetRequiredService<ITransferService>();
             var notificationService = ServiceProvider.GetRequiredService<INotificationService>();
+            var chatService = ServiceProvider.GetRequiredService<IChatService>();
+
             transferService.FileReceived += (sender, transfer) =>
             {
                 if (profile.EnableNotifications)
@@ -89,6 +91,18 @@ public partial class App : Application
                         transfer.FileName,
                         transfer.FilePath
                     );
+                }
+            };
+
+            chatService.MessageReceived += (sender, msg) =>
+            {
+                if (profile.EnableNotifications && msg.SenderDeviceId != profile.DeviceId)
+                {
+                    var title = $"💬 {msg.SenderDisplayName}";
+                    var body = string.IsNullOrWhiteSpace(msg.Body) && !string.IsNullOrWhiteSpace(msg.AttachmentFileName)
+                        ? $"📎 Sent a file: {msg.AttachmentFileName}"
+                        : msg.Body;
+                    notificationService.ShowNotification(title, body);
                 }
             };
 

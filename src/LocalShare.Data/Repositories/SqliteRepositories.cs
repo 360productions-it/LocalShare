@@ -121,21 +121,92 @@ public class SqliteRepositories : IProfileRepository, IPeerRepository, IMessageR
         });
 
         // Upsert Conversation so it is guaranteed to exist and display in conversations list
-        var sqlConv = @"
-            INSERT INTO Conversations (Id, Type, DisplayName, TargetDeviceId, LastMessageAt, UnreadCount)
-            VALUES (@Id, @Type, @DisplayName, @TargetDeviceId, @LastMessageAtStr, 0)
-            ON CONFLICT(Id) DO UPDATE SET
-                DisplayName = excluded.DisplayName,
-                LastMessageAt = excluded.LastMessageAt;
-        ";
-        await conn.ExecuteAsync(sqlConv, new
+        var existingConv = await conn.QueryFirstOrDefaultAsync<Conversation>(
+            "SELECT * FROM Conversations WHERE Id = @Id", new { Id = message.ConversationId });
+
+        if (existingConv == null)
         {
-            Id = message.ConversationId,
-            Type = (int)ConversationType.Direct,
-            DisplayName = message.SenderDisplayName,
-            TargetDeviceId = message.SenderDeviceId,
-            LastMessageAtStr = message.SentAt.ToString("o")
-        });
+            // Check if this is a group
+            var grp = await conn.QueryFirstOrDefaultAsync("SELECT * FROM Groups WHERE Id = @Id", new { Id = message.ConversationId });
+            if (grp != null)
+            {
+                var groupConvSql = @"
+                    INSERT INTO Conversations (Id, Type, DisplayName, GroupId, LastMessageAt, UnreadCount)
+                    VALUES (@Id, @Type, @DisplayName, @GroupId, @LastMessageAtStr, 0);
+                ";
+                await conn.ExecuteAsync(groupConvSql, new
+                {
+                    Id = message.ConversationId,
+                    Type = (int)ConversationType.Group,
+                    DisplayName = (string)grp.Name,
+                    GroupId = message.ConversationId,
+                    LastMessageAtStr = message.SentAt.ToString("o")
+                });
+            }
+            else
+            {
+                // Direct conversation
+                var peer = await conn.QueryFirstOrDefaultAsync("SELECT * FROM Peers WHERE DeviceId = @DeviceId", new { DeviceId = message.ConversationId });
+                string convDisplayName;
+                if (peer != null)
+                {
+                    convDisplayName = (string)peer.DisplayName;
+                }
+                else if (message.SenderDeviceId == message.ConversationId)
+                {
+                    // Incoming message: conversation Id is the sender's device Id
+                    convDisplayName = message.SenderDisplayName;
+                }
+                else
+                {
+                    // Outgoing message: conversation Id is target peer's device Id
+                    convDisplayName = message.ConversationId;
+                }
+
+                var directConvSql = @"
+                    INSERT INTO Conversations (Id, Type, DisplayName, TargetDeviceId, LastMessageAt, UnreadCount)
+                    VALUES (@Id, @Type, @DisplayName, @TargetDeviceId, @LastMessageAtStr, 0);
+                ";
+                await conn.ExecuteAsync(directConvSql, new
+                {
+                    Id = message.ConversationId,
+                    Type = (int)ConversationType.Direct,
+                    DisplayName = convDisplayName,
+                    TargetDeviceId = message.ConversationId,
+                    LastMessageAtStr = message.SentAt.ToString("o")
+                });
+            }
+        }
+        else
+        {
+            // Update timestamp
+            // If it's a direct conversation and the message is incoming from peer, update DisplayName to reflect sender's latest display name
+            if (existingConv.Type == ConversationType.Direct && message.SenderDeviceId == message.ConversationId && !string.IsNullOrWhiteSpace(message.SenderDisplayName))
+            {
+                await conn.ExecuteAsync(@"
+                    UPDATE Conversations 
+                    SET DisplayName = @DisplayName, LastMessageAt = @LastMessageAtStr 
+                    WHERE Id = @Id;
+                ", new
+                {
+                    Id = message.ConversationId,
+                    DisplayName = message.SenderDisplayName,
+                    LastMessageAtStr = message.SentAt.ToString("o")
+                });
+            }
+            else
+            {
+                await conn.ExecuteAsync(@"
+                    UPDATE Conversations 
+                    SET LastMessageAt = @LastMessageAtStr 
+                    WHERE Id = @Id;
+                ", new
+                {
+                    Id = message.ConversationId,
+                    LastMessageAtStr = message.SentAt.ToString("o")
+                });
+            }
+        }
     }
 
     public async Task<IReadOnlyList<Message>> GetMessagesAsync(string conversationId, int limit = 50)

@@ -1,5 +1,5 @@
 ﻿LocalShare.App
-2.0.4.0
+2.0.5.0
 
 winexe
 C#
@@ -12,7 +12,7 @@ TRACE;RELEASE;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0
 D:\dotnet\LocalShare\src\LocalShare.App\App.xaml
 9-354553358
 
-22-205299969
+23-1933571222
 359-479051451
 MainWindow.xaml;Views\ChatView.xaml;Views\GroupsView.xaml;Views\NotificationToastWindow.xaml;Views\PeersView.xaml;Views\ProfileSettingsView.xaml;Views\PublicSpaceView.xaml;Views\ShellView.xaml;Views\TransfersView.xaml;
 
