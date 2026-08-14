@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Fast P2P LAN File Sharing and Real-time Instant Messenger")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("2.0.4.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.0.4+5be91fc4911fbddb98e47227a39873935225281a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.0.4+852494b19da478887b68f0260fe6f500c11eda4d")]
 [assembly: System.Reflection.AssemblyProductAttribute("LocalShare.App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LocalShare - P2P LAN Sharing & Messenger")]
 [assembly: System.Reflection.AssemblyVersionAttribute("2.0.4.0")]

@@ -10,64 +10,35 @@
                 <!-- ═══════════════════════════════════ -->
                 <StackPanel Margin="0,0,0,6">
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
-                        <Border Width="34" Height="34" CornerRadius="10" VerticalAlignment="Center" Margin="0,0,12,0">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#2563EB" Offset="0"/>
-                                    <GradientStop Color="#7C3AED" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
+                        <Border Width="34" Height="34" CornerRadius="10" VerticalAlignment="Center" Margin="0,0,12,0" Background="{StaticResource PrimaryGradient}">
                             <Border.Effect>
-                                <DropShadowEffect BlurRadius="12" Color="#2563EB" Direction="0" ShadowDepth="0" Opacity="0.2"/>
+                                <DropShadowEffect BlurRadius="12" Color="#7C5CFC" Direction="0" ShadowDepth="0" Opacity="0.3"/>
                             </Border.Effect>
                             <TextBlock Text="⚙" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-                        <TextBlock Text="Profile &amp; Settings" FontSize="26" FontWeight="Bold" VerticalAlignment="Center">
-                            <TextBlock.Foreground>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                    <GradientStop Color="#60A5FA" Offset="0.0"/>
-                                    <GradientStop Color="#38BDF8" Offset="0.5"/>
-                                    <GradientStop Color="#818CF8" Offset="1.0"/>
-                                </LinearGradientBrush>
-                            </TextBlock.Foreground>
-                        </TextBlock>
+                        <TextBlock Text="Profile &amp; Settings" FontSize="26" FontWeight="Bold" VerticalAlignment="Center" Foreground="{StaticResource TitleGradient}"/>
                     </StackPanel>
-                    <TextBlock Text="Customize your LAN identity, accent color palette, and local storage directories." FontSize="13" Foreground="#64748B" Margin="0,0,0,22"/>
+                    <TextBlock Text="Customize your LAN identity, accent color palette, and local storage directories." FontSize="13" Foreground="{StaticResource TextSecondary}" Margin="0,0,0,22"/>
                 </StackPanel>
 
                 <!-- ═══════════════════════════════════ -->
                 <!-- STATUS MESSAGE BANNER              -->
                 <!-- ═══════════════════════════════════ -->
-                <Border Visibility="{Binding StatusMessage, Converter={StaticResource BooleanToVisibilityConverter}}" CornerRadius="10" Padding="14,10" Margin="0,0,0,20" BorderThickness="1">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                            <GradientStop Color="#0C1A33" Offset="0"/>
-                            <GradientStop Color="#0F1D38" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-                    <Border.BorderBrush>
-                        <SolidColorBrush Color="#3B82F6" Opacity="0.3"/>
-                    </Border.BorderBrush>
+                <Border Visibility="{Binding StatusMessage, Converter={StaticResource BooleanToVisibilityConverter}}" CornerRadius="10" Padding="14,10" Margin="0,0,0,20" BorderThickness="1" Background="{StaticResource StudioAccentSoftBrush}" BorderBrush="{StaticResource StudioBorderBrush}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="ℹ️ " FontSize="14" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding StatusMessage}" Foreground="#60A5FA" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding StatusMessage}" Foreground="{StaticResource TextAccent}" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
 
                 <!-- ═══════════════════════════════════════════ -->
                 <!-- CARD 1: User Identity & Accent Palette     -->
                 <!-- ═══════════════════════════════════════════ -->
-                <Border CornerRadius="14" Padding="22" Margin="0,0,0,20" BorderThickness="1" BorderBrush="#1A2744">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#0E1525" Offset="0"/>
-                            <GradientStop Color="#0B1120" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
+                <Border CornerRadius="14" Padding="22" Margin="0,0,0,20" BorderThickness="1" Background="{StaticResource StudioPanelBrush}" BorderBrush="{StaticResource StudioBorderBrush}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                             <TextBlock Text="👤" FontSize="18" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                            <TextBlock Text="User Identity &amp; Accent Palette" FontSize="16" FontWeight="Bold" Foreground="#F1F5F9" VerticalAlignment="Center"/>
+                            <TextBlock Text="User Identity &amp; Accent Palette" FontSize="16" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" VerticalAlignment="Center"/>
                         </StackPanel>
 
                         <Grid Margin="0,0,0,22">
@@ -79,28 +50,41 @@
                             <!-- Avatar Preview Circle -->
                             <Border Width="84" Height="84" CornerRadius="42" Background="{Binding AccentColor}" VerticalAlignment="Top" Margin="0,0,24,0">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="16" Color="#2563EB" Direction="0" ShadowDepth="0" Opacity="0.2"/>
+                                    <DropShadowEffect BlurRadius="16" Color="#7C5CFC" Direction="0" ShadowDepth="0" Opacity="0.3"/>
                                 </Border.Effect>
                                 <TextBlock Text="{Binding DisplayName[0]}" FontSize="34" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
 
                             <!-- Form Fields -->
                             <StackPanel Grid.Column="1">
-                                <TextBlock Text="Display Name" Foreground="#F1F5F9" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                                <TextBlock Text="Display Name" Foreground="{StaticResource TextPrimary}" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,6"/>
                                 <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" 
-                                         Background="#0D1321" Foreground="White" BorderBrush="#1E293B" BorderThickness="1"
-                                         Padding="12,10" FontSize="14" CaretBrush="#60A5FA" SelectionBrush="#2563EB" Margin="0,0,0,16"/>
+                                         Background="{StaticResource StudioWorkspaceBrush}"
+                                         Foreground="White"
+                                         BorderBrush="{StaticResource StudioBorderBrush}"
+                                         BorderThickness="1"
+                                         Padding="12,10"
+                                         FontSize="14"
+                                         CaretBrush="{StaticResource TextAccent}"
+                                         SelectionBrush="{StaticResource AccentGlow}"
+                                         Margin="0,0,0,16"/>
 
-                                <TextBlock Text="Accent Color (Hex)" Foreground="#F1F5F9" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                                <TextBlock Text="Accent Color (Hex)" Foreground="{StaticResource TextPrimary}" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,6"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBox Text="{Binding AccentColor, UpdateSourceTrigger=PropertyChanged}" 
-                                             Background="#0D1321" Foreground="White" BorderBrush="#1E293B" BorderThickness="1"
-                                             Padding="12,10" FontSize="14" CaretBrush="#60A5FA" SelectionBrush="#2563EB"/>
-                                    <Border Grid.Column="1" Width="44" Height="44" CornerRadius="10" Background="{Binding AccentColor}" Margin="12,0,0,0" BorderBrush="#334155" BorderThickness="1">
+                                             Background="{StaticResource StudioWorkspaceBrush}"
+                                             Foreground="White"
+                                             BorderBrush="{StaticResource StudioBorderBrush}"
+                                             BorderThickness="1"
+                                             Padding="12,10"
+                                             FontSize="14"
+                                             CaretBrush="{StaticResource TextAccent}"
+                                             SelectionBrush="{StaticResource AccentGlow}"/>
+                                    <Border Grid.Column="1" Width="44" Height="44" CornerRadius="10" Background="{Binding AccentColor}" Margin="12,0,0,0" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1">
                                         <Border.Effect>
                                             <DropShadowEffect BlurRadius="8" Color="#000000" Direction="270" ShadowDepth="2" Opacity="0.3"/>
                                         </Border.Effect>
@@ -110,7 +94,7 @@
                         </Grid>
 
                         <!-- Color Preset Swatches -->
-                        <TextBlock Text="Select Preset Color Theme:" Foreground="#64748B" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                        <TextBlock Text="Select Preset Color Theme:" Foreground="{StaticResource TextSecondary}" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,10"/>
                         <ItemsControl ItemsSource="{Binding ColorPresets}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -149,21 +133,15 @@
                 <!-- ═══════════════════════════════════════════ -->
                 <!-- CARD 2: Storage & Folder Management        -->
                 <!-- ═══════════════════════════════════════════ -->
-                <Border CornerRadius="14" Padding="22" Margin="0,0,0,20" BorderThickness="1" BorderBrush="#1A2744">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#0E1525" Offset="0"/>
-                            <GradientStop Color="#0B1120" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
+                <Border CornerRadius="14" Padding="22" Margin="0,0,0,20" BorderThickness="1" Background="{StaticResource StudioPanelBrush}" BorderBrush="{StaticResource StudioBorderBrush}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                             <TextBlock Text="📂" FontSize="18" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                            <TextBlock Text="Storage &amp; Shared Folders" FontSize="16" FontWeight="Bold" Foreground="#F1F5F9" VerticalAlignment="Center"/>
+                            <TextBlock Text="Storage &amp; Shared Folders" FontSize="16" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" VerticalAlignment="Center"/>
                         </StackPanel>
 
                         <!-- Public Space Folder -->
-                        <TextBlock Text="Public Space Folder (Read-Only Shared on LAN)" Foreground="#F1F5F9" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                        <TextBlock Text="Public Space Folder (Read-Only Shared on LAN)" Foreground="{StaticResource TextPrimary}" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,8"/>
                         <Grid Margin="0,0,0,18">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -171,14 +149,18 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <TextBox Text="{Binding PublicSpacePath}" IsReadOnly="True" 
-                                     Background="#0D1321" Foreground="#60A5FA" BorderBrush="#1E293B" BorderThickness="1"
-                                     Padding="12,10" FontSize="13"/>
+                                     Background="{StaticResource StudioWorkspaceBrush}"
+                                     Foreground="{StaticResource TextAccent}"
+                                     BorderBrush="{StaticResource StudioBorderBrush}"
+                                     BorderThickness="1"
+                                     Padding="12,10"
+                                     FontSize="13"/>
                             <Button Grid.Column="1" Content="📂 Browse..." Command="{Binding BrowsePublicSpaceFolderCommand}" Style="{StaticResource ModernPrimaryButton}" Margin="10,0,0,0" FontSize="12" Padding="14,8"/>
                             <Button Grid.Column="2" Content="📁 Open" Command="{Binding OpenFolderInExplorerCommand}" CommandParameter="{Binding PublicSpacePath}" Style="{StaticResource GhostButton}" Margin="6,0,0,0" FontSize="12" Padding="12,8"/>
                         </Grid>
 
                         <!-- Received Files Folder -->
-                        <TextBlock Text="Received Files Storage Root" Foreground="#F1F5F9" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                        <TextBlock Text="Received Files Storage Root" Foreground="{StaticResource TextPrimary}" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,8"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -186,8 +168,12 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <TextBox Text="{Binding ReceivedFilesRoot}" IsReadOnly="True" 
-                                     Background="#0D1321" Foreground="#10B981" BorderBrush="#1E293B" BorderThickness="1"
-                                     Padding="12,10" FontSize="13"/>
+                                     Background="{StaticResource StudioWorkspaceBrush}"
+                                     Foreground="{StaticResource SuccessColor}"
+                                     BorderBrush="{StaticResource StudioBorderBrush}"
+                                     BorderThickness="1"
+                                     Padding="12,10"
+                                     FontSize="13"/>
                             <Button Grid.Column="1" Content="📂 Browse..." Command="{Binding BrowseReceivedFilesFolderCommand}" Style="{StaticResource ModernPrimaryButton}" Margin="10,0,0,0" FontSize="12" Padding="14,8"/>
                             <Button Grid.Column="2" Content="📥 Open" Command="{Binding OpenFolderInExplorerCommand}" CommandParameter="{Binding ReceivedFilesRoot}" Style="{StaticResource GhostButton}" Margin="6,0,0,0" FontSize="12" Padding="12,8"/>
                         </Grid>
@@ -197,13 +183,7 @@
                 <!-- ═══════════════════════════════════════════ -->
                 <!-- CARD 2.5: Notifications & Alerts           -->
                 <!-- ═══════════════════════════════════════════ -->
-                <Border CornerRadius="14" Padding="22" Margin="0,0,0,20" BorderThickness="1" BorderBrush="#1A2744">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#0E1525" Offset="0"/>
-                            <GradientStop Color="#0B1120" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
+                <Border CornerRadius="14" Padding="22" Margin="0,0,0,20" BorderThickness="1" Background="{StaticResource StudioPanelBrush}" BorderBrush="{StaticResource StudioBorderBrush}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -213,25 +193,19 @@
                         <StackPanel VerticalAlignment="Center">
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
                                 <TextBlock Text="🔔" FontSize="18" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                <TextBlock Text="Windows Notifications &amp; Alerts" FontSize="16" FontWeight="Bold" Foreground="#F1F5F9"/>
+                                <TextBlock Text="Windows Notifications &amp; Alerts" FontSize="16" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
                             </StackPanel>
-                            <TextBlock Text="Show a notification alert whenever a file is received from another peer (Default: ON)." Foreground="#64748B" FontSize="12.5" TextWrapping="Wrap" Margin="28,0,0,0"/>
+                            <TextBlock Text="Show a notification alert whenever a file is received from another peer (Default: ON)." Foreground="{StaticResource TextSecondary}" FontSize="12.5" TextWrapping="Wrap" Margin="28,0,0,0"/>
                         </StackPanel>
 
-                        <CheckBox Grid.Column="1" IsChecked="{Binding EnableNotifications, Mode=TwoWay}" Content="Enable Alerts" Style="{StaticResource HighVisibilityCheckBoxStyle}" Foreground="#10B981" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Column="1" IsChecked="{Binding EnableNotifications, Mode=TwoWay}" Content="Enable Alerts" Style="{StaticResource HighVisibilityCheckBoxStyle}" Foreground="{StaticResource SuccessColor}" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
 
                 <!-- ═══════════════════════════════════════════ -->
                 <!-- CARD 3: Device Information                 -->
                 <!-- ═══════════════════════════════════════════ -->
-                <Border CornerRadius="14" Padding="22" Margin="0,0,0,20" BorderThickness="1" BorderBrush="#1A2744">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#0E1525" Offset="0"/>
-                            <GradientStop Color="#0B1120" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
+                <Border CornerRadius="14" Padding="22" Margin="0,0,0,20" BorderThickness="1" Background="{StaticResource StudioPanelBrush}" BorderBrush="{StaticResource StudioBorderBrush}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -241,16 +215,13 @@
                         <StackPanel VerticalAlignment="Center">
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                                 <TextBlock Text="📱" FontSize="18" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                <TextBlock Text="Device Information" FontSize="16" FontWeight="Bold" Foreground="#F1F5F9"/>
+                                <TextBlock Text="Device Information" FontSize="16" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="28,0,0,0">
-                                <Border CornerRadius="6" Padding="8,4" Margin="0,0,12,0">
-                                    <Border.Background>
-                                        <SolidColorBrush Color="#3B82F6" Opacity="0.1"/>
-                                    </Border.Background>
-                                    <TextBlock Text="{Binding LocalIp, StringFormat='Local IP: {0}'}" Foreground="#60A5FA" FontSize="12" FontWeight="SemiBold"/>
+                                <Border CornerRadius="6" Padding="8,4" Margin="0,0,12,0" Background="{StaticResource StudioAccentSoftBrush}" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1">
+                                    <TextBlock Text="{Binding LocalIp, StringFormat='Local IP: {0}'}" Foreground="{StaticResource TextAccent}" FontSize="12" FontWeight="SemiBold"/>
                                 </Border>
-                                <TextBlock Text="{Binding DeviceId, StringFormat='Device ID: {0}'}" Foreground="#64748B" FontSize="11.5" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding DeviceId, StringFormat='Device ID: {0}'}" Foreground="{StaticResource TextSecondary}" FontSize="11.5" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
 
@@ -261,56 +232,33 @@
                 <!-- ═══════════════════════════════════════════════════ -->
                 <!-- CARD 4: Software Updates & Release Maintenance     -->
                 <!-- ═══════════════════════════════════════════════════ -->
-                <Border CornerRadius="14" Padding="1" Margin="0,0,0,24">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="#2563EB" Offset="0"/>
-                            <GradientStop Color="#7C3AED" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-                    <Border CornerRadius="13" Padding="22">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Color="#0E1525" Offset="0"/>
-                                <GradientStop Color="#0B1120" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
+                <Border CornerRadius="14" Padding="1" Margin="0,0,0,24" Background="{StaticResource AccentBorderGradient}">
+                    <Border CornerRadius="13" Padding="22" Background="{StaticResource StudioPanelBrush}">
                         <StackPanel>
                             <Grid Margin="0,0,0,16">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                     <TextBlock Text="🚀" FontSize="18" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="Software Updates &amp; Release Maintenance" FontSize="16" FontWeight="Bold" Foreground="#F1F5F9" VerticalAlignment="Center" Margin="0,0,14,0"/>
-                                    <Border Background="#0D1321" CornerRadius="7" Padding="10,5" BorderBrush="#1A2744" BorderThickness="1">
-                                        <TextBlock Text="{Binding CurrentVersion}" Foreground="#60A5FA" FontSize="12" FontWeight="Bold"/>
+                                    <TextBlock Text="Software Updates &amp; Release Maintenance" FontSize="16" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" VerticalAlignment="Center" Margin="0,0,14,0"/>
+                                    <Border Background="{StaticResource StudioWorkspaceBrush}" CornerRadius="7" Padding="10,5" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1">
+                                        <TextBlock Text="{Binding CurrentVersion}" Foreground="{StaticResource TextAccent}" FontSize="12" FontWeight="Bold"/>
                                     </Border>
                                 </StackPanel>
                                 <Button Content="🔍  Check for Updates" Command="{Binding CheckForUpdatesCommand}" Style="{StaticResource GhostButton}" HorizontalAlignment="Right" FontSize="12" Padding="14,8"/>
                             </Grid>
 
                             <!-- Status text -->
-                            <TextBlock Text="{Binding UpdateStatusMessage}" Foreground="#94A3B8" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,14"/>
+                            <TextBlock Text="{Binding UpdateStatusMessage}" Foreground="{StaticResource TextSecondary}" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,14"/>
 
                             <!-- Update Progress Bar -->
-                            <ProgressBar Visibility="{Binding IsDownloadingUpdate, Converter={StaticResource BooleanToVisibilityConverter}}" Value="{Binding UpdateProgressPercentage, Mode=OneWay}" Maximum="100" Height="6" Background="#131B2E" BorderThickness="0" Margin="0,0,0,14">
-                                <ProgressBar.Foreground>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="#2563EB" Offset="0"/>
-                                        <GradientStop Color="#3B82F6" Offset="0.5"/>
-                                        <GradientStop Color="#60A5FA" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </ProgressBar.Foreground>
-                            </ProgressBar>
+                            <ProgressBar Visibility="{Binding IsDownloadingUpdate, Converter={StaticResource BooleanToVisibilityConverter}}" Value="{Binding UpdateProgressPercentage, Mode=OneWay}" Maximum="100" Height="6" Background="{StaticResource StudioElevatedBrush}" BorderThickness="0" Margin="0,0,0,14" Foreground="{StaticResource PrimaryGradient}"/>
 
                             <!-- Update Available Banner -->
-                            <Border Visibility="{Binding IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" CornerRadius="10" Padding="16" BorderThickness="1" BorderBrush="#10B981">
-                                <Border.Background>
-                                    <SolidColorBrush Color="#10B981" Opacity="0.06"/>
-                                </Border.Background>
+                            <Border Visibility="{Binding IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" CornerRadius="10" Padding="16" BorderThickness="1" Background="{StaticResource SuccessSubtle}" BorderBrush="{StaticResource SuccessColor}">
                                 <DockPanel>
                                     <Button DockPanel.Dock="Right" Content="📥  Download &amp; Install Now" Command="{Binding ApplyUpdateCommand}" Style="{StaticResource ModernSuccessButton}" FontSize="13" Padding="18,10" VerticalAlignment="Center"/>
                                     <StackPanel VerticalAlignment="Center" Margin="0,0,14,0">
-                                        <TextBlock Text="{Binding AvailableUpdateInfo.Version, StringFormat='Update Available: v{0}'}" Foreground="#34D399" FontSize="15" FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding AvailableUpdateInfo.Changelog}" Foreground="#64748B" FontSize="12" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                        <TextBlock Text="{Binding AvailableUpdateInfo.Version, StringFormat='Update Available: v{0}'}" Foreground="{StaticResource SuccessColor}" FontSize="15" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding AvailableUpdateInfo.Changelog}" Foreground="{StaticResource TextSecondary}" FontSize="12" TextWrapping="Wrap" Margin="0,5,0,0"/>
                                     </StackPanel>
                                 </DockPanel>
                             </Border>
@@ -321,30 +269,24 @@
                 <!-- ═══════════════════════════════════════════════════ -->
                 <!-- CARD 5: About & Developer Information             -->
                 <!-- ═══════════════════════════════════════════════════ -->
-                <Border CornerRadius="14" Padding="22" Margin="0,0,0,24" BorderThickness="1" BorderBrush="#1A2744">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#0E1525" Offset="0"/>
-                            <GradientStop Color="#0B1120" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
+                <Border CornerRadius="14" Padding="22" Margin="0,0,0,24" BorderThickness="1" Background="{StaticResource StudioPanelBrush}" BorderBrush="{StaticResource StudioBorderBrush}">
                     <StackPanel>
                         <!-- Header & Version -->
                         <Grid Margin="0,0,0,16">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                 <TextBlock Text="ℹ️" FontSize="18" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                <TextBlock Text="About LocalShare" FontSize="16" FontWeight="Bold" Foreground="#F1F5F9" VerticalAlignment="Center" Margin="0,0,12,0"/>
-                                <Border Background="#0D1321" CornerRadius="6" Padding="8,4" BorderBrush="#1A2744" BorderThickness="1">
-                                    <TextBlock Text="{Binding CurrentVersion}" Foreground="#60A5FA" FontSize="12" FontWeight="Bold"/>
+                                <TextBlock Text="About LocalShare" FontSize="16" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                                <Border Background="{StaticResource StudioWorkspaceBrush}" CornerRadius="6" Padding="8,4" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1">
+                                    <TextBlock Text="{Binding CurrentVersion}" Foreground="{StaticResource TextAccent}" FontSize="12" FontWeight="Bold"/>
                                 </Border>
                             </StackPanel>
                         </Grid>
 
                         <!-- Software Description -->
                         <TextBlock Text="LocalShare is a secure, high-speed peer-to-peer Local Area Network (LAN) file sharing, instant messaging, and public space file discovery application. Built with .NET 10 and WPF Fluent Design, it provides zero-cloud local networking with private local transfers."
-                                   Foreground="#94A3B8" FontSize="13" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,18"/>
+                                   Foreground="{StaticResource TextSecondary}" FontSize="13" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,18"/>
 
-                        <Border Height="1" Background="#162033" Margin="0,0,0,18"/>
+                        <Border Height="1" Background="{StaticResource StudioBorderBrush}" Margin="0,0,0,18"/>
 
                         <!-- Developer Info Grid -->
                         <Grid>
@@ -354,23 +296,23 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="DEVELOPER DETAILS" FontSize="10.5" FontWeight="Bold" Foreground="#475569" Margin="0,0,0,6"/>
+                                <TextBlock Text="DEVELOPER DETAILS" FontSize="10.5" FontWeight="Bold" Foreground="{StaticResource TextMuted}" Margin="0,0,0,6"/>
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                                     <TextBlock Text="👨‍💻 " FontSize="14" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding DeveloperName}" FontSize="15" FontWeight="Bold" Foreground="#F1F5F9" VerticalAlignment="Center"/>
-                                    <Border CornerRadius="4" Padding="6,2" Margin="10,0,0,0" Background="#131B2E" VerticalAlignment="Center">
-                                        <TextBlock Text="Lead Engineer &amp; Creator" FontSize="11" Foreground="#818CF8" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding DeveloperName}" FontSize="15" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" VerticalAlignment="Center"/>
+                                    <Border CornerRadius="4" Padding="6,2" Margin="10,0,0,0" Background="{StaticResource StudioAccentSoftBrush}" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1" VerticalAlignment="Center">
+                                        <TextBlock Text="Lead Engineer &amp; Creator" FontSize="11" Foreground="{StaticResource TextAccent}" FontWeight="SemiBold"/>
                                     </Border>
                                 </StackPanel>
-                                <TextBlock Text="Productions" FontSize="12" Foreground="#64748B" Margin="22,0,0,0"/>
+                                <TextBlock Text="Productions" FontSize="12" Foreground="{StaticResource TextSecondary}" Margin="22,0,0,0"/>
                             </StackPanel>
 
                             <!-- Website Link Button -->
                             <Button Grid.Column="1" Command="{Binding OpenDeveloperWebsiteCommand}" Style="{StaticResource GhostButton}" Padding="14,10" VerticalAlignment="Center" Cursor="Hand">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="🌐 " FontSize="14" VerticalAlignment="Center"/>
-                                    <TextBlock Text="https://razorisuru.com" FontSize="13" FontWeight="SemiBold" Foreground="#38BDF8" VerticalAlignment="Center" Margin="0,0,4,0"/>
-                                    <TextBlock Text="↗" FontSize="13" Foreground="#38BDF8" VerticalAlignment="Center"/>
+                                    <TextBlock Text="https://razorisuru.com" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextAccent}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                    <TextBlock Text="↗" FontSize="13" Foreground="{StaticResource TextAccent}" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </Grid>

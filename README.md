@@ -100,3 +100,4 @@ dotnet publish src/LocalShare.App/LocalShare.App.csproj -c Release -r win-x64 --
 MIT License.
 
 powershell -File .\build-release.ps1
+powershell -File .\build-release.ps1 -Version 2.0.4

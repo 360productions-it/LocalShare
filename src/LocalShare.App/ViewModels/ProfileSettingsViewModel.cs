@@ -19,7 +19,7 @@ public partial class ProfileSettingsViewModel : ObservableObject
     private string _displayName = string.Empty;
 
     [ObservableProperty]
-    private string _accentColor = "#0078D4";
+    private string _accentColor = "#7C5CFC";
 
     [ObservableProperty]
     private string _publicSpacePath = string.Empty;
@@ -72,13 +72,13 @@ public partial class ProfileSettingsViewModel : ObservableObject
 
     public List<string> ColorPresets { get; } = new()
     {
-        "#0078D4", // Electric Blue
+        "#7C5CFC", // Studio Purple
+        "#8B70FF", // Studio Bright
         "#10B981", // Emerald Green
         "#8B5CF6", // Cyber Purple
         "#FB27F5", // Neon Pink
         "#F97316", // Sunset Orange
         "#EF4444", // Crimson Red
-        "#EAB308", // Amber Gold
         "#06B6D4"  // Ocean Cyan
     };
 
@@ -89,7 +89,7 @@ public partial class ProfileSettingsViewModel : ObservableObject
         _updateService = updateService;
 
         DisplayName = _localProfile.DisplayName;
-        AccentColor = string.IsNullOrWhiteSpace(_localProfile.AccentColor) ? "#0078D4" : _localProfile.AccentColor;
+        AccentColor = string.IsNullOrWhiteSpace(_localProfile.AccentColor) ? "#7C5CFC" : _localProfile.AccentColor;
         PublicSpacePath = _localProfile.PublicSpacePath ?? string.Empty;
         ReceivedFilesRoot = _localProfile.ReceivedFilesRoot;
         EnableNotifications = _localProfile.EnableNotifications;

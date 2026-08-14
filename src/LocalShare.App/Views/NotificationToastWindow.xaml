@@ -40,13 +40,13 @@
             MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Border.Style>
             <Style TargetType="Border">
-                <Setter Property="Background" Value="#0D1322"/>
-                <Setter Property="BorderBrush" Value="#1E2E4A"/>
+                <Setter Property="Background" Value="#1B1D20"/>
+                <Setter Property="BorderBrush" Value="#2B2E33"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#10182A"/>
-                        <Setter Property="BorderBrush" Value="#3B82F6"/>
+                        <Setter Property="Background" Value="#22252A"/>
+                        <Setter Property="BorderBrush" Value="#7C5CFC"/>
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -59,9 +59,8 @@
             <Border Width="3.5" HorizontalAlignment="Left" VerticalAlignment="Stretch" CornerRadius="13,0,0,13">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#3B82F6" Offset="0.0"/>
-                        <GradientStop Color="#22D3EE" Offset="0.5"/>
-                        <GradientStop Color="#8B5CF6" Offset="1.0"/>
+                        <GradientStop Color="#7C5CFC" Offset="0.0"/>
+                        <GradientStop Color="#8B70FF" Offset="1.0"/>
                     </LinearGradientBrush>
                 </Border.Background>
             </Border>
@@ -75,22 +74,9 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Icon Container -->
-                <Border Grid.Column="0" Width="48" Height="48" CornerRadius="12" Margin="0,0,14,0" VerticalAlignment="Center">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="#162238" Offset="0.0"/>
-                            <GradientStop Color="#0D1527" Offset="1.0"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-                    <Border.BorderBrush>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="#2563EB" Offset="0.0"/>
-                            <GradientStop Color="#1E293B" Offset="1.0"/>
-                        </LinearGradientBrush>
-                    </Border.BorderBrush>
-                    <Border.BorderThickness>1</Border.BorderThickness>
+                <Border Grid.Column="0" Width="48" Height="48" CornerRadius="12" Margin="0,0,14,0" VerticalAlignment="Center" Background="#22252A" BorderBrush="#2B2E33" BorderThickness="1">
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <ui:SymbolIcon Symbol="ArrowDownload24" FontSize="22" Foreground="#60A5FA"/>
+                        <ui:SymbolIcon Symbol="ArrowDownload24" FontSize="22" Foreground="#A78BFA"/>
                     </Grid>
                 </Border>
 
@@ -98,19 +84,19 @@
                 <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,8,0">
                     <TextBlock x:Name="TxtTitle" 
                                Text="File Received" 
-                               Foreground="#60A5FA" 
+                               Foreground="#A78BFA" 
                                FontSize="13.5" 
                                FontWeight="Bold" 
                                TextTrimming="CharacterEllipsis"/>
                     <TextBlock x:Name="TxtFileName" 
                                Text="filename.ext" 
-                               Foreground="#F1F5F9" 
+                               Foreground="#FFFFFF" 
                                FontSize="12.5" 
                                FontWeight="Bold" 
                                Margin="0,3,0,3" 
                                TextTrimming="CharacterEllipsis"/>
                     <TextBlock Text="Click to view file in folder" 
-                               Foreground="#64748B" 
+                               Foreground="#9CA3AF" 
                                FontSize="11" 
                                FontWeight="Medium"/>
                 </StackPanel>
@@ -133,19 +119,19 @@
                                 <ui:SymbolIcon x:Name="dismissIcon" 
                                                Symbol="Dismiss24" 
                                                FontSize="14" 
-                                               Foreground="#64748B" 
+                                               Foreground="#9CA3AF" 
                                                HorizontalAlignment="Center" 
                                                VerticalAlignment="Center"/>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="btnBorder" Property="Background" Value="#1E293B"/>
-                                    <Setter TargetName="btnBorder" Property="BorderBrush" Value="#334155"/>
-                                    <Setter TargetName="dismissIcon" Property="Foreground" Value="#F1F5F9"/>
+                                    <Setter TargetName="btnBorder" Property="Background" Value="#2B2E33"/>
+                                    <Setter TargetName="btnBorder" Property="BorderBrush" Value="#7C5CFC"/>
+                                    <Setter TargetName="dismissIcon" Property="Foreground" Value="#FFFFFF"/>
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="btnBorder" Property="Background" Value="#0F172A"/>
-                                    <Setter TargetName="dismissIcon" Property="Foreground" Value="#94A3B8"/>
+                                    <Setter TargetName="btnBorder" Property="Background" Value="#151618"/>
+                                    <Setter TargetName="dismissIcon" Property="Foreground" Value="#A78BFA"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>

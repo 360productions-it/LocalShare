@@ -12,7 +12,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Conversations Sidebar -->
-        <Border Background="{StaticResource SidebarBackground}" CornerRadius="16" Margin="0,0,20,0" BorderBrush="{StaticResource BorderSubtle}" BorderThickness="1">
+        <Border Background="{StaticResource StudioPanelBrush}" CornerRadius="16" Margin="0,0,20,0" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1">
             <DockPanel>
                 <TextBlock Text="Conversations" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" DockPanel.Dock="Top" Margin="20,20,20,16"/>
                 
@@ -27,20 +27,20 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListBoxItem">
-                                        <Border x:Name="bd" Background="{StaticResource SurfaceLevel2}" CornerRadius="12" BorderBrush="{StaticResource BorderSubtle}" BorderThickness="1" Padding="14,12">
+                                        <Border x:Name="bd" Background="{StaticResource StudioElevatedBrush}" CornerRadius="12" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1" Padding="14,12">
                                             <Grid>
-                                                <Rectangle x:Name="accentBar" Width="3" HorizontalAlignment="Left" Margin="-14,-12,0,-12" Fill="{StaticResource AccentGlow}" Opacity="0" RadiusX="1.5" RadiusY="1.5"/>
+                                                <Rectangle x:Name="accentBar" Width="3" HorizontalAlignment="Left" Margin="-14,-12,0,-12" Fill="{StaticResource StudioAccentBrush}" Opacity="0" RadiusX="1.5" RadiusY="1.5"/>
                                                 <ContentPresenter/>
                                             </Grid>
                                         </Border>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="bd" Property="Background" Value="{StaticResource CardHoverBackground}"/>
-                                                <Setter TargetName="bd" Property="BorderBrush" Value="{StaticResource BorderGlow}"/>
+                                                <Setter TargetName="bd" Property="Background" Value="{StaticResource StudioBorderBrush}"/>
+                                                <Setter TargetName="bd" Property="BorderBrush" Value="{StaticResource StudioAccentBrush}"/>
                                             </Trigger>
                                             <Trigger Property="IsSelected" Value="True">
-                                                <Setter TargetName="bd" Property="Background" Value="{StaticResource SelectedCardBackground}"/>
-                                                <Setter TargetName="bd" Property="BorderBrush" Value="{StaticResource AccentGlow}"/>
+                                                <Setter TargetName="bd" Property="Background" Value="{StaticResource StudioBorderBrush}"/>
+                                                <Setter TargetName="bd" Property="BorderBrush" Value="{StaticResource StudioAccentBrush}"/>
                                                 <Setter TargetName="accentBar" Property="Opacity" Value="1"/>
                                             </Trigger>
                                         </ControlTemplate.Triggers>
@@ -53,7 +53,7 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding DisplayName}" FontSize="15" FontWeight="SemiBold" Foreground="{StaticResource TextPrimary}" TextTrimming="CharacterEllipsis"/>
-                                <TextBlock Text="{Binding LastMessageAt, StringFormat='{}{0:g}'}" FontSize="12" Foreground="{StaticResource TextMuted}" Margin="0,4,0,0"/>
+                                <TextBlock Text="{Binding LastMessageAt, StringFormat='{}{0:g}'}" FontSize="12" Foreground="{StaticResource TextSecondary}" Margin="0,4,0,0"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -62,7 +62,7 @@
         </Border>
 
         <!-- Main Chat & Messages Panel -->
-        <Border Grid.Column="1" Background="{StaticResource SurfaceLevel1}" CornerRadius="16" BorderBrush="{StaticResource BorderSubtle}" BorderThickness="1">
+        <Border Grid.Column="1" Background="{StaticResource StudioWorkspaceBrush}" CornerRadius="16" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -72,13 +72,16 @@
                 </Grid.RowDefinitions>
 
                 <!-- Header -->
-                <Border Background="{StaticResource SurfaceLevel2}" Padding="20,16" CornerRadius="16,16,0,0" BorderBrush="{StaticResource BorderSubtle}" BorderThickness="0,0,0,1">
+                <Border Background="{StaticResource StudioPanelBrush}" Padding="20,16" CornerRadius="16,16,0,0" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="0,0,0,1">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Border Width="44" Height="44" CornerRadius="22" Background="{StaticResource PrimaryGradient}">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="12" Color="#7C5CFC" Direction="0" ShadowDepth="0" Opacity="0.3"/>
+                            </Border.Effect>
                             <ui:SymbolIcon Symbol="Person24" Foreground="White" FontSize="22"/>
                         </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="16,0,0,0">
@@ -88,7 +91,7 @@
                             <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
                                 <TextBlock Text="{Binding TypingText}" FontSize="12" Foreground="{StaticResource TextAccent}" FontWeight="SemiBold"/>
                                 <Grid Style="{StaticResource PulsingOnlineIndicator}" Margin="8,0,0,0" VerticalAlignment="Center" Visibility="{Binding TypingText, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
-                                    <Ellipse Fill="{StaticResource AccentCyan}">
+                                    <Ellipse Fill="{StaticResource StudioAccentBrush}">
                                         <Ellipse.Triggers>
                                             <EventTrigger RoutedEvent="Loaded">
                                                 <BeginStoryboard>
@@ -130,20 +133,20 @@
                                     </Grid.RenderTransform>
 
                                     <!-- Bubble -->
-                                    <Border x:Name="MessageBubble" Padding="16,12" Background="{StaticResource SurfaceLevel2}" CornerRadius="12,12,12,4" HorizontalAlignment="Left" MaxWidth="560" BorderBrush="{StaticResource BorderSubtle}" BorderThickness="1">
+                                    <Border x:Name="MessageBubble" Padding="16,12" Background="{StaticResource StudioPanelBrush}" CornerRadius="12,12,12,4" HorizontalAlignment="Left" MaxWidth="560" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1">
                                         <StackPanel>
                                             <TextBlock x:Name="SenderText" Text="{Binding SenderDisplayName}" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextAccent}" Margin="0,0,0,4"/>
                                             
-                                            <TextBlock Text="{Binding Body}" FontSize="14" Foreground="{StaticResource TextPrimary}" TextWrapping="Wrap"/>
+                                            <TextBlock x:Name="BodyText" Text="{Binding Body}" FontSize="14" Foreground="{StaticResource TextPrimary}" TextWrapping="Wrap"/>
                                             
-                                            <Border Visibility="{Binding AttachmentFileName, Converter={StaticResource BooleanToVisibilityConverter}}" Background="{StaticResource SurfaceLevel3}" CornerRadius="8" Padding="10,6" Margin="0,8,0,0">
+                                            <Border Visibility="{Binding AttachmentFileName, Converter={StaticResource BooleanToVisibilityConverter}}" Background="{StaticResource StudioElevatedBrush}" CornerRadius="8" Padding="10,6" Margin="0,8,0,0" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1">
                                                 <StackPanel Orientation="Horizontal">
                                                     <ui:SymbolIcon Symbol="Document24" Foreground="{StaticResource TextAccent}" FontSize="16" Margin="0,0,8,0" VerticalAlignment="Center"/>
                                                     <TextBlock Text="{Binding AttachmentFileName}" Foreground="{StaticResource TextPrimary}" FontSize="13" FontWeight="Medium" VerticalAlignment="Center"/>
                                                 </StackPanel>
                                             </Border>
 
-                                            <TextBlock Text="{Binding SentAt, StringFormat='{}{0:t}'}" FontSize="11" Foreground="{StaticResource TextMuted}" HorizontalAlignment="Right" Margin="0,8,0,0"/>
+                                            <TextBlock x:Name="TimeText" Text="{Binding SentAt, StringFormat='{}{0:t}'}" FontSize="11" Foreground="{StaticResource TextSecondary}" HorizontalAlignment="Right" Margin="0,8,0,0"/>
                                         </StackPanel>
                                     </Border>
                                 </Grid>
@@ -155,6 +158,7 @@
                                         <Setter TargetName="MessageBubble" Property="HorizontalAlignment" Value="Right"/>
                                         <Setter TargetName="MessageBubble" Property="BorderThickness" Value="0"/>
                                         <Setter TargetName="SenderText" Property="Visibility" Value="Collapsed"/>
+                                        <Setter TargetName="TimeText" Property="Foreground" Value="#E9D5FF"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding IsSentByMe}" Value="True">
                                         <Setter TargetName="MessageBubble" Property="Background" Value="{StaticResource PrimaryGradient}"/>
@@ -162,6 +166,7 @@
                                         <Setter TargetName="MessageBubble" Property="HorizontalAlignment" Value="Right"/>
                                         <Setter TargetName="MessageBubble" Property="BorderThickness" Value="0"/>
                                         <Setter TargetName="SenderText" Property="Visibility" Value="Collapsed"/>
+                                        <Setter TargetName="TimeText" Property="Foreground" Value="#E9D5FF"/>
                                     </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
@@ -170,7 +175,7 @@
                 </ScrollViewer>
 
                 <!-- Attachment Active Pill Bar -->
-                <Border Grid.Row="2" Background="{StaticResource SurfaceLevel2}" Margin="20,0,20,8" Padding="14,10" CornerRadius="10" BorderBrush="{StaticResource BorderSubtle}" BorderThickness="1" Visibility="{Binding SelectedAttachmentPath, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Border Grid.Row="2" Background="{StaticResource StudioPanelBrush}" Margin="20,0,20,8" Padding="14,10" CornerRadius="10" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1" Visibility="{Binding SelectedAttachmentPath, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -200,7 +205,7 @@
                             <ui:SymbolIcon Symbol="Attach24" FontSize="20"/>
                         </Button>
 
-                        <Border Grid.Column="1" Background="{StaticResource SurfaceLevel2}" CornerRadius="12" BorderBrush="{StaticResource BorderSubtle}" BorderThickness="1">
+                        <Border Grid.Column="1" Background="{StaticResource StudioPanelBrush}" CornerRadius="12" BorderBrush="{StaticResource StudioBorderBrush}" BorderThickness="1">
                             <TextBox Text="{Binding MessageInput, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ModernTextBox}" Background="Transparent" BorderThickness="0" Padding="16,14" FontSize="14" VerticalContentAlignment="Center">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Enter" Command="{Binding SendMessageCommand}"/>
