@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LocalShare.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("2.0.6.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.0.6+ea8f334aa66b597f920ea1bb2cc2aa40b3f80f5f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.0.6+bcad32b0231c91f8895d78e21aa6c8a42f81d023")]
 [assembly: System.Reflection.AssemblyProductAttribute("LocalShare.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LocalShare.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("2.0.6.0")]
