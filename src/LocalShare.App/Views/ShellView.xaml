@@ -131,7 +131,7 @@
                     <RadioButton Content="🌐  Discovered Peers" Command="{Binding NavigateCommand}" CommandParameter="Peers" IsChecked="True" Style="{StaticResource NavRadioButtonStyle}"/>
                     <RadioButton Content="💬  Instant Messenger" Command="{Binding NavigateCommand}" CommandParameter="Chat" Style="{StaticResource NavRadioButtonStyle}"/>
                     <RadioButton Content="📁  Public Space" Command="{Binding NavigateCommand}" CommandParameter="PublicSpace" Style="{StaticResource NavRadioButtonStyle}"/>
-                    <RadioButton Content="👥  LAN Groups" Command="{Binding NavigateCommand}" CommandParameter="Groups" Style="{StaticResource NavRadioButtonStyle}"/>
+                    <!-- <RadioButton Content="👥  LAN Groups" Command="{Binding NavigateCommand}" CommandParameter="Groups" Style="{StaticResource NavRadioButtonStyle}"/> -->
                     <RadioButton Content="⚡  Transfers &amp; Logs" Command="{Binding NavigateCommand}" CommandParameter="Transfers" Style="{StaticResource NavRadioButtonStyle}"/>
                 </StackPanel>
             </DockPanel>
